@@ -39,7 +39,9 @@ class _SignupState extends State<Signup> {
               decoration: const InputDecoration(hintText: 'enter password'),
             ),
             ElevatedButton(
-                onPressed: (() => signup()), child: const Text('signup now'))
+              onPressed: (() => signup()),
+              child: const Text('signup now'),
+            ),
           ],
         ),
       ),

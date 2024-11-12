@@ -36,39 +36,48 @@ class _LoginState extends State<Login> {
 
   @override
   Widget build(BuildContext context) {
-    return isloading?const Center(child: CircularProgressIndicator(),): Scaffold(
-      appBar: AppBar(
-        title: const Text('Login test'),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(20.0),
-        child: Column(
-          children: [
-            TextField(
-              controller: email,
-              decoration: const InputDecoration(hintText: 'enter email'),
+    return isloading
+        ? const Center(
+            child: CircularProgressIndicator(),
+          )
+        : Scaffold(
+            appBar: AppBar(
+              title: const Text('Login test'),
             ),
-            TextField(
-              controller: password,
-              decoration: const InputDecoration(hintText: 'enter password'),
+            body: Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Column(
+                children: [
+                  TextField(
+                    controller: email,
+                    decoration: const InputDecoration(hintText: 'enter email'),
+                  ),
+                  TextField(
+                    controller: password,
+                    decoration:
+                        const InputDecoration(hintText: 'enter password'),
+                  ),
+                  ElevatedButton(
+                    onPressed: (() => signIn()),
+                    child: const Text('login now'),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  ElevatedButton(
+                    onPressed: (() => Get.to(const Signup())),
+                    child: const Text('Register now'),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  ElevatedButton(
+                    onPressed: (() => Get.to(const Forgot())),
+                    child: const Text('Forgot password'),
+                  ),
+                ],
+              ),
             ),
-            ElevatedButton(
-                onPressed: (() => signIn()), child: const Text('login now')),
-            const SizedBox(
-              height: 20,
-            ),
-            ElevatedButton(
-                onPressed: (() => Get.to(const Signup())),
-                child: const Text('Register now')),
-            const SizedBox(
-              height: 20,
-            ),
-            ElevatedButton(
-                onPressed: (() => Get.to(const Forgot())),
-                child: const Text('Forgot password'))
-          ],
-        ),
-      ),
-    );
+          );
   }
 }

@@ -19,11 +19,16 @@ class _VerifyState extends State<Verify> {
 
   sendverifylink() async {
     final user = FirebaseAuth.instance.currentUser!;
-    await user.sendEmailVerification().then((value) => {
-          Get.snackbar('Link sent!', 'Check your email',
+    await user.sendEmailVerification().then(
+          (value) => {
+            Get.snackbar(
+              'Link sent!',
+              'Check your email',
               margin: const EdgeInsets.all(30),
-              snackPosition: SnackPosition.BOTTOM)
-        });
+              snackPosition: SnackPosition.BOTTOM,
+            )
+          },
+        );
   }
 
   reload() async {
@@ -36,13 +41,16 @@ class _VerifyState extends State<Verify> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: const Padding(
-          padding: EdgeInsets.all(20.0),
-          child: Center(
-            child: Text('isi sama animasi atau apa kek gitu'),
-          )),
+        padding: EdgeInsets.all(20.0),
+        child: Center(
+          child: Text('isi sama animasi atau apa kek gitu'),
+        ),
+      ),
       floatingActionButton: FloatingActionButton(
         onPressed: (() => reload()),
-        child: const Icon(Icons.restart_alt_rounded),
+        child: const Icon(
+          Icons.restart_alt_rounded,
+        ),
       ),
     );
   }

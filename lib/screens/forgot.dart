@@ -13,12 +13,13 @@ class _ForgotState extends State<Forgot> {
 
   reset() async {
     await FirebaseAuth.instance.sendPasswordResetEmail(
-        email: email.text,);
+      email: email.text,
+    );
   }
 
   @override
   Widget build(BuildContext context) {
-        return Scaffold(
+    return Scaffold(
       appBar: AppBar(
         title: const Text('forgot password?'),
       ),
@@ -28,7 +29,10 @@ class _ForgotState extends State<Forgot> {
             controller: email,
             decoration: const InputDecoration(hintText: 'enter email'),
           ),
-          ElevatedButton(onPressed: (()=>reset()), child: const Text('send link now'))
+          ElevatedButton(
+            onPressed: (() => reset()),
+            child: const Text('send link now'),
+          ),
         ],
       ),
     );
