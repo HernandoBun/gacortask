@@ -18,7 +18,6 @@ class _SignupScreenState extends State<Signup> {
   bool isChecked = false;
   bool _obscurePassword = true;
 
-  // Fungsi untuk proses signup dengan Firebase Authentication
   signup() async {
     if (isChecked) {
       try {
@@ -26,7 +25,8 @@ class _SignupScreenState extends State<Signup> {
           email: email.text,
           password: password.text,
         );
-        Get.offAll(const Wrapper()); // Berpindah ke halaman utama setelah signup
+        Get.offAll(
+            const Wrapper());
       } catch (e) {
         Get.snackbar('Signup Error', e.toString());
       }
@@ -60,8 +60,6 @@ class _SignupScreenState extends State<Signup> {
               ),
             ),
             const SizedBox(height: 16),
-
-            // Social Media Buttons (Google, Apple)
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -86,7 +84,8 @@ class _SignupScreenState extends State<Signup> {
                 Expanded(
                   child: OutlinedButton.icon(
                     onPressed: () {},
-                    icon: const Icon(Icons.apple, color: Colors.black, size: 30),
+                    icon:
+                        const Icon(Icons.apple, color: Colors.black, size: 30),
                     label: const Text('Apple'),
                     style: OutlinedButton.styleFrom(
                       padding: const EdgeInsets.symmetric(vertical: 8),
@@ -100,8 +99,6 @@ class _SignupScreenState extends State<Signup> {
               ],
             ),
             const SizedBox(height: 16),
-
-            // "or" Divider
             const Row(
               children: [
                 Expanded(child: Divider(color: Colors.grey)),
@@ -129,13 +126,13 @@ class _SignupScreenState extends State<Signup> {
             TextField(
               controller: name,
               decoration: InputDecoration(
-                contentPadding: const EdgeInsets.symmetric(vertical: 8, horizontal: 10),
-                border: OutlineInputBorder(borderRadius: BorderRadius.circular(8.0)),
+                contentPadding:
+                    const EdgeInsets.symmetric(vertical: 8, horizontal: 10),
+                border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8.0)),
               ),
             ),
             const SizedBox(height: 12),
-
-            // Email Field
             const Text(
               "Email address",
               style: TextStyle(
@@ -147,13 +144,13 @@ class _SignupScreenState extends State<Signup> {
             TextField(
               controller: email,
               decoration: InputDecoration(
-                contentPadding: const EdgeInsets.symmetric(vertical: 8, horizontal: 10),
-                border: OutlineInputBorder(borderRadius: BorderRadius.circular(8.0)),
+                contentPadding:
+                    const EdgeInsets.symmetric(vertical: 8, horizontal: 10),
+                border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8.0)),
               ),
             ),
             const SizedBox(height: 12),
-
-            // Password Field with Visibility Toggle
             const Text(
               "Password",
               style: TextStyle(
@@ -166,8 +163,10 @@ class _SignupScreenState extends State<Signup> {
               controller: password,
               obscureText: _obscurePassword,
               decoration: InputDecoration(
-                contentPadding: const EdgeInsets.symmetric(vertical: 8, horizontal: 10),
-                border: OutlineInputBorder(borderRadius: BorderRadius.circular(8.0)),
+                contentPadding:
+                    const EdgeInsets.symmetric(vertical: 8, horizontal: 10),
+                border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8.0)),
                 suffixIcon: IconButton(
                   icon: Icon(
                     _obscurePassword ? Icons.visibility_off : Icons.visibility,
@@ -182,8 +181,6 @@ class _SignupScreenState extends State<Signup> {
               ),
             ),
             const SizedBox(height: 12),
-
-            // Terms & Privacy Checkbox
             Row(
               children: [
                 Theme(
@@ -216,10 +213,7 @@ class _SignupScreenState extends State<Signup> {
                 ),
               ],
             ),
-
             const SizedBox(height: 16),
-
-            // Sign Up Button
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
@@ -238,24 +232,20 @@ class _SignupScreenState extends State<Signup> {
                 ),
               ),
             ),
-
             const SizedBox(height: 12),
-
-            // Login Link
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Text("Already have an account?", style: TextStyle(fontSize: 14)),
+                const Text("Already have an account?",
+                    style: TextStyle(fontSize: 14)),
                 TextButton(
-                  onPressed: () => Get.to(const LoginScreen()), // Navigasi ke halaman Login
+                  onPressed: () =>
+                      Get.to(const LoginScreen()),
                   child: const Text('Log In', style: TextStyle(fontSize: 14)),
                 ),
               ],
             ),
-
             const SizedBox(height: 20),
-
-            // Footer Text
             Center(
               child: Text(
                 "© 2024 Kel 6 TIF C 23, Productivity",

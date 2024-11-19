@@ -35,4 +35,6 @@ class Constants {
   static const String imageRoot = "assets/images/";
   // static const String logoRoot = "${imageRoot}logo.svg";
   // static const String themeRoot = "${imageRoot}theme.svg";
+
+  // static const Icon icon1 = Icon(Icons.home);
 }
