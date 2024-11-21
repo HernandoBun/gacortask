@@ -24,3 +24,8 @@ Jika error di Verify Account atau Forgot Password ikuti step berikut:
 1. Buka pubspec.yaml
 2. Hapus firebase_core dan firebase_auth
 3. Masukkan kembali firebase_core dan firebase_auth
+
+#Jika Error Gradle silahkan ikuti berikut:
+
+- [Buka settings.gradle, gradle-wrapper.properties](https://github.com/flutter/flutter/issues/156307)
+- [Buka android/app/build.gradle](https://github.com/flutter/flutter/issues/156304)

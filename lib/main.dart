@@ -1,13 +1,24 @@
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-// import 'package:mobprog_home/screens/home.dart';
-import 'package:gacortask/screens/wrapper.dart';
+import 'package:gacortask/usage/bottom_navbar.dart';
 import 'package:get/get.dart';
+import 'package:gacortask/screens/wrapper.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:provider/provider.dart';
+import 'package:gacortask/providers/task_provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  runApp(const MyApp());
+
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => TaskProvider()),
+      ],
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -22,7 +33,18 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const Wrapper(),
+      home: const NavbarWrapper(),
     );
+  }
+}
+
+class NavbarWrapper extends StatelessWidget {
+  const NavbarWrapper({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    bool logged = FirebaseAuth.instance.currentUser != null;
+
+    return logged ? const BottomNavBar() : const Wrapper();
   }
 }
