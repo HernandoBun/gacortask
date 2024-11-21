@@ -9,7 +9,6 @@ class BottomNavBar extends StatefulWidget {
   const BottomNavBar({super.key});
 
   @override
-  // ignore: library_private_types_in_public_api
   _BottomNavBarState createState() => _BottomNavBarState();
 }
 
@@ -20,8 +19,8 @@ class _BottomNavBarState extends State<BottomNavBar> {
   final List<Widget> pages = [
     const MyHomePage(),
     const HomeScreen(),
-    const Center(child: Text("Contact Page")),
-    const Center(child: Text("Call Page")),
+    const Center(child: Text("Contact Page")), // ganti disini 
+    const Center(child: Text("Call Page")), // ganti disini
     const ProfilePage(),
   ];
 
@@ -33,15 +32,15 @@ class _BottomNavBarState extends State<BottomNavBar> {
         index: _page,
         height: 65.0,
         items: const <Widget>[
-          Icon(Icons.home, size: 33, color: Constants.colorBlue4),
-          Icon(Icons.list, size: 33, color: Constants.colorBlue4),
-          Icon(Icons.edit_notifications_rounded, size: 33, color: Constants.colorBlue4),
-          Icon(Icons.calendar_month_outlined, size: 33, color: Constants.colorBlue4),
-          Icon(Icons.person_pin, size: 33, color: Constants.colorBlue4),
+          Icon(Icons.home, size: 33, color: Constants.colorWhite),
+          Icon(Icons.list, size: 33, color: Constants.colorWhite),
+          Icon(Icons.edit_notifications_rounded, size: 33, color: Constants.colorWhite),
+          Icon(Icons.calendar_month_outlined, size: 33, color: Constants.colorWhite),
+          Icon(Icons.person_pin, size: 33, color: Constants.colorWhite),
         ],
-        color: Constants.colorWhite,
-        buttonBackgroundColor: Constants.colorWhite,
-        backgroundColor: Constants.colorBlue4,
+        color: Constants.colorBlueHer,
+        buttonBackgroundColor: Constants.colorBlueHer,
+        backgroundColor: Constants.colorWhite,
         animationCurve: Curves.easeInOut,
         animationDuration: const Duration(milliseconds: 600),
         onTap: (index) {

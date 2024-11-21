@@ -23,6 +23,7 @@ class Constants {
   static const Color colorBlue2 = Color.fromARGB(255, 40, 126, 255);
   static const Color colorBlue3 = Color(0xff81D4Fa);
   static const Color colorBlue4 = Color.fromARGB(255, 182, 232, 255);
+  static const Color colorBlueHer = Color.fromARGB(255, 33, 150, 243);
   static const Color colorWhite = Color.fromARGB(255, 255, 255, 255);
   static const Color colorGreen = Color.fromARGB(255, 76, 175, 80);
   static const Color colorRedto = Color.fromARGB(255, 244, 67, 54);
