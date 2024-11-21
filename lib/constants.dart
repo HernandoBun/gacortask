@@ -29,11 +29,19 @@ class Constants {
   static const String taskText = "Task Overview";
   static const String taskText1 = "Tugas Selesai";
   static const String taskText2 = "Tugas Tertunda";
+  static const String snackPwReset = "Password reset email sent successfully.";
+  static const String resetPw = "Reset Your Password";
+  static const String forgotEmail = "Enter the email associated with your account and we'll send you password reset instructions.";
+  static const String hintEmail = "Your Email";
+  static const String sendInstruction = "Send Reset Instructions";
+  static const String returnLogin = "Return to Log In";
 
   // static const String fontInterBold = "Inter-Bold";
 
   static const String imageRoot = "assets/images/";
-  // static const String logoRoot = "${imageRoot}logo.svg";
+  static const String imageRoot1 = "assets/";
+  static const String headerRoot = "${imageRoot}header_image.jpeg";
+  static const String googleRoot = "${imageRoot1}google.png";
   // static const String themeRoot = "${imageRoot}theme.svg";
 
   // static const Icon icon1 = Icon(Icons.home);

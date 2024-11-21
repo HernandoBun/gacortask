@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:gacortask/constants.dart';
 import 'package:get/get.dart';
 import 'package:gacortask/screens/wrapper.dart';
-import 'package:gacortask/screens/forgot.dart';
-import 'package:gacortask/screens/signup.dart';
+import 'package:gacortask/screens/loginAuth/forgot.dart';
+import 'package:gacortask/screens/loginAuth/signup.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -53,7 +54,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         height: 250,
                         decoration: const BoxDecoration(
                           image: DecorationImage(
-                            image: AssetImage('assets/header_image.jpeg'),
+                            image: AssetImage(Constants.headerRoot),
                             fit: BoxFit.cover,
                           ),
                         ),
@@ -180,7 +181,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               ),
                             ),
                             icon: Image.asset(
-                              'assets/google.png',
+                              Constants.googleRoot,
                               height: 20,
                             ),
                             label: const Text('Log In with Google'),

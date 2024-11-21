@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
-import 'package:gacortask/screens/login.dart';
+import 'package:gacortask/screens/loginAuth/login.dart';
 import 'package:gacortask/screens/wrapper.dart';
 
 class Signup extends StatefulWidget {
@@ -248,7 +248,7 @@ class _SignupScreenState extends State<Signup> {
             const SizedBox(height: 20),
             Center(
               child: Text(
-                "© 2024 Kel 6 TIF C 23, Productivity",
+                "© 2024 Kel 6 TI C 23, Productivity",
                 style: TextStyle(color: Colors.grey[600], fontSize: 10),
               ),
             ),

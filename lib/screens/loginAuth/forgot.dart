@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:gacortask/constants.dart';
 
 class ForgotPassword extends StatefulWidget {
   const ForgotPassword({super.key});
@@ -20,7 +21,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
       );
       scaffoldMessengerKey.currentState?.showSnackBar(
         const SnackBar(
-          content: Text('Password reset email sent successfully.'),
+          content: Text(Constants.snackPwReset),
           backgroundColor: Colors.green,
         ),
       );
@@ -38,9 +39,10 @@ class _ForgotPasswordState extends State<ForgotPassword> {
   Widget build(BuildContext context) {
     return MaterialApp(
       scaffoldMessengerKey: scaffoldMessengerKey,
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.white,
+          backgroundColor: Constants.colorWhite,
           elevation: 0,
           leading: IconButton(
             icon: const Icon(Icons.arrow_back, color: Colors.black),
@@ -53,7 +55,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const Text(
-                'Reset Your Password',
+                Constants.resetPw,
                 style: TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
@@ -62,7 +64,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
               ),
               const SizedBox(height: 10),
               const Text(
-                'Enter the email associated with your account and we’ll send you password reset instructions.',
+                Constants.forgotEmail,
                 style: TextStyle(
                   fontSize: 16,
                   color: Colors.black54,
@@ -72,7 +74,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
               TextField(
                 controller: emailController,
                 decoration: InputDecoration(
-                  hintText: 'Your Email',
+                  hintText: Constants.hintEmail,
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(8.0),
                   ),
@@ -97,7 +99,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                   child: const Padding(
                     padding: EdgeInsets.symmetric(vertical: 15.0),
                     child: Text(
-                      'Send Reset Instructions',
+                      Constants.sendInstruction,
                       style: TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
@@ -113,7 +115,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                     Navigator.pop(context);
                   },
                   child: const Text(
-                    'Return to Log In',
+                    Constants.returnLogin,
                     style: TextStyle(
                       color: Colors.purple,
                       fontSize: 16,
