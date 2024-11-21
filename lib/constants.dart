@@ -12,6 +12,7 @@ class Constants {
   static const Color colorGrey7 = Color(0xFFACACAC);
   static const Color colorGreybg = Color(0xfff6f6f6);
   static const Color colorBlack = Color(0xFF000000);
+  static const Color colorBlack1 = Color.fromARGB(138, 0, 0, 0);
   static const Color colorFontBlack = Color(0xFF383737);
   static const Color transColor = Color(0x00000000);
   static const Color colorRed = Color(0xffd50000);
@@ -23,6 +24,10 @@ class Constants {
   static const Color colorBlue3 = Color(0xff81D4Fa);
   static const Color colorBlue4 = Color.fromARGB(255, 182, 232, 255);
   static const Color colorWhite = Color.fromARGB(255, 255, 255, 255);
+  static const Color colorGreen = Color.fromARGB(255, 76, 175, 80);
+  static const Color colorRedto = Color.fromARGB(255, 244, 67, 54);
+  static const Color colorPurple = Color.fromARGB(255, 156, 39, 176);
+  static const Color colorPurpleShade = Color.fromARGB(255, 171, 71, 188);
 
   static const String title = "GacorTask";
   static const String carText = "Discover New Ways to do Projects";

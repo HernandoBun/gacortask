@@ -22,14 +22,14 @@ class _ForgotPasswordState extends State<ForgotPassword> {
       scaffoldMessengerKey.currentState?.showSnackBar(
         const SnackBar(
           content: Text(Constants.snackPwReset),
-          backgroundColor: Colors.green,
+          backgroundColor: Constants.colorGreen,
         ),
       );
     } catch (e) {
       scaffoldMessengerKey.currentState?.showSnackBar(
         SnackBar(
           content: Text(e.toString()),
-          backgroundColor: Colors.red,
+          backgroundColor: Constants.colorRedto,
         ),
       );
     }
@@ -45,7 +45,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
           backgroundColor: Constants.colorWhite,
           elevation: 0,
           leading: IconButton(
-            icon: const Icon(Icons.arrow_back, color: Colors.black),
+            icon: const Icon(Icons.arrow_back, color: Constants.colorBlack),
             onPressed: () => Navigator.of(context).pop(),
           ),
         ),
@@ -59,7 +59,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                 style: TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
-                  color: Colors.black,
+                  color: Constants.colorBlack,
                 ),
               ),
               const SizedBox(height: 10),
@@ -67,7 +67,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                 Constants.forgotEmail,
                 style: TextStyle(
                   fontSize: 16,
-                  color: Colors.black54,
+                  color: Constants.colorBlack1,
                 ),
               ),
               const SizedBox(height: 20),
@@ -78,8 +78,8 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(8.0),
                   ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.purple.shade400),
+                  focusedBorder: const OutlineInputBorder(
+                    borderSide: BorderSide(color: Constants.colorPurpleShade),
                   ),
                 ),
                 keyboardType: TextInputType.emailAddress,
@@ -89,8 +89,8 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                 width: double.infinity,
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    foregroundColor: Colors.white,
-                    backgroundColor: Colors.purple,
+                    foregroundColor: Constants.colorWhite,
+                    backgroundColor: Constants.colorPurple,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8.0),
                     ),
@@ -117,7 +117,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                   child: const Text(
                     Constants.returnLogin,
                     style: TextStyle(
-                      color: Colors.purple,
+                      color: Constants.colorPurple,
                       fontSize: 16,
                     ),
                   ),

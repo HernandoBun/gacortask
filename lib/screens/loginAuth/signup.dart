@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:gacortask/constants.dart';
 import 'package:get/get.dart';
 import 'package:gacortask/screens/loginAuth/login.dart';
 import 'package:gacortask/screens/wrapper.dart';
@@ -67,7 +68,7 @@ class _SignupScreenState extends State<Signup> {
                   child: OutlinedButton.icon(
                     onPressed: () {},
                     icon: Image.asset(
-                      'assets/google.png',
+                      Constants.googleRoot,
                       height: 29,
                     ),
                     label: const Text('Google'),
@@ -113,8 +114,6 @@ class _SignupScreenState extends State<Signup> {
               ],
             ),
             const SizedBox(height: 16),
-
-            // Name Field
             const Text(
               "Name",
               style: TextStyle(
