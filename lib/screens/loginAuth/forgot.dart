@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:gacortask/constants.dart';
 
 class ForgotPassword extends StatefulWidget {
   const ForgotPassword({super.key});
@@ -20,15 +21,15 @@ class _ForgotPasswordState extends State<ForgotPassword> {
       );
       scaffoldMessengerKey.currentState?.showSnackBar(
         const SnackBar(
-          content: Text('Password reset email sent successfully.'),
-          backgroundColor: Colors.green,
+          content: Text(Constants.snackPwReset),
+          backgroundColor: Constants.colorGreen,
         ),
       );
     } catch (e) {
       scaffoldMessengerKey.currentState?.showSnackBar(
         SnackBar(
           content: Text(e.toString()),
-          backgroundColor: Colors.red,
+          backgroundColor: Constants.colorRedto,
         ),
       );
     }
@@ -38,12 +39,13 @@ class _ForgotPasswordState extends State<ForgotPassword> {
   Widget build(BuildContext context) {
     return MaterialApp(
       scaffoldMessengerKey: scaffoldMessengerKey,
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.white,
+          backgroundColor: Constants.colorWhite,
           elevation: 0,
           leading: IconButton(
-            icon: const Icon(Icons.arrow_back, color: Colors.black),
+            icon: const Icon(Icons.arrow_back, color: Constants.colorBlack),
             onPressed: () => Navigator.of(context).pop(),
           ),
         ),
@@ -53,31 +55,31 @@ class _ForgotPasswordState extends State<ForgotPassword> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const Text(
-                'Reset Your Password',
+                Constants.resetPw,
                 style: TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
-                  color: Colors.black,
+                  color: Constants.colorBlack,
                 ),
               ),
               const SizedBox(height: 10),
               const Text(
-                'Enter the email associated with your account and we’ll send you password reset instructions.',
+                Constants.forgotEmail,
                 style: TextStyle(
                   fontSize: 16,
-                  color: Colors.black54,
+                  color: Constants.colorBlack1,
                 ),
               ),
               const SizedBox(height: 20),
               TextField(
                 controller: emailController,
                 decoration: InputDecoration(
-                  hintText: 'Your Email',
+                  hintText: Constants.hintEmail,
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(8.0),
                   ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.purple.shade400),
+                  focusedBorder: const OutlineInputBorder(
+                    borderSide: BorderSide(color: Constants.colorPurpleShade),
                   ),
                 ),
                 keyboardType: TextInputType.emailAddress,
@@ -87,8 +89,8 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                 width: double.infinity,
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    foregroundColor: Colors.white,
-                    backgroundColor: Colors.purple,
+                    foregroundColor: Constants.colorWhite,
+                    backgroundColor: Constants.colorPurple,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8.0),
                     ),
@@ -97,7 +99,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                   child: const Padding(
                     padding: EdgeInsets.symmetric(vertical: 15.0),
                     child: Text(
-                      'Send Reset Instructions',
+                      Constants.sendInstruction,
                       style: TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
@@ -113,9 +115,9 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                     Navigator.pop(context);
                   },
                   child: const Text(
-                    'Return to Log In',
+                    Constants.returnLogin,
                     style: TextStyle(
-                      color: Colors.purple,
+                      color: Constants.colorPurple,
                       fontSize: 16,
                     ),
                   ),

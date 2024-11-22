@@ -21,7 +21,6 @@ class TaskProvider with ChangeNotifier {
     return _tasks.where((task) => task.isCompleted == isCompleted).toList();
   }
 
-  // Getter untuk daftar kategori (termasuk "All")
   List<String> get categories => ["All", ..._categories];
   String get selectedCategory => _selectedCategory;
 
@@ -37,7 +36,6 @@ class TaskProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  // Memuat daftar tugas dari SharedPreferences
 // Memuat daftar tugas dari SharedPreferences
 Future<void> loadTasks() async {
   final prefs = await SharedPreferences.getInstance();
@@ -46,11 +44,10 @@ Future<void> loadTasks() async {
     final List<dynamic> taskList = jsonDecode(tasksJson);
     _tasks = taskList.map((task) => Task.fromMap(task)).toList();
   } else {
-    _tasks = []; // Jika tidak ada tugas di SharedPreferences
+    _tasks = [];
   }
   notifyListeners();
 }
-
 
   // Menyimpan daftar tugas ke SharedPreferences
   Future<void> saveTasks() async {

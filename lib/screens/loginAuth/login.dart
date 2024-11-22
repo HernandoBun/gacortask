@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:gacortask/constants.dart';
 import 'package:get/get.dart';
 import 'package:gacortask/screens/wrapper.dart';
-import 'package:gacortask/screens/forgot.dart';
-import 'package:gacortask/screens/signup.dart';
+import 'package:gacortask/screens/loginAuth/forgot.dart';
+import 'package:gacortask/screens/loginAuth/signup.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -13,15 +14,12 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  // Controller for email and password input
   TextEditingController email = TextEditingController();
   TextEditingController password = TextEditingController();
 
-  // Variable to manage loading state
   bool isLoading = false;
   bool _isPasswordVisible = false;
 
-  // Function to handle Firebase login
   Future<void> signIn() async {
     setState(() {
       isLoading = true;
@@ -31,7 +29,7 @@ class _LoginScreenState extends State<LoginScreen> {
         email: email.text,
         password: password.text,
       );
-      Get.offAll(const Wrapper()); // Navigate to the main screen after login
+      Get.offAll(const Wrapper());
     } on FirebaseAuthException catch (e) {
       Get.snackbar('Error', e.message ?? 'Unknown error');
     } catch (e) {
@@ -50,23 +48,22 @@ class _LoginScreenState extends State<LoginScreen> {
           : SingleChildScrollView(
               child: Column(
                 children: [
-                  // Header image section
                   Stack(
                     children: [
                       Container(
                         height: 250,
                         decoration: const BoxDecoration(
                           image: DecorationImage(
-                            image: AssetImage('assets/header_image.jpeg'), // Replace with your image
+                            image: AssetImage(Constants.headerRoot),
                             fit: BoxFit.cover,
                           ),
                         ),
                       ),
                     ],
                   ),
-                  // Text below the header image
                   const Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
+                    padding:
+                        EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
                     child: Text(
                       'Get Started On Gacor Task',
                       style: TextStyle(
@@ -78,8 +75,6 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ),
                   const SizedBox(height: 20),
-
-                  // Email and password form section
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 24.0),
                     child: Column(
@@ -105,7 +100,9 @@ class _LoginScreenState extends State<LoginScreen> {
                             ),
                             suffixIcon: IconButton(
                               icon: Icon(
-                                _isPasswordVisible ? Icons.visibility : Icons.visibility_off,
+                                _isPasswordVisible
+                                    ? Icons.visibility
+                                    : Icons.visibility_off,
                               ),
                               onPressed: () {
                                 setState(() {
@@ -124,7 +121,6 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                         ),
                         const SizedBox(height: 20),
-                        // Login button
                         SizedBox(
                           width: double.infinity,
                           child: ElevatedButton(
@@ -137,12 +133,11 @@ class _LoginScreenState extends State<LoginScreen> {
                                 borderRadius: BorderRadius.circular(30),
                               ),
                             ),
-                            child: const Text('Login', style: TextStyle(fontSize: 18)),
+                            child: const Text('Login',
+                                style: TextStyle(fontSize: 18)),
                           ),
                         ),
                         const SizedBox(height: 20),
-
-                        // Divider with "or"
                         const Row(
                           children: [
                             Expanded(child: Divider()),
@@ -154,14 +149,10 @@ class _LoginScreenState extends State<LoginScreen> {
                           ],
                         ),
                         const SizedBox(height: 20),
-
-                        // Login buttons with Apple and Google
                         SizedBox(
                           width: double.infinity,
                           child: ElevatedButton.icon(
-                            onPressed: () {
-                              // Apple login logic here
-                            },
+                            onPressed: () {},
                             style: ElevatedButton.styleFrom(
                               backgroundColor: Colors.black,
                               foregroundColor: Colors.white,
@@ -179,9 +170,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         SizedBox(
                           width: double.infinity,
                           child: ElevatedButton.icon(
-                            onPressed: () {
-                              // Google login logic here
-                            },
+                            onPressed: () {},
                             style: ElevatedButton.styleFrom(
                               backgroundColor: Colors.white,
                               foregroundColor: Colors.black,
@@ -192,7 +181,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               ),
                             ),
                             icon: Image.asset(
-                              'assets/google.png', // Google icon
+                              Constants.googleRoot,
                               height: 20,
                             ),
                             label: const Text('Log In with Google'),
@@ -202,18 +191,16 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ),
                   const SizedBox(height: 20),
-
-                  // Sign-up link section
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       const Text("Don't have an account?"),
                       TextButton(
                         onPressed: () {
-                          // Navigate to the Sign Up screen when "Sign Up" is clicked
                           Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (context) => const Signup()),
+                            MaterialPageRoute(
+                                builder: (context) => const Signup()),
                           );
                         },
                         child: const Text('Sign up'),
