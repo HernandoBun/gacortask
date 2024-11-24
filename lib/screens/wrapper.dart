@@ -1,6 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:gacortask/screens/home.dart';
 import 'package:gacortask/screens/loginAuth/login.dart';
 import 'package:gacortask/screens/loginAuth/verifyemail.dart';
 import 'package:gacortask/usage/bottom_navbar.dart';

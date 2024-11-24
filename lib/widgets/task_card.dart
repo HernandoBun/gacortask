@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:gacortask/constants.dart';
 import 'package:gacortask/models/task_models.dart' as models;
 import 'package:gacortask/providers/task_provider.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
-
+ 
 class TaskCard extends StatelessWidget {
   final models.Task task;
   final int index;
-
+ 
   const TaskCard({super.key, required this.task, required this.index});
-
+ 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -19,7 +21,7 @@ class TaskCard extends StatelessWidget {
         margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
         elevation: 4.0,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(12), // Rounded corners
+          borderRadius: BorderRadius.circular(12),
         ),
         child: Container(
           color: task.isCompleted ? Colors.green[100] : Colors.white,
@@ -38,7 +40,7 @@ class TaskCard extends StatelessWidget {
                       decoration: task.isCompleted
                           ? TextDecoration.lineThrough
                           : TextDecoration.none,
-                      fontFamily: 'Roboto', // Custom font
+                      fontFamily: 'Roboto',
                     ),
                   ),
                   GestureDetector(
@@ -46,15 +48,15 @@ class TaskCard extends StatelessWidget {
                       _showDeleteTaskDialog(context, index);
                     },
                     child: const Icon(
-                      Icons.delete_outline, // Modern icon
+                      Icons.delete_outline,
                       color: Colors.red,
-                      size: 35, // Larger icon size
+                      size: 35,
                     ),
                   ),
                 ],
               ),
               Text(
-                'Waktu: ${task.time}',
+                'Waktu: ${DateFormat('yyyy-MM-dd HH:mm').format(task.deadline)}',
                 style: const TextStyle(color: Colors.black, fontSize: 14.0),
               ),
               const SizedBox(height: 4.0),
@@ -80,7 +82,7 @@ class TaskCard extends StatelessWidget {
       ),
     );
   }
-
+ 
   Widget _buildPriorityDropdown(BuildContext context) {
     return SizedBox(
       width: 80.0,
@@ -92,7 +94,7 @@ class TaskCard extends StatelessWidget {
           filled: true,
           fillColor: Colors.grey.shade200,
           border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(12), // Rounded corners
+            borderRadius: BorderRadius.circular(12),
           ),
         ),
         items: List.generate(5, (index) {
@@ -107,25 +109,25 @@ class TaskCard extends StatelessWidget {
           }
         },
         icon: const Icon(
-          Icons.arrow_drop_down_circle, // Custom arrow icon
+          Icons.arrow_drop_down_circle,
           color: Colors.blueAccent,
           size: 30,
         ),
         iconSize: 24,
         style: const TextStyle(color: Colors.black),
-        dropdownColor: Colors.white, // White background for dropdown
+        dropdownColor: Constants.colorWhite,
         elevation: 16,
       ),
     );
   }
-
+ 
   void _showDeleteTaskDialog(BuildContext context, int taskIndex) {
     showDialog(
       context: context,
       builder: (context) {
         return AlertDialog(
           title: const Text('Konfirmasi Hapus Tugas'),
-          content: const Text('Apakah Anda yakin ingin menghapus tugas ini?'),
+          content: Text('Apakah Anda yakin ingin menghapus tugas "${task.title}"?'),
           actions: [
             TextButton(
               onPressed: () {
