@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:gacortask/constants.dart';
 import 'package:gacortask/models/task_models.dart' as models;
 import 'package:gacortask/providers/task_provider.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
-
+ 
 class TaskCard extends StatelessWidget {
   final models.Task task;
   final int index;
-
+ 
   const TaskCard({super.key, required this.task, required this.index});
-
+ 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -54,7 +56,7 @@ class TaskCard extends StatelessWidget {
                 ],
               ),
               Text(
-                'Waktu: ${task.time}',
+                'Waktu: ${DateFormat('yyyy-MM-dd HH:mm').format(task.deadline)}',
                 style: const TextStyle(color: Colors.black, fontSize: 14.0),
               ),
               const SizedBox(height: 4.0),
@@ -80,7 +82,7 @@ class TaskCard extends StatelessWidget {
       ),
     );
   }
-
+ 
   Widget _buildPriorityDropdown(BuildContext context) {
     return SizedBox(
       width: 80.0,
@@ -118,14 +120,14 @@ class TaskCard extends StatelessWidget {
       ),
     );
   }
-
+ 
   void _showDeleteTaskDialog(BuildContext context, int taskIndex) {
     showDialog(
       context: context,
       builder: (context) {
         return AlertDialog(
           title: const Text('Konfirmasi Hapus Tugas'),
-          content: const Text('Apakah Anda yakin ingin menghapus tugas ini?'),
+          content: Text('Apakah Anda yakin ingin menghapus tugas "${task.title}"?'),
           actions: [
             TextButton(
               onPressed: () {

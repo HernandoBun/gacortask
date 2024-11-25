@@ -3,10 +3,10 @@ import 'package:gacortask/providers/task_provider.dart';
 import 'package:intl/intl.dart';
 import 'package:gacortask/widgets/task_card.dart';
 import 'package:provider/provider.dart';
-
+ 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
-
+ 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,7 +25,6 @@ class HomeScreen extends StatelessWidget {
       ),
       body: Column(
         children: [
-          // Row scrollable untuk kategori
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 8.0),
             child: SizedBox(
@@ -62,8 +61,7 @@ class HomeScreen extends StatelessWidget {
                           ),
                         );
                       }),
-
-                      // Tombol hapus kategori yang dipindahkan ke sini
+ 
                       IconButton(
                         icon: const Icon(
                           Icons.delete_outline,
@@ -80,22 +78,18 @@ class HomeScreen extends StatelessWidget {
               ),
             ),
           ),
-          // List tugas berdasarkan kategori yang dipilih
           Expanded(
             child: Consumer<TaskProvider>(
               builder: (context, taskProvider, child) {
-                // Filter tugas yang belum selesai
                 final pendingTasks = taskProvider.tasks
                     .where((task) => !task.isCompleted)
                     .toList();
-                // Filter tugas yang sudah selesai
                 final completedTasks = taskProvider.tasks
                     .where((task) => task.isCompleted)
                     .toList();
-
+ 
                 return ListView(
                   children: [
-                    // Tugas Belum Selesai
                     if (pendingTasks.isNotEmpty) ...[
                       const Padding(
                         padding: EdgeInsets.all(8.0),
@@ -110,12 +104,10 @@ class HomeScreen extends StatelessWidget {
                         return TaskCard(task: task, index: index);
                       }),
                     ],
-
-                    // Separator jika ada tugas selesai
+ 
                     if (completedTasks.isNotEmpty)
                       const Divider(height: 20, thickness: 2),
-
-                    // Tugas Sudah Selesai
+ 
                     if (completedTasks.isNotEmpty) ...[
                       const Padding(
                         padding: EdgeInsets.all(8.0),
@@ -145,14 +137,14 @@ class HomeScreen extends StatelessWidget {
       ),
     );
   }
-
+ 
   void _showAddTaskDialog(BuildContext context) {
     final titleController = TextEditingController();
     DateTime? selectedDate;
     TimeOfDay? selectedTime;
     String? selectedCategory;
     int? selectedPriority;
-
+ 
     showDialog(
       context: context,
       builder: (context) {
@@ -241,7 +233,7 @@ class HomeScreen extends StatelessWidget {
                                   setState(() {
                                     selectedDate = pickedDate;
                                   });
-
+ 
                                   final pickedTime = await showTimePicker(
                                     context: context,
                                     initialTime: TimeOfDay.now(),
@@ -282,12 +274,20 @@ class HomeScreen extends StatelessWidget {
                             selectedPriority != null &&
                             !_isTitleDuplicate(
                                 taskProvider, titleController.text)) {
+                          final deadline = DateTime(
+                            selectedDate!.year,
+                            selectedDate!.month,
+                            selectedDate!.day,
+                            selectedTime!.hour,
+                            selectedTime!.minute,
+                          );
                           taskProvider.addTask(
                             titleController.text,
-                            '${selectedDate!.toIso8601String()} ${selectedTime!.format(context)}',
+                            deadline,
                             selectedCategory!,
                             selectedPriority!,
                           );
+ 
                           Navigator.of(context).pop();
                         }
                       },
@@ -302,15 +302,15 @@ class HomeScreen extends StatelessWidget {
       },
     );
   }
-
+ 
   bool _isTitleDuplicate(TaskProvider taskProvider, String title) {
     return taskProvider.tasks.any((task) => task.title == title);
   }
-
+ 
   void _showAddCategoryDialog(BuildContext context) {
     final categoryController = TextEditingController();
     String? errorMessage;
-
+ 
     showDialog(
       context: context,
       builder: (context) {
@@ -363,7 +363,7 @@ class HomeScreen extends StatelessWidget {
       },
     );
   }
-
+ 
   void _showDeleteCategoryDialog(BuildContext context) {
     showDialog(
       context: context,

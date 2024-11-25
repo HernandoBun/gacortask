@@ -4,6 +4,8 @@ import 'package:gacortask/constants.dart';
 import 'package:gacortask/screens/home.dart';
 import 'package:gacortask/screens/profile_page.dart';
 import 'package:gacortask/screens/task_screen.dart';
+import 'package:gacortask/screens/notification_screen.dart';
+ 
 
 class BottomNavBar extends StatefulWidget {
   const BottomNavBar({super.key});
@@ -19,7 +21,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
   final List<Widget> pages = [
     const MyHomePage(),
     const HomeScreen(),
-    const Center(child: Text("Contact Page")), // ganti disini 
+    const NotificationScreen(),
     const Center(child: Text("Call Page")), // ganti disini
     const ProfilePage(),
   ];
