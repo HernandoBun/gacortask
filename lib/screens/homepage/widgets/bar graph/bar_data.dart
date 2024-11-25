@@ -1,4 +1,4 @@
-import 'package:gacortask/widgets/bar%20graph/individual_bar.dart';
+import 'package:gacortask/screens/homepage/widgets/bar%20graph/individual_bar.dart';
 
 class BarData {
   final double sunAmount;

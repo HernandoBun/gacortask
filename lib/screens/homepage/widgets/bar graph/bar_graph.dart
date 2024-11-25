@@ -1,6 +1,6 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
-import 'package:gacortask/widgets/bar%20graph/bar_data.dart';
+import 'package:gacortask/screens/homepage/widgets/bar%20graph/bar_data.dart';
 import 'package:gacortask/constants.dart';
 
 class MyBarGraph extends StatelessWidget {

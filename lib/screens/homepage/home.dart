@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:gacortask/screens/homepage/provider/notification_provider.dart';
 import 'package:gacortask/screens/homepage/widgets/drawer_item.dart';
 import 'package:gacortask/screens/homepage/widgets/drawer_items.dart';
-import 'package:gacortask/widgets/bar%20graph/bar_graph.dart';
+import 'package:gacortask/screens/homepage/widgets/bar%20graph/bar_graph.dart';
 import 'package:gacortask/screens/homepage/widgets/home_carousel.dart';
 import 'package:gacortask/constants.dart';
 import 'package:provider/provider.dart';
@@ -50,7 +50,6 @@ class _MyHomePageState extends State<MyHomePage> {
               stretchModes: const [
                 StretchMode.zoomBackground,
               ],
-              // background: CarouselHome(),
               background: AnimatedContainer(
                 duration: const Duration(milliseconds: 300),
                 child: const Image(
