@@ -54,7 +54,7 @@ class _MyHomePageState extends State<MyHomePage> {
               background: AnimatedContainer(
                 duration: const Duration(milliseconds: 300),
                 child: const Image(
-                  image: AssetImage('assets/welcome_pic1.png'),
+                  image: AssetImage(Constants.welcomeRoot),
                   fit: BoxFit.cover,
                 ),
               ),

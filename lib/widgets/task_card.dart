@@ -24,7 +24,7 @@ class TaskCard extends StatelessWidget {
           borderRadius: BorderRadius.circular(12),
         ),
         child: Container(
-          color: task.isCompleted ? Colors.green[100] : Colors.white,
+          color: task.isCompleted ? Colors.green[100] : Constants.colorWhite,
           padding: const EdgeInsets.all(16.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,

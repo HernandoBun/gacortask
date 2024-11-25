@@ -49,6 +49,7 @@ class Constants {
   static const String imageRoot = "assets/images/";
   static const String imageRoot1 = "assets/";
   static const String headerRoot = "${imageRoot}header_image.jpeg";
+  static const String welcomeRoot = "${imageRoot}welcome.png";
   static const String googleRoot = "${imageRoot1}google.png";
   // static const String themeRoot = "${imageRoot}theme.svg";
 
