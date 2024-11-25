@@ -29,6 +29,8 @@ class Constants {
   static const Color colorRedto = Color.fromARGB(255, 244, 67, 54);
   static const Color colorPurple = Color.fromARGB(255, 156, 39, 176);
   static const Color colorPurpleShade = Color.fromARGB(255, 171, 71, 188);
+  static const Color colorTransparent = Color.fromARGB(0, 255, 255, 255);
+ 
 
   static const String title = "GacorTask";
   static const String carText = "Discover New Ways to do Projects";
