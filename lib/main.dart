@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gacortask/constants.dart';
+import 'package:gacortask/screens/homepage/provider/notification_provider.dart';
 import 'package:gacortask/screens/wrapper.dart';
 import 'package:gacortask/usage/bottom_navbar.dart';
 import 'package:get/get.dart';
@@ -28,6 +29,7 @@ void main() async {
     MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => TaskProvider()),
+        ChangeNotifierProvider(create: (context) => NavigationProvider()),
       ],
       child: const MyApp(),
     ),
