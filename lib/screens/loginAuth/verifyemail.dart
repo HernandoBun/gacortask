@@ -5,6 +5,7 @@ import 'package:gacortask/screens/wrapper.dart';
 
 class Verify extends StatefulWidget {
   const Verify({super.key});
+  static String routeName = '/verify';
 
   @override
   State<Verify> createState() => _VerifyState();

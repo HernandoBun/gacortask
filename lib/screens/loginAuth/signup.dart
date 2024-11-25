@@ -7,6 +7,7 @@ import 'package:gacortask/screens/wrapper.dart';
 
 class Signup extends StatefulWidget {
   const Signup({super.key});
+  static String routeName = "/signup";
 
   @override
   State<Signup> createState() => _SignupScreenState();
@@ -26,8 +27,7 @@ class _SignupScreenState extends State<Signup> {
           email: email.text,
           password: password.text,
         );
-        Get.offAll(
-            const Wrapper());
+        Get.offAll(const Wrapper());
       } catch (e) {
         Get.snackbar('Signup Error', e.toString());
       }
@@ -128,7 +128,8 @@ class _SignupScreenState extends State<Signup> {
                 contentPadding:
                     const EdgeInsets.symmetric(vertical: 8, horizontal: 10),
                 border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(8.0)),
+                  borderRadius: BorderRadius.circular(8.0),
+                ),
               ),
             ),
             const SizedBox(height: 12),
@@ -239,7 +240,7 @@ class _SignupScreenState extends State<Signup> {
                     style: TextStyle(fontSize: 14)),
                 TextButton(
                   onPressed: () =>
-                      Get.to(const LoginScreen()),
+                      Navigator.pushNamed(context, LoginScreen.routeName),
                   child: const Text('Log In', style: TextStyle(fontSize: 14)),
                 ),
               ],

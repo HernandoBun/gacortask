@@ -8,6 +8,7 @@ import 'package:gacortask/screens/loginAuth/signup.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
+  static String routeName = "/loginScreen";
 
   @override
   _LoginScreenState createState() => _LoginScreenState();
@@ -116,7 +117,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         Align(
                           alignment: Alignment.centerRight,
                           child: TextButton(
-                            onPressed: () => Get.to(const ForgotPassword()),
+                            onPressed: () => Navigator.pushNamed(context, ForgotPassword.routeName),
                             child: const Text('Forgot password?'),
                           ),
                         ),
@@ -197,10 +198,9 @@ class _LoginScreenState extends State<LoginScreen> {
                       const Text("Don't have an account?"),
                       TextButton(
                         onPressed: () {
-                          Navigator.push(
+                          Navigator.pushNamed(
                             context,
-                            MaterialPageRoute(
-                                builder: (context) => const Signup()),
+                            Signup.routeName,
                           );
                         },
                         child: const Text('Sign up'),

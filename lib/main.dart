@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gacortask/constants.dart';
 import 'package:gacortask/usage/bottom_navbar.dart';
 import 'package:get/get.dart';
 import 'package:gacortask/screens/wrapper.dart';
@@ -14,7 +15,7 @@ void main() async {
   runApp(
     MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (_) => TaskProvider()),
+        ChangeNotifierProvider(create: (context) => TaskProvider()),
       ],
       child: const MyApp(),
     ),
@@ -28,7 +29,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'GacorTask',
+      title: Constants.title,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,

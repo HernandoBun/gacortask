@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:gacortask/constants.dart';
+import 'package:gacortask/screens/loginAuth/verifyemail.dart';
 
 class ForgotPassword extends StatefulWidget {
   const ForgotPassword({super.key});
+  static String routeName = '/forgotPassword';
 
   @override
   State<ForgotPassword> createState() => _ForgotPasswordState();
@@ -46,7 +48,9 @@ class _ForgotPasswordState extends State<ForgotPassword> {
           elevation: 0,
           leading: IconButton(
             icon: const Icon(Icons.arrow_back, color: Constants.colorBlack),
-            onPressed: () => Navigator.of(context).pop(),
+            onPressed: () {
+              Navigator.pushNamed(context, Verify.routeName);
+            },
           ),
         ),
         body: Padding(

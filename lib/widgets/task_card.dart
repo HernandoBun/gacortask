@@ -19,7 +19,7 @@ class TaskCard extends StatelessWidget {
         margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
         elevation: 4.0,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(12), // Rounded corners
+          borderRadius: BorderRadius.circular(12),
         ),
         child: Container(
           color: task.isCompleted ? Colors.green[100] : Colors.white,
@@ -38,7 +38,7 @@ class TaskCard extends StatelessWidget {
                       decoration: task.isCompleted
                           ? TextDecoration.lineThrough
                           : TextDecoration.none,
-                      fontFamily: 'Roboto', // Custom font
+                      fontFamily: 'Roboto',
                     ),
                   ),
                   GestureDetector(
@@ -46,9 +46,9 @@ class TaskCard extends StatelessWidget {
                       _showDeleteTaskDialog(context, index);
                     },
                     child: const Icon(
-                      Icons.delete_outline, // Modern icon
+                      Icons.delete_outline,
                       color: Colors.red,
-                      size: 35, // Larger icon size
+                      size: 35,
                     ),
                   ),
                 ],
@@ -92,7 +92,7 @@ class TaskCard extends StatelessWidget {
           filled: true,
           fillColor: Colors.grey.shade200,
           border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(12), // Rounded corners
+            borderRadius: BorderRadius.circular(12),
           ),
         ),
         items: List.generate(5, (index) {
@@ -107,13 +107,13 @@ class TaskCard extends StatelessWidget {
           }
         },
         icon: const Icon(
-          Icons.arrow_drop_down_circle, // Custom arrow icon
+          Icons.arrow_drop_down_circle,
           color: Colors.blueAccent,
           size: 30,
         ),
         iconSize: 24,
         style: const TextStyle(color: Colors.black),
-        dropdownColor: Colors.white, // White background for dropdown
+        dropdownColor: Colors.white,
         elevation: 16,
       ),
     );
