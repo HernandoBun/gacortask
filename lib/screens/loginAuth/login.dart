@@ -30,7 +30,7 @@ class _LoginScreenState extends State<LoginScreen> {
         email: email.text,
         password: password.text,
       );
-      Get.offAll(const Wrapper());
+      Get.offAll(() => const Wrapper());
     } on FirebaseAuthException catch (e) {
       Get.snackbar('Error', e.message ?? 'Unknown error');
     } catch (e) {

@@ -1,30 +1,36 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:gacortask/providers/task_provider.dart';
 import 'package:gacortask/screens/homepage/provider/notification_provider.dart';
 import 'package:gacortask/screens/homepage/widgets/drawer_item.dart';
 import 'package:gacortask/screens/homepage/widgets/drawer_items.dart';
 import 'package:gacortask/screens/homepage/widgets/bar%20graph/bar_graph.dart';
 import 'package:gacortask/screens/homepage/widgets/home_carousel.dart';
 import 'package:gacortask/constants.dart';
+import 'package:gacortask/screens/menubarpage/contact_us_page.dart';
+import 'package:gacortask/screens/notification_screen.dart';
 import 'package:provider/provider.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
- 
+
   @override
   State<MyHomePage> createState() => _MyHomePageState();
 }
- 
+
 class _MyHomePageState extends State<MyHomePage> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   final user = FirebaseAuth.instance.currentUser;
- 
+
   signout() async {
     await FirebaseAuth.instance.signOut();
   }
- 
+
   @override
   Widget build(BuildContext context) {
+    final taskProvider = Provider.of<TaskProvider>(context);
+    final completedTasks = taskProvider.getTasksByStatus(true);
+    final pendingTasks = taskProvider.getTasksByStatus(false);
     return Scaffold(
       key: _scaffoldKey,
       drawer: const NavigationDrawerWidget(),
@@ -66,7 +72,6 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: Column(
                     children: [
                       const CarouselHome(),
-                      // User Email
                       Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
@@ -82,8 +87,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           ),
                         ],
                       ),
- 
-                      // Task Row
+
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
@@ -97,17 +101,17 @@ class _MyHomePageState extends State<MyHomePage> {
                               color: Constants.colorGrey7,
                               borderRadius: BorderRadius.circular(12),
                             ),
-                            child: const Column(
+                            child: Column(
                               children: [
                                 Text(
-                                  '1',
-                                  style: TextStyle(
+                                  "${completedTasks.length}",
+                                  style: const TextStyle(
                                     color: Constants.colorBlack,
                                     fontSize: 24,
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),
-                                Text(
+                                const Text(
                                   Constants.taskText1,
                                   style: TextStyle(color: Constants.colorBlack),
                                 ),
@@ -124,17 +128,17 @@ class _MyHomePageState extends State<MyHomePage> {
                               color: Constants.colorGrey7,
                               borderRadius: BorderRadius.circular(12),
                             ),
-                            child: const Column(
+                            child: Column(
                               children: [
                                 Text(
-                                  '3',
-                                  style: TextStyle(
+                                  "${pendingTasks.length}",
+                                  style: const TextStyle(
                                     color: Constants.colorBlack,
                                     fontSize: 24,
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),
-                                Text(
+                                const Text(
                                   Constants.taskText2,
                                   style: TextStyle(color: Constants.colorBlack),
                                 ),
@@ -143,7 +147,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           ),
                         ],
                       ),
- 
+
                       // Bar Graph
                       Container(
                         margin:
@@ -163,24 +167,20 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
         ],
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: (() => signout()),
-        child: const Icon(Icons.logout_rounded),
-      ),
     );
   }
 }
- 
+
 class BarGraph extends StatefulWidget {
   const BarGraph({super.key});
- 
+
   @override
   State<BarGraph> createState() => _BarGraphState();
 }
- 
+
 class _BarGraphState extends State<BarGraph> {
   List<double> userAktif = [10, 2, 5, 6, 12, 8, 15];
- 
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -189,19 +189,19 @@ class _BarGraphState extends State<BarGraph> {
     );
   }
 }
- 
+
 class NavigationDrawerWidget extends StatelessWidget {
   const NavigationDrawerWidget({super.key});
   final EdgeInsets padding = const EdgeInsets.symmetric(horizontal: 20);
- 
+
   @override
   Widget build(BuildContext context) {
     final EdgeInsets spaceArea =
         EdgeInsets.only(top: MediaQuery.of(context).viewPadding.top);
- 
+
     final provider = Provider.of<NavigationProvider>(context);
     final isExpanded = provider.isExpanded;
- 
+
     return SizedBox(
       width: isExpanded ? MediaQuery.of(context).size.width * 0.2 : null,
       child: Drawer(
@@ -217,21 +217,26 @@ class NavigationDrawerWidget extends StatelessWidget {
                 child: buildHeader(isExpanded),
               ),
               const SizedBox(height: 24),
-              buildList(items: itemsFirst, isExpanded: isExpanded),
+              buildList(
+                items: itemsFirst,
+                isExpanded: isExpanded,
+              ),
               const SizedBox(height: 24),
               const Divider(color: Colors.white70),
               const SizedBox(height: 24),
               buildList(
-                  indexOffset: itemsFirst.length,
-                  items: itemsSecond,
-                  isExpanded: isExpanded),
+                indexOffset: itemsFirst.length,
+                items: itemsSecond,
+                isExpanded: isExpanded,
+              ),
               const SizedBox(height: 24),
               const Divider(color: Colors.white70),
               const SizedBox(height: 24),
               buildList(
-                  indexOffset: itemsSecond.length,
-                  items: itemsThird,
-                  isExpanded: isExpanded),
+                indexOffset: 6,
+                items: itemsThird,
+                isExpanded: isExpanded,
+              ),
               const Spacer(),
               buildCollapseIcon(context, isExpanded),
               const SizedBox(height: 12),
@@ -241,7 +246,7 @@ class NavigationDrawerWidget extends StatelessWidget {
       ),
     );
   }
- 
+
   Widget buildList(
           {required bool isExpanded,
           required List<DrawerItem> items,
@@ -254,7 +259,7 @@ class NavigationDrawerWidget extends StatelessWidget {
         separatorBuilder: (context, index) => const SizedBox(height: 16),
         itemBuilder: (context, index) {
           final item = items[index];
- 
+
           return buildMenuItem(
             isExpanded: isExpanded,
             text: item.title,
@@ -263,40 +268,43 @@ class NavigationDrawerWidget extends StatelessWidget {
           );
         },
       );
- 
+
   void selectItem(BuildContext context, int index) {
     navigateTo(page) => Navigator.of(context).push(
           MaterialPageRoute(builder: (context) => page),
         );
- 
+
     Navigator.of(context).pop();
- 
+
     switch (index) {
       case 0:
-        navigateTo(const MyHomePage());
+        navigateTo(const NotificationScreen());
         break;
       case 1:
-        navigateTo(const MyHomePage());
+        navigateTo(const NotificationScreen());
         break;
       case 2:
-        navigateTo(const MyHomePage());
+        navigateTo(const NotificationScreen());
         break;
       case 3:
-        navigateTo(const MyHomePage());
+        navigateTo(const NotificationScreen());
         break;
       case 4:
-        navigateTo(const MyHomePage());
+        navigateTo(const NotificationScreen());
         break;
       case 5:
-        navigateTo(const MyHomePage());
+        navigateTo(const ContactUsPage());
         break;
       case 6:
-        navigateTo(const MyHomePage());
-        // masukkin logika logout dari fungsi yang udah ada
+        final myHomePageState =
+            context.findAncestorStateOfType<_MyHomePageState>();
+        if (myHomePageState != null) {
+          myHomePageState.signout();
+        }
         break;
     }
   }
- 
+
   Widget buildMenuItem({
     required bool isExpanded,
     required String text,
@@ -305,11 +313,14 @@ class NavigationDrawerWidget extends StatelessWidget {
   }) {
     const color = Colors.white;
     final leading = Icon(icon, color: color);
- 
+
     return Material(
       color: Colors.transparent,
       child: isExpanded
-          ? ListTile(title: leading, onTap: onClicked)
+          ? ListTile(
+              title: leading,
+              onTap: onClicked,
+            )
           : ListTile(
               leading: leading,
               title: Text(
@@ -320,14 +331,14 @@ class NavigationDrawerWidget extends StatelessWidget {
             ),
     );
   }
- 
+
   Widget buildCollapseIcon(BuildContext context, bool isExpanded) {
     const double size = 52;
     final icon = isExpanded ? Icons.dashboard : Icons.dashboard_outlined;
     final alignment = isExpanded ? Alignment.center : Alignment.centerRight;
     final margin = isExpanded ? null : const EdgeInsets.only(right: 16);
     final width = isExpanded ? double.infinity : size;
- 
+
     return Container(
       alignment: alignment,
       margin: margin,
@@ -345,14 +356,14 @@ class NavigationDrawerWidget extends StatelessWidget {
           onTap: () {
             final provider =
                 Provider.of<NavigationProvider>(context, listen: false);
- 
+
             provider.toggleExpanded();
           },
         ),
       ),
     );
   }
- 
+
   Widget buildHeader(bool isExpanded) => isExpanded
       ? const FlutterLogo(size: 48)
       : const Row(
