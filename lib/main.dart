@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gacortask/constants.dart';
-import 'package:gacortask/screens/homepage/provider/notification_provider.dart';
+import 'package:gacortask/screens/homepage/provider/navigation_provider.dart';
 import 'package:gacortask/screens/wrapper.dart';
 import 'package:get/get.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -68,6 +68,7 @@ class MyApp extends StatelessWidget {
       title: Constants.title,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        fontFamily: "OpenSans",
         useMaterial3: true,
       ),
       home: const Wrapper(),

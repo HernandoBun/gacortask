@@ -40,7 +40,7 @@ class TaskCard extends StatelessWidget {
                       decoration: task.isCompleted
                           ? TextDecoration.lineThrough
                           : TextDecoration.none,
-                      fontFamily: 'Roboto',
+                      fontFamily: Constants.fontOpenSansRegular,
                     ),
                   ),
                   GestureDetector(
@@ -71,7 +71,7 @@ class TaskCard extends StatelessWidget {
                   Text(
                     'Prioritas: ${task.priorityLevel}',
                     style:
-                        const TextStyle(fontSize: 16.0, fontFamily: 'Roboto'),
+                        const TextStyle(fontSize: 16.0, fontFamily: Constants.fontOpenSansRegular),
                   ),
                   _buildPriorityDropdown(context),
                 ],
@@ -89,8 +89,8 @@ class TaskCard extends StatelessWidget {
       child: DropdownButtonFormField<int>(
         value: task.priorityLevel,
         decoration: InputDecoration(
-          labelText: 'Prioritas',
-          labelStyle: const TextStyle(fontFamily: 'Roboto'),
+          labelText: Constants.labelPrioritas,
+          labelStyle: const TextStyle(fontFamily: Constants.fontOpenSansRegular),
           filled: true,
           fillColor: Colors.grey.shade200,
           border: OutlineInputBorder(
@@ -126,21 +126,21 @@ class TaskCard extends StatelessWidget {
       context: context,
       builder: (context) {
         return AlertDialog(
-          title: const Text('Konfirmasi Hapus Tugas'),
+          title: const Text(Constants.textConfirmBatal),
           content: Text('Apakah Anda yakin ingin menghapus tugas "${task.title}"?'),
           actions: [
             TextButton(
               onPressed: () {
                 Navigator.of(context).pop();
               },
-              child: const Text('Batal'),
+              child: const Text(Constants.textBatal),
             ),
             TextButton(
               onPressed: () {
                 context.read<TaskProvider>().deleteTask(taskIndex);
                 Navigator.of(context).pop();
               },
-              child: const Text('Hapus'),
+              child: const Text(Constants.textHapus),
             ),
           ],
         );

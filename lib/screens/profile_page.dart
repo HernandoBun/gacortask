@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gacortask/constants.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
 
@@ -27,7 +28,6 @@ class _ProfilePageState extends State<ProfilePage> {
         });
       }
     } catch (e) {
-      // ignore: avoid_print
       print("Error picking image: $e");
     }
   }
@@ -51,14 +51,14 @@ class _ProfilePageState extends State<ProfilePage> {
               onPressed: () {
                 Navigator.of(context).pop();
               },
-              child: const Text('Batal'),
+              child: const Text(Constants.textBatal),
             ),
             TextButton(
               onPressed: () {
                 onSave(controller.text);
                 Navigator.of(context).pop();
               },
-              child: const Text('Simpan'),
+              child: const Text(Constants.textSimpan),
             ),
           ],
         );
@@ -71,7 +71,6 @@ class _ProfilePageState extends State<ProfilePage> {
     return Scaffold(
       body: Stack(
         children: [
-          // Bagian biru dengan sudut melengkung
           Container(
             height: 270,
             decoration: const BoxDecoration(
@@ -104,10 +103,10 @@ class _ProfilePageState extends State<ProfilePage> {
                       onTap: _pickImage,
                       child: const CircleAvatar(
                         radius: 16,
-                        backgroundColor: Colors.white,
+                        backgroundColor: Constants.colorWhite,
                         child: Icon(
                           Icons.camera_alt,
-                          color: Colors.blue, // Ubah ikon kamera menjadi hitam
+                          color: Constants.colorBlueHer,
                           size: 18,
                         ),
                       ),
@@ -125,7 +124,7 @@ class _ProfilePageState extends State<ProfilePage> {
               // Nama
               ProfileItem(
                 icon: Icons.person,
-                title: 'Nama',
+                title: Constants.titleName,
                 content: _name,
                 onTap: () {
                   _editInfo('Nama', _name, (newName) {
@@ -138,7 +137,7 @@ class _ProfilePageState extends State<ProfilePage> {
               // Telepon
               ProfileItem(
                 icon: Icons.phone,
-                title: 'Telepon',
+                title: Constants.titleTelp,
                 content: _phone,
                 onTap: () {
                   _editInfo('Telepon', _phone, (newPhone) {
@@ -151,7 +150,7 @@ class _ProfilePageState extends State<ProfilePage> {
               // Email
               ProfileItem(
                 icon: Icons.email,
-                title: 'Email',
+                title: Constants.titleEmail,
                 content: _email,
                 onTap: () {
                   _editInfo('Email', _email, (newEmail) {
@@ -164,7 +163,7 @@ class _ProfilePageState extends State<ProfilePage> {
               // Alamat
               ProfileItem(
                 icon: Icons.home,
-                title: 'Alamat',
+                title: Constants.titleAlamat,
                 content: _address,
                 onTap: () {
                   _editInfo('Alamat', _address, (newAddress) {
@@ -182,7 +181,6 @@ class _ProfilePageState extends State<ProfilePage> {
   }
 }
 
-// Widget khusus untuk item profil
 class ProfileItem extends StatelessWidget {
   final IconData icon;
   final String title;
@@ -205,21 +203,21 @@ class ProfileItem extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
         child: Container(
           decoration: BoxDecoration(
-            color: Colors.white, // Ubah warna menjadi putih
+            color: Constants.colorWhite,
             borderRadius: BorderRadius.circular(10),
             boxShadow: [
               BoxShadow(
                 color: Colors.grey.withOpacity(0.3),
                 spreadRadius: 2,
                 blurRadius: 5,
-                offset: const Offset(0, 3), // menambah bayangan agar lebih menarik
+                offset: const Offset(0, 3),
               ),
             ],
           ),
           padding: const EdgeInsets.all(12.0),
           child: Row(
             children: [
-              Icon(icon, color: Colors.black), // Ubah ikon menjadi hitam
+              Icon(icon, color: Constants.colorBlack),
               const SizedBox(width: 10),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -238,7 +236,7 @@ class ProfileItem extends StatelessWidget {
                 ],
               ),
               const Spacer(),
-              const Icon(Icons.edit, color: Colors.black), // Ubah ikon edit menjadi hitam
+              const Icon(Icons.edit, color: Constants.colorBlack),
             ],
           ),
         ),

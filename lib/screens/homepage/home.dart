@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gacortask/providers/task_provider.dart';
-import 'package:gacortask/screens/homepage/provider/notification_provider.dart';
+import 'package:gacortask/screens/homepage/provider/navigation_provider.dart';
 import 'package:gacortask/screens/homepage/widgets/drawer_item.dart';
 import 'package:gacortask/screens/homepage/widgets/drawer_items.dart';
 import 'package:gacortask/screens/homepage/widgets/bar%20graph/bar_graph.dart';
@@ -21,6 +21,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   final user = FirebaseAuth.instance.currentUser;
+  bool _isTasksMinimized = false;
 
   signout() async {
     await FirebaseAuth.instance.signOut();
@@ -31,6 +32,8 @@ class _MyHomePageState extends State<MyHomePage> {
     final taskProvider = Provider.of<TaskProvider>(context);
     final completedTasks = taskProvider.getTasksByStatus(true);
     final pendingTasks = taskProvider.getTasksByStatus(false);
+    final tasksForNext7Days = taskProvider.tasksForNext7Days;
+
     return Scaffold(
       key: _scaffoldKey,
       drawer: const NavigationDrawerWidget(),
@@ -50,7 +53,7 @@ class _MyHomePageState extends State<MyHomePage> {
             backgroundColor: Constants.colorWhite,
             elevation: 0,
             pinned: true,
-            expandedHeight: 300.0,
+            expandedHeight: 280.0,
             stretch: true,
             flexibleSpace: FlexibleSpaceBar(
               stretchModes: const [
@@ -99,7 +102,8 @@ class _MyHomePageState extends State<MyHomePage> {
                             ),
                             decoration: BoxDecoration(
                               color: Constants.colorGrey7,
-                              borderRadius: BorderRadius.circular(12),
+                              borderRadius:
+                                  BorderRadius.circular(Constants.border),
                             ),
                             child: Column(
                               children: [
@@ -113,7 +117,10 @@ class _MyHomePageState extends State<MyHomePage> {
                                 ),
                                 const Text(
                                   Constants.taskText1,
-                                  style: TextStyle(color: Constants.colorBlack),
+                                  style: TextStyle(
+                                    color: Constants.colorBlack,
+                                    fontSize: 16,
+                                  ),
                                 ),
                               ],
                             ),
@@ -126,7 +133,8 @@ class _MyHomePageState extends State<MyHomePage> {
                             ),
                             decoration: BoxDecoration(
                               color: Constants.colorGrey7,
-                              borderRadius: BorderRadius.circular(12),
+                              borderRadius:
+                                  BorderRadius.circular(Constants.border),
                             ),
                             child: Column(
                               children: [
@@ -140,14 +148,16 @@ class _MyHomePageState extends State<MyHomePage> {
                                 ),
                                 const Text(
                                   Constants.taskText2,
-                                  style: TextStyle(color: Constants.colorBlack),
+                                  style: TextStyle(
+                                    color: Constants.colorBlack,
+                                    fontSize: 16,
+                                  ),
                                 ),
                               ],
                             ),
                           ),
                         ],
                       ),
-
                       // Bar Graph
                       Container(
                         margin:
@@ -155,9 +165,78 @@ class _MyHomePageState extends State<MyHomePage> {
                         padding: const EdgeInsets.all(18),
                         decoration: BoxDecoration(
                           color: Constants.colorBlue3,
-                          borderRadius: BorderRadius.circular(12),
+                          borderRadius: BorderRadius.circular(Constants.border),
                         ),
                         child: const BarGraph(),
+                      ),
+
+                      Container(
+                        margin: const EdgeInsets.only(
+                          top: 10,
+                          left: 11,
+                          right: 11,
+                          bottom: 30,
+                        ),
+                        padding: const EdgeInsets.all(15),
+                        decoration: BoxDecoration(
+                          color: Constants.colorGrey7,
+                          borderRadius: BorderRadius.circular(Constants.border),
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                const Text(
+                                  'Tugas 7 Hari Kedepan',
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 18,
+                                  ),
+                                ),
+                                IconButton(
+                                  icon: Icon(
+                                    _isTasksMinimized
+                                        ? Icons.expand_more
+                                        : Icons.expand_less,
+                                  ),
+                                  onPressed: () {
+                                    setState(() {
+                                      _isTasksMinimized = !_isTasksMinimized;
+                                    });
+                                  },
+                                ),
+                              ],
+                            ),
+                            AnimatedContainer(
+                              duration: const Duration(milliseconds: 300),
+                              height: _isTasksMinimized ? 0 : null,
+                              child: ListView(
+                                shrinkWrap: true,
+                                physics: const NeverScrollableScrollPhysics(),
+                                children: tasksForNext7Days.map((task) {
+                                  String formattedDate =
+                                      "${task.deadline.day}-${task.deadline.month}";
+                                  return ListTile(
+                                    leading: const Icon(Icons.calendar_today,
+                                        color: Constants.colorBlue),
+                                    title: Text(
+                                      task.title,
+                                      style: const TextStyle(
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                    subtitle: Text(
+                                      formattedDate,
+                                      style: const TextStyle(
+                                          color: Constants.colorGrey),
+                                    ),
+                                  );
+                                }).toList(),
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ],
                   ),
@@ -179,10 +258,13 @@ class BarGraph extends StatefulWidget {
 }
 
 class _BarGraphState extends State<BarGraph> {
-  List<double> userAktif = [10, 2, 5, 6, 12, 8, 15];
+  // List<double> userAktif = [10, 2, 5, 6, 12, 8, 15];
 
   @override
   Widget build(BuildContext context) {
+    final taskProvider = Provider.of<TaskProvider>(context);
+    final userAktif = taskProvider.tasksPerDay;
+
     return SizedBox(
       height: 200,
       child: MyBarGraph(userAktif: userAktif),

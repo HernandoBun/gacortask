@@ -4,26 +4,26 @@ import 'package:gacortask/screens/homepage/widgets/bar%20graph/bar_data.dart';
 import 'package:gacortask/constants.dart';
 
 class MyBarGraph extends StatelessWidget {
-  final List userAktif;
+  final List<int> userAktif;
   const MyBarGraph({super.key, required this.userAktif});
 
   @override
   Widget build(BuildContext context) {
     BarData myBarData = BarData(
-      sunAmount: userAktif[0],
-      monAmount: userAktif[1],
-      tueAmount: userAktif[2],
-      wedAmount: userAktif[3],
-      thurAmount: userAktif[4],
-      friAmount: userAktif[5],
-      satAmount: userAktif[6],
+      sunAmount: userAktif[0].toDouble(),
+      monAmount: userAktif[1].toDouble(),
+      tueAmount: userAktif[2].toDouble(),
+      wedAmount: userAktif[3].toDouble(),
+      thurAmount: userAktif[4].toDouble(),
+      friAmount: userAktif[5].toDouble(),
+      satAmount: userAktif[6].toDouble(),
     );
 
     myBarData.initializedBarData();
 
     return BarChart(
       BarChartData(
-        maxY: 100,
+        maxY: 10,
         minY: 0,
         gridData: const FlGridData(show: false),
         borderData: FlBorderData(show: false),
@@ -51,7 +51,7 @@ class MyBarGraph extends StatelessWidget {
                     borderRadius: BorderRadius.circular(4),
                     backDrawRodData: BackgroundBarChartRodData(
                       show: true,
-                      toY: 100,
+                      toY: 10,
                       color: Constants.colorGrey5,
                     ),
                   ),

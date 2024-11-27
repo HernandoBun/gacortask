@@ -9,5 +9,4 @@ class NavigationProvider extends ChangeNotifier {
  
     notifyListeners();
   }
-  // ke main create: (context) => NavigationProvider(),
 }

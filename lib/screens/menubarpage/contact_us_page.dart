@@ -49,7 +49,10 @@ class _ContactUsPageState extends State<ContactUsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Contact Us Form"),
+        title: const Text(
+          "Contact Us Form",
+          style: TextStyle(fontFamily: Constants.fontOpenSansRegular),
+        ),
         backgroundColor: Constants.colorBlueHer,
       ),
       body: Padding(

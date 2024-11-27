@@ -1,71 +1,69 @@
 import 'package:flutter/material.dart';
+import 'package:gacortask/constants.dart';
 import 'package:gacortask/providers/task_provider.dart';
 import 'package:intl/intl.dart';
 import 'package:gacortask/widgets/task_card.dart';
 import 'package:provider/provider.dart';
- 
+
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
- 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-          'Gacor Task',
-          style: TextStyle(color: Colors.blue),
-        ),
-        backgroundColor: Colors.white,
-        elevation: 0,
-        leading: IconButton(
-          icon: const Icon(Icons.menu, color: Colors.blue),
-          onPressed: () {},
-        ),
-        actions: const [],
-      ),
       body: Column(
         children: [
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 8.0),
-            child: SizedBox(
-              height: 50,
-              child: Consumer<TaskProvider>(
-                builder: (context, taskProvider, child) {
-                  return Row(
+            child: Consumer<TaskProvider>(
+              builder: (context, taskProvider, child) {
+                return SizedBox(
+                  height: 80,
+                  child: Row(
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 4.0),
-                        child: ChoiceChip(
-                          label: const Text('All'),
-                          selected: taskProvider.selectedCategory == 'All',
-                          onSelected: (bool selected) {
-                            if (selected) {
-                              taskProvider.setSelectedCategory('All');
+                      Expanded(
+                        child: ListView.builder(
+                          scrollDirection: Axis.horizontal,
+                          itemCount: taskProvider.categories.length,
+                          itemBuilder: (context, index) {
+                            if (index == 0) {
+                              return Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 4.0),
+                                child: ChoiceChip(
+                                  label: const Text(Constants.textAll),
+                                  selected:
+                                      taskProvider.selectedCategory == 'All',
+                                  onSelected: (bool selected) {
+                                    if (selected) {
+                                      taskProvider.setSelectedCategory('All');
+                                    }
+                                  },
+                                ),
+                              );
                             }
+                            String category = taskProvider.categories[index];
+                            return Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 4.0),
+                              child: ChoiceChip(
+                                label: Text(category),
+                                selected:
+                                    taskProvider.selectedCategory == category,
+                                onSelected: (bool selected) {
+                                  if (selected) {
+                                    taskProvider.setSelectedCategory(category);
+                                  }
+                                },
+                              ),
+                            );
                           },
                         ),
                       ),
-                      ...taskProvider.categories
-                          .where((category) => category != 'All')
-                          .map((category) {
-                        return Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 4.0),
-                          child: ChoiceChip(
-                            label: Text(category),
-                            selected: taskProvider.selectedCategory == category,
-                            onSelected: (bool selected) {
-                              if (selected) {
-                                taskProvider.setSelectedCategory(category);
-                              }
-                            },
-                          ),
-                        );
-                      }),
- 
                       IconButton(
                         icon: const Icon(
                           Icons.delete_outline,
-                          color: Colors.red,
+                          color: Constants.colorRedto,
                           size: 35,
                         ),
                         onPressed: () {
@@ -73,9 +71,9 @@ class HomeScreen extends StatelessWidget {
                         },
                       ),
                     ],
-                  );
-                },
-              ),
+                  ),
+                );
+              },
             ),
           ),
           Expanded(
@@ -87,16 +85,18 @@ class HomeScreen extends StatelessWidget {
                 final completedTasks = taskProvider.tasks
                     .where((task) => task.isCompleted)
                     .toList();
- 
+
                 return ListView(
                   children: [
                     if (pendingTasks.isNotEmpty) ...[
                       const Padding(
                         padding: EdgeInsets.all(8.0),
                         child: Text(
-                          'Tugas Belum Selesai',
+                          Constants.textNotDone,
                           style: TextStyle(
-                              fontSize: 18.0, fontWeight: FontWeight.bold),
+                            fontSize: 18.0,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ),
                       ...pendingTasks.map((task) {
@@ -104,17 +104,17 @@ class HomeScreen extends StatelessWidget {
                         return TaskCard(task: task, index: index);
                       }),
                     ],
- 
                     if (completedTasks.isNotEmpty)
                       const Divider(height: 20, thickness: 2),
- 
                     if (completedTasks.isNotEmpty) ...[
                       const Padding(
                         padding: EdgeInsets.all(8.0),
                         child: Text(
-                          'Tugas Sudah Selesai',
+                          Constants.textDone,
                           style: TextStyle(
-                              fontSize: 18.0, fontWeight: FontWeight.bold),
+                            fontSize: 18.0,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ),
                       ...completedTasks.map((task) {
@@ -137,14 +137,14 @@ class HomeScreen extends StatelessWidget {
       ),
     );
   }
- 
+
   void _showAddTaskDialog(BuildContext context) {
     final titleController = TextEditingController();
     DateTime? selectedDate;
     TimeOfDay? selectedTime;
     String? selectedCategory;
     int? selectedPriority;
- 
+
     showDialog(
       context: context,
       builder: (context) {
@@ -153,7 +153,7 @@ class HomeScreen extends StatelessWidget {
             return Consumer<TaskProvider>(
               builder: (context, taskProvider, child) {
                 return AlertDialog(
-                  title: const Text('Tambah Tugas Baru'),
+                  title: const Text(Constants.titleNewTask),
                   content: SingleChildScrollView(
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
@@ -161,17 +161,18 @@ class HomeScreen extends StatelessWidget {
                         TextField(
                           controller: titleController,
                           decoration: InputDecoration(
-                            labelText: 'Judul Tugas',
+                            labelText: Constants.labelTitleTask,
                             errorText: _isTitleDuplicate(
-                                    taskProvider, titleController.text)
-                                ? 'Judul Tugas sudah ada!'
+                              taskProvider,
+                              titleController.text,
+                            )
+                                ? Constants.textAlreadyTask
                                 : null,
                           ),
                         ),
-                        // Dropdown untuk kategori
                         DropdownButtonFormField<String>(
                           value: selectedCategory,
-                          hint: const Text("Pilih Kategori"),
+                          hint: const Text(Constants.textChooseTask),
                           items: taskProvider.categories
                               .where((category) => category != 'All')
                               .map((category) {
@@ -183,7 +184,7 @@ class HomeScreen extends StatelessWidget {
                             ..add(
                               const DropdownMenuItem<String>(
                                 value: 'addNewCategory',
-                                child: Text('Tambah Kategori Baru'),
+                                child: Text(Constants.textNewCategory),
                               ),
                             ),
                           onChanged: (value) {
@@ -198,7 +199,7 @@ class HomeScreen extends StatelessWidget {
                         ),
                         DropdownButtonFormField<int>(
                           value: selectedPriority,
-                          hint: const Text("Pilih Prioritas (1-5)"),
+                          hint: const Text(Constants.textChoosePriority),
                           items: List.generate(5, (index) {
                             return DropdownMenuItem<int>(
                               value: index + 1,
@@ -233,7 +234,7 @@ class HomeScreen extends StatelessWidget {
                                   setState(() {
                                     selectedDate = pickedDate;
                                   });
- 
+
                                   final pickedTime = await showTimePicker(
                                     context: context,
                                     initialTime: TimeOfDay.now(),
@@ -263,7 +264,7 @@ class HomeScreen extends StatelessWidget {
                   actions: [
                     TextButton(
                       onPressed: () => Navigator.of(context).pop(),
-                      child: const Text('Batal'),
+                      child: const Text(Constants.textBatal),
                     ),
                     TextButton(
                       onPressed: () {
@@ -287,11 +288,11 @@ class HomeScreen extends StatelessWidget {
                             selectedCategory!,
                             selectedPriority!,
                           );
- 
+
                           Navigator.of(context).pop();
                         }
                       },
-                      child: const Text('Simpan'),
+                      child: const Text(Constants.textSimpan),
                     ),
                   ],
                 );
@@ -302,29 +303,29 @@ class HomeScreen extends StatelessWidget {
       },
     );
   }
- 
+
   bool _isTitleDuplicate(TaskProvider taskProvider, String title) {
     return taskProvider.tasks.any((task) => task.title == title);
   }
- 
+
   void _showAddCategoryDialog(BuildContext context) {
     final categoryController = TextEditingController();
     String? errorMessage;
- 
+
     showDialog(
       context: context,
       builder: (context) {
         return StatefulBuilder(
           builder: (context, setState) {
             return AlertDialog(
-              title: const Text('Tambah Kategori Baru'),
+              title: const Text(Constants.textNewCategory),
               content: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   TextField(
                     controller: categoryController,
                     decoration: InputDecoration(
-                      labelText: 'Nama Kategori',
+                      labelText: Constants.labelNameCategory,
                       errorText: errorMessage,
                     ),
                   ),
@@ -333,7 +334,7 @@ class HomeScreen extends StatelessWidget {
               actions: [
                 TextButton(
                   onPressed: () => Navigator.of(context).pop(),
-                  child: const Text('Batal'),
+                  child: const Text(Constants.textBatal),
                 ),
                 TextButton(
                   onPressed: () {
@@ -354,7 +355,7 @@ class HomeScreen extends StatelessWidget {
                       });
                     }
                   },
-                  child: const Text('Simpan'),
+                  child: const Text(Constants.textSimpan),
                 ),
               ],
             );
@@ -363,7 +364,7 @@ class HomeScreen extends StatelessWidget {
       },
     );
   }
- 
+
   void _showDeleteCategoryDialog(BuildContext context) {
     showDialog(
       context: context,
@@ -371,12 +372,12 @@ class HomeScreen extends StatelessWidget {
         return Consumer<TaskProvider>(
           builder: (context, taskProvider, child) {
             return AlertDialog(
-              title: const Text('Hapus Kategori'),
+              title: const Text(Constants.textCleanCategory),
               content: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   DropdownButton<String>(
-                    hint: const Text('Pilih kategori untuk dihapus'),
+                    hint: const Text(Constants.textChooseCategoryClean),
                     items: taskProvider.categories
                         .where((category) => category != "All")
                         .map((category) {

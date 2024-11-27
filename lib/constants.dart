@@ -30,7 +30,6 @@ class Constants {
   static const Color colorPurple = Color.fromARGB(255, 156, 39, 176);
   static const Color colorPurpleShade = Color.fromARGB(255, 171, 71, 188);
   static const Color colorTransparent = Color.fromARGB(0, 255, 255, 255);
- 
 
   static const String title = "GacorTask";
   static const String carText = "Discover New Ways to do Projects";
@@ -43,8 +42,34 @@ class Constants {
   static const String hintEmail = "Your Email";
   static const String sendInstruction = "Send Reset Instructions";
   static const String returnLogin = "Return to Log In";
+  static const String textHapus = "Hapus";
+  static const String textBatal = "Batal";
+  static const String textSimpan = "Simpan";
+  static const String textConfirmBatal = "Konfirmasi Hapus Tugas";
+  static const String labelPrioritas = "Prioritas";
+  static const String textAll = "All";
+  static const String textNotDone= "Tugas Belum Selesai";
+  static const String textDone= "Tugas Sudah Selesai";
+  static const String titleNewTask= "Tambah Tugas Baru";
+  static const String labelTitleTask= "Judul Tugas";
+  static const String textAlreadyTask= "Judul Tugas sudah ada!";
+  static const String textChooseTask= "Pilih Kategori";
+  static const String textChooseCategoryClean= "Pilih kategori untuk dihapus";
+  static const String textNewCategory= "Tambah Kategori Baru";
+  static const String textChoosePriority= "Pilih Prioritas (1-5)";
+  static const String labelNameCategory= "Nama Kategori";
+  static const String textCleanCategory= "Hapus Kategori";
+  static const String titleName= "Nama";
+  static const String titleTelp= "Telepon";
+  static const String titleEmail= "Email";
+  static const String titleAlamat= "Alamat";
+
+  static const double border = 8.0;
 
   // static const String fontInterBold = "Inter-Bold";
+  static const String fontOpenSansRegular = "OpenSans-Regula";
+  static const String fontOpenSansBold = "OpenSans-Bold";
+  static const String fontOpenSansSemiBold = "OpenSans-SemiBold";
 
   static const String imageRoot = "assets/images/";
   static const String imageRoot1 = "assets/";

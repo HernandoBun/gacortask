@@ -5,7 +5,6 @@ import 'package:gacortask/screens/homepage/home.dart';
 import 'package:gacortask/screens/profile_page.dart';
 import 'package:gacortask/screens/task_screen.dart';
 import 'package:gacortask/screens/notification_screen.dart';
- 
 
 class BottomNavBar extends StatefulWidget {
   const BottomNavBar({super.key});
@@ -34,11 +33,31 @@ class _BottomNavBarState extends State<BottomNavBar> {
         index: _page,
         height: 65.0,
         items: const <Widget>[
-          Icon(Icons.home, size: 33, color: Constants.colorWhite),
-          Icon(Icons.list, size: 33, color: Constants.colorWhite),
-          Icon(Icons.edit_notifications_rounded, size: 33, color: Constants.colorWhite),
-          Icon(Icons.calendar_month_outlined, size: 33, color: Constants.colorWhite),
-          Icon(Icons.person_pin, size: 33, color: Constants.colorWhite),
+          Icon(
+            Icons.home,
+            size: 33,
+            color: Constants.colorWhite,
+          ),
+          Icon(
+            Icons.list_alt_rounded,
+            size: 33,
+            color: Constants.colorWhite,
+          ),
+          Icon(
+            Icons.edit_notifications_rounded,
+            size: 33,
+            color: Constants.colorWhite,
+          ),
+          Icon(
+            Icons.calendar_month_outlined,
+            size: 33,
+            color: Constants.colorWhite,
+          ),
+          Icon(
+            Icons.person_pin,
+            size: 33,
+            color: Constants.colorWhite,
+          ),
         ],
         color: Constants.colorBlueHer,
         buttonBackgroundColor: Constants.colorBlueHer,
