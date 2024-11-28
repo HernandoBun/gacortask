@@ -16,6 +16,8 @@ class Task {
     this.priorityLevel = 0,
     this.isCompleted = false,
   });
+
+  int get priority => priorityLevel;
  
   Map<String, dynamic> toMap() {
     return {

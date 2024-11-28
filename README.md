@@ -9,11 +9,12 @@ Pub Dev yang digunakan:
 - [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
 - [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
 - [Using Get](https://pub.dev/packages/get)
+- [Using fl_chart for bar graph](https://pub.dev/packages/fl_chart)
 - [Using Provider](https://pub.dev/packages/provider)
 - [Using Firebase Core](https://pub.dev/packages/firebase_core)
 - [Using Firebase Auth](https://pub.dev/packages/firebase_auth)
-- [Animation Using Rive](https://pub.dev/packages/rive)
 - [Animation Using Curved Navigation Bar](https://pub.dev/packages/curved_navigation_bar)
+- [Notification alert using Flutter Notification](https://pub.dev/packages/flutter_local_notification)
 
 For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
@@ -25,7 +26,9 @@ Jika error di Verify Account atau Forgot Password ikuti step berikut:
 2. Hapus firebase_core dan firebase_auth
 3. Masukkan kembali firebase_core dan firebase_auth
 
-#Jika Error Gradle silahkan ikuti berikut:
+# Jika Error Gradle silahkan ikuti berikut:
 
 - [Buka settings.gradle, gradle-wrapper.properties](https://github.com/flutter/flutter/issues/156307)
 - [Buka android/app/build.gradle](https://github.com/flutter/flutter/issues/156304)
+
+### Jika masih error flutter upgrade

@@ -3,6 +3,7 @@ import 'package:gacortask/constants.dart';
 import 'package:gacortask/screens/taskspage/providers/task_provider.dart';
 import 'package:intl/intl.dart';
 import 'package:gacortask/screens/taskspage/widgets/task_card.dart';
+import 'package:gacortask/sizes.dart';
 import 'package:provider/provider.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -60,11 +61,21 @@ class HomeScreen extends StatelessWidget {
                           },
                         ),
                       ),
-                      IconButton(
-                        icon: const Icon(
+IconButton(
+                        icon: Icon(
                           Icons.delete_outline,
                           color: Constants.colorRedto,
-                          size: 35,
+                          size: getScreenWidth(30),
+                        ),
+                        onPressed: () {
+                          _showDeleteCategoryDialog(context);
+                        },
+                      ),
+                      IconButton(
+                        icon: Icon(
+                          Icons.more_vert_rounded,
+                          color: Constants.colorGrey,
+                          size: getScreenWidth(30),
                         ),
                         onPressed: () {
                           _showDeleteCategoryDialog(context);

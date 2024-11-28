@@ -5,6 +5,7 @@ import 'package:gacortask/screens/homepage/widgets/drawer_item.dart';
 import 'package:gacortask/screens/homepage/widgets/drawer_items.dart';
 import 'package:gacortask/screens/homepage/widgets/bar%20graph/bar_graph.dart';
 import 'package:gacortask/screens/homepage/widgets/home_carousel.dart';
+import 'package:gacortask/screens/menubarpage/star_task_page.dart';
 import 'package:gacortask/constants.dart';
 import 'package:gacortask/screens/menubarpage/contact_us_page.dart';
 import 'package:gacortask/screens/notification_screen.dart';
@@ -366,7 +367,7 @@ class NavigationDrawerWidget extends StatelessWidget {
         navigateTo(const NotificationScreen());
         break;
       case 1:
-        navigateTo(const NotificationScreen());
+        navigateTo(const StarTaskPage());
         break;
       case 2:
         navigateTo(const NotificationScreen());
