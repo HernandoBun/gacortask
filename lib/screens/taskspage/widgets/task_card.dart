@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gacortask/constants.dart';
-import 'package:gacortask/models/task_models.dart' as models;
-import 'package:gacortask/providers/task_provider.dart';
+import 'package:gacortask/screens/taskspage/models/task_models.dart' as models;
+import 'package:gacortask/screens/taskspage/providers/task_provider.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
  

@@ -3,7 +3,7 @@ import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:gacortask/constants.dart';
 import 'package:gacortask/screens/homepage/home.dart';
 import 'package:gacortask/screens/profile_page.dart';
-import 'package:gacortask/screens/task_screen.dart';
+import 'package:gacortask/screens/taskspage/task_screen.dart';
 import 'package:gacortask/screens/notification_screen.dart';
 
 class BottomNavBar extends StatefulWidget {

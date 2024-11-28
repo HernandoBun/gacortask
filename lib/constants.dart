@@ -81,6 +81,7 @@ class Constants {
   static const String carouselRoot4 = "${imageRoot}imagecarousel4.jpg";
   static const String welcomeRoot = "${imageRoot}welcome.png";
   static const String googleRoot = "${imageRoot1}google.png";
+  static const String logoRoot = "${imageRoot1}logo.png";
   // static const String themeRoot = "${imageRoot}theme.svg";
 
   // static const Icon icon1 = Icon(Icons.home);

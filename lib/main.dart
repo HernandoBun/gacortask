@@ -5,7 +5,7 @@ import 'package:gacortask/screens/wrapper.dart';
 import 'package:get/get.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:provider/provider.dart';
-import 'package:gacortask/providers/task_provider.dart';
+import 'package:gacortask/screens/taskspage/providers/task_provider.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
  
  

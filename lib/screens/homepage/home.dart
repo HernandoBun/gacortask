@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gacortask/providers/task_provider.dart';
+import 'package:gacortask/screens/taskspage/providers/task_provider.dart';
 import 'package:gacortask/screens/homepage/provider/navigation_provider.dart';
 import 'package:gacortask/screens/homepage/widgets/drawer_item.dart';
 import 'package:gacortask/screens/homepage/widgets/drawer_items.dart';
@@ -450,17 +450,22 @@ class NavigationDrawerWidget extends StatelessWidget {
   }
 
   Widget buildHeader(bool isExpanded) => isExpanded
-      ? const FlutterLogo(size: 48)
-      : const Row(
+      ? Image.asset(
+          Constants.logoRoot,
+          height: 48,
+        )
+      : Row(
           children: [
-            SizedBox(width: 24),
-            FlutterLogo(
-              size: 48,
+            SizedBox(width: getScreenWidth(20)),
+            Image.asset(
+              Constants.logoRoot,
+              height: 48,
             ),
-            SizedBox(width: 16),
+            SizedBox(width: getScreenWidth(12)),
             Text(
-              'GacorTask',
-              style: TextStyle(fontSize: 32, color: Colors.white),
+              Constants.title,
+              style:
+                  TextStyle(fontSize: getScreenWidth(24), color: Colors.white),
             ),
           ],
         );

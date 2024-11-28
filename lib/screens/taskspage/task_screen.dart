@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:gacortask/constants.dart';
-import 'package:gacortask/providers/task_provider.dart';
+import 'package:gacortask/screens/taskspage/providers/task_provider.dart';
 import 'package:intl/intl.dart';
-import 'package:gacortask/widgets/task_card.dart';
+import 'package:gacortask/screens/taskspage/widgets/task_card.dart';
 import 'package:provider/provider.dart';
 
 class HomeScreen extends StatelessWidget {

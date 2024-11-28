@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:gacortask/models/task_models.dart';
+import 'package:gacortask/screens/taskspage/models/task_models.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class TaskProvider with ChangeNotifier {

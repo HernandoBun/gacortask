@@ -79,6 +79,7 @@ flutter:
     - assets/images/imagecarousel3.jpg
     - assets/images/imagecarousel4.jpg
     - assets/google.png
+    - assets/logo.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
@@ -98,6 +99,7 @@ flutter:
           weight: 500
         - asset: fonts/OpenSans-SemiBold.ttf
         - asset: fonts/OpenSans-Bold.ttf
+          weight: 700
     #     - asset: fonts/Schyler-Italic.ttf
     #       style: italic
     # - family: Trajan Pro
