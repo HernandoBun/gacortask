@@ -8,6 +8,7 @@ import 'package:gacortask/screens/homepage/widgets/home_carousel.dart';
 import 'package:gacortask/constants.dart';
 import 'package:gacortask/screens/menubarpage/contact_us_page.dart';
 import 'package:gacortask/screens/notification_screen.dart';
+import 'package:gacortask/sizes.dart';
 import 'package:provider/provider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -29,6 +30,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    Sizes.init(context);
     final taskProvider = Provider.of<TaskProvider>(context);
     final completedTasks = taskProvider.getTasksByStatus(true);
     final pendingTasks = taskProvider.getTasksByStatus(false);
@@ -50,7 +52,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 size: 30,
               ),
             ),
-            backgroundColor: Constants.colorWhite,
+            backgroundColor: Constants.colorBlueHer,
             elevation: 0,
             pinned: true,
             expandedHeight: 280.0,
@@ -97,7 +99,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           Container(
                             margin: const EdgeInsets.only(left: 10),
                             padding: const EdgeInsets.symmetric(
-                              vertical: 35.5,
+                              vertical: 34.5,
                               horizontal: 42,
                             ),
                             decoration: BoxDecoration(
@@ -109,17 +111,17 @@ class _MyHomePageState extends State<MyHomePage> {
                               children: [
                                 Text(
                                   "${completedTasks.length}",
-                                  style: const TextStyle(
+                                  style: TextStyle(
                                     color: Constants.colorBlack,
-                                    fontSize: 24,
+                                    fontSize: getScreenWidth(24),
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),
-                                const Text(
+                                Text(
                                   Constants.taskText1,
                                   style: TextStyle(
                                     color: Constants.colorBlack,
-                                    fontSize: 16,
+                                    fontSize: getScreenWidth(14.5),
                                   ),
                                 ),
                               ],
@@ -140,17 +142,17 @@ class _MyHomePageState extends State<MyHomePage> {
                               children: [
                                 Text(
                                   "${pendingTasks.length}",
-                                  style: const TextStyle(
+                                  style: TextStyle(
                                     color: Constants.colorBlack,
-                                    fontSize: 24,
+                                    fontSize: getScreenWidth(24),
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),
-                                const Text(
+                                Text(
                                   Constants.taskText2,
                                   style: TextStyle(
                                     color: Constants.colorBlack,
-                                    fontSize: 16,
+                                    fontSize: getScreenWidth(13),
                                   ),
                                 ),
                               ],
@@ -287,6 +289,7 @@ class NavigationDrawerWidget extends StatelessWidget {
     return SizedBox(
       width: isExpanded ? MediaQuery.of(context).size.width * 0.2 : null,
       child: Drawer(
+        elevation: 10,
         child: Container(
           color: const Color(0xff1a2f45),
           child: Column(
@@ -303,17 +306,17 @@ class NavigationDrawerWidget extends StatelessWidget {
                 items: itemsFirst,
                 isExpanded: isExpanded,
               ),
-              const SizedBox(height: 24),
+              SizedBox(height: getScreenHeight(12)),
               const Divider(color: Colors.white70),
-              const SizedBox(height: 24),
+              SizedBox(height: getScreenHeight(12)),
               buildList(
                 indexOffset: itemsFirst.length,
                 items: itemsSecond,
                 isExpanded: isExpanded,
               ),
-              const SizedBox(height: 24),
+              SizedBox(height: getScreenHeight(12)),
               const Divider(color: Colors.white70),
-              const SizedBox(height: 24),
+              SizedBox(height: getScreenHeight(12)),
               buildList(
                 indexOffset: 6,
                 items: itemsThird,

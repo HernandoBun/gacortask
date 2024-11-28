@@ -1,6 +1,8 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:gacortask/constants.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:io';
 
 class ProfilePage extends StatefulWidget {
@@ -12,16 +14,41 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
+  final user = FirebaseAuth.instance.currentUser;
   File? _profileImage;
-  String _name = 'Boediono';
-  String _phone = '+62 812-113-4948';
-  String _email = 'boediono@yahoo.com';
-  String _address = 'Jl. Merdeka No. 45, Jakarta';
+  String _name = '-';
+  String _phone = '+62';
+  String _email = '';
+  String _address = '';
+
+  @override
+  void initState() {
+    super.initState();
+    _loadProfileData();
+    if (user != null) {
+      _email = user!.email ?? 'Email tidak tersedia';
+    }
+  }
+
+  Future<void> _loadProfileData() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      _name = prefs.getString('name') ?? '';
+      _phone = prefs.getString('phone') ?? '+62';
+      _address = prefs.getString('address') ?? '';
+    });
+  }
+
+  Future<void> _saveProfileData(String key, String value) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setString(key, value);
+  }
 
   // Fungsi untuk memilih gambar dari galeri
   Future<void> _pickImage() async {
     try {
-      final pickedFile = await ImagePicker().pickImage(source: ImageSource.gallery);
+      final pickedFile =
+          await ImagePicker().pickImage(source: ImageSource.gallery);
       if (pickedFile != null) {
         setState(() {
           _profileImage = File(pickedFile.path);
@@ -33,8 +60,10 @@ class _ProfilePageState extends State<ProfilePage> {
   }
 
   // Fungsi untuk mengedit informasi
-  void _editInfo(String title, String currentValue, Function(String) onSave) {
-    TextEditingController controller = TextEditingController(text: currentValue);
+  void _editInfo(String title, String currentValue, Function(String) onSave,
+      String key, String label) {
+    TextEditingController controller =
+        TextEditingController(text: currentValue);
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -44,6 +73,7 @@ class _ProfilePageState extends State<ProfilePage> {
             controller: controller,
             decoration: InputDecoration(
               hintText: 'Masukkan $title baru',
+              labelText: label,
             ),
           ),
           actions: <Widget>[
@@ -56,6 +86,7 @@ class _ProfilePageState extends State<ProfilePage> {
             TextButton(
               onPressed: () {
                 onSave(controller.text);
+                _saveProfileData(key, controller.text);
                 Navigator.of(context).pop();
               },
               child: const Text(Constants.textSimpan),
@@ -69,113 +100,120 @@ class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
-        children: [
-          Container(
-            height: 270,
-            decoration: const BoxDecoration(
-              color: Colors.blue,
-              borderRadius: BorderRadius.only(
-                bottomLeft: Radius.circular(110),
-                bottomRight: Radius.circular(110),
+      resizeToAvoidBottomInset: true,
+      body: SingleChildScrollView(
+        child: Stack(
+          children: [
+            Container(
+              height: 270,
+              decoration: const BoxDecoration(
+                color: Colors.blue,
+                borderRadius: BorderRadius.only(
+                  bottomLeft: Radius.circular(50),
+                  bottomRight: Radius.circular(50),
+                ),
               ),
             ),
-          ),
-          
-          // Posisi Ikon Profil
-          Positioned(
-            top: 170, // Sesuaikan posisi vertikal jika diperlukan
-            left: 0,
-            right: 0,
-            child: Center(
-              child: Stack(
-                children: [
-                  CircleAvatar(
-                    radius: 70, // Perbesar ukuran profil, misal 70
-                    backgroundImage: _profileImage != null
-                        ? FileImage(_profileImage!)
-                        : const AssetImage('assets/profile_pic.png') as ImageProvider,
-                  ),
-                  Positioned(
-                    bottom: 0,
-                    right: 0,
-                    child: GestureDetector(
-                      onTap: _pickImage,
-                      child: const CircleAvatar(
-                        radius: 16,
-                        backgroundColor: Constants.colorWhite,
-                        child: Icon(
-                          Icons.camera_alt,
-                          color: Constants.colorBlueHer,
-                          size: 18,
+            // Posisi Ikon Profil
+            Positioned(
+              top: 170,
+              left: 0,
+              right: 0,
+              child: Center(
+                child: Stack(
+                  children: [
+                    CircleAvatar(
+                      radius: 70,
+                      backgroundImage: _profileImage != null
+                          ? FileImage(_profileImage!)
+                          : const AssetImage('assets/profile_pic.png')
+                              as ImageProvider,
+                    ),
+                    Positioned(
+                      bottom: 0,
+                      right: 0,
+                      child: GestureDetector(
+                        onTap: _pickImage,
+                        child: const CircleAvatar(
+                          radius: 16,
+                          backgroundColor: Constants.colorWhite,
+                          child: Icon(
+                            Icons.camera_alt,
+                            color: Constants.colorBlueHer,
+                            size: 18,
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
-          ),
-          
-          // Bagian isi konten
-          Column(
-            children: [
-              const SizedBox(height: 350), // Tambah jarak untuk menurunkan konten
-              // Nama
-              ProfileItem(
-                icon: Icons.person,
-                title: Constants.titleName,
-                content: _name,
-                onTap: () {
-                  _editInfo('Nama', _name, (newName) {
-                    setState(() {
-                      _name = newName;
-                    });
-                  });
-                },
-              ),
-              // Telepon
-              ProfileItem(
-                icon: Icons.phone,
-                title: Constants.titleTelp,
-                content: _phone,
-                onTap: () {
-                  _editInfo('Telepon', _phone, (newPhone) {
-                    setState(() {
-                      _phone = newPhone;
-                    });
-                  });
-                },
-              ),
-              // Email
-              ProfileItem(
-                icon: Icons.email,
-                title: Constants.titleEmail,
-                content: _email,
-                onTap: () {
-                  _editInfo('Email', _email, (newEmail) {
-                    setState(() {
-                      _email = newEmail;
-                    });
-                  });
-                },
-              ),
-              // Alamat
-              ProfileItem(
-                icon: Icons.home,
-                title: Constants.titleAlamat,
-                content: _address,
-                onTap: () {
-                  _editInfo('Alamat', _address, (newAddress) {
-                    setState(() {
-                      _address = newAddress;
-                    });
-                  });
-                },
-              ),
-            ],
-          ),
-        ],
+
+            Column(
+              children: [
+                const SizedBox(height: 350),
+                // Nama
+                ProfileItem(
+                  icon: Icons.person,
+                  title: Constants.titleName,
+                  content: _name,
+                  label:
+                      'Nama harus diisi dengan nama lengkap Anda', // Menyertakan label
+                  onTap: () {
+                    _editInfo('Nama', _name, (newName) {
+                      setState(() {
+                        _name = newName;
+                      });
+                    }, 'name', 'Masukkan nama lengkap Anda');
+                  },
+                ),
+                ProfileItem(
+                  icon: Icons.phone,
+                  title: Constants.titleTelp,
+                  content: _phone,
+                  label:
+                      'Nomor telepon harus diisi dengan format yang benar', // Menyertakan label
+                  onTap: () {
+                    _editInfo('Telepon', _phone, (newPhone) {
+                      setState(() {
+                        _phone = newPhone;
+                      });
+                    }, 'phone', 'Masukkan nomor telepon yang valid');
+                  },
+                ),
+                ProfileItem(
+                  icon: Icons.email,
+                  title: Constants.titleEmail,
+                  content: _email,
+                  label:
+                      'Email harus diisi dengan format email yang benar', // Menyertakan label
+                  onTap: () {
+                    _editInfo('Email', _email, (newEmail) {
+                      setState(() {
+                        _email = newEmail;
+                      });
+                    }, 'email', 'Masukkan alamat email yang valid');
+                  },
+                ),
+                ProfileItem(
+                  icon: Icons.home,
+                  title: Constants.titleAlamat,
+                  content: _address,
+                  label:
+                      'Alamat harus diisi dengan alamat yang valid', // Menyertakan label
+                  onTap: () {
+                    _editInfo('Alamat', _address, (newAddress) {
+                      setState(() {
+                        _address = newAddress;
+                      });
+                    }, 'address', 'Masukkan alamat lengkap Anda');
+                  },
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -185,6 +223,7 @@ class ProfileItem extends StatelessWidget {
   final IconData icon;
   final String title;
   final String content;
+  final String label;
   final VoidCallback onTap;
 
   const ProfileItem({
@@ -192,6 +231,7 @@ class ProfileItem extends StatelessWidget {
     required this.icon,
     required this.title,
     required this.content,
+    required this.label,
     required this.onTap,
   });
 
@@ -215,28 +255,38 @@ class ProfileItem extends StatelessWidget {
             ],
           ),
           padding: const EdgeInsets.all(12.0),
-          child: Row(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Icon(icon, color: Constants.colorBlack),
-              const SizedBox(width: 10),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+              Row(
                 children: [
-                  Text(
-                    title,
-                    style: const TextStyle(color: Colors.black54),
+                  Icon(icon, color: Constants.colorBlack),
+                  const SizedBox(width: 10),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        title,
+                        style: const TextStyle(color: Colors.black54),
+                      ),
+                      Text(
+                        content,
+                        style: const TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16,
+                        ),
+                      ),
+                    ],
                   ),
-                  Text(
-                    content,
-                    style: const TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 16,
-                    ),
-                  ),
+                  const Spacer(),
+                  const Icon(Icons.edit, color: Constants.colorBlack),
                 ],
               ),
-              const Spacer(),
-              const Icon(Icons.edit, color: Constants.colorBlack),
+              const SizedBox(height: 6),
+              Text(
+                label,
+                style: const TextStyle(color: Colors.black45, fontSize: 12),
+              ),
             ],
           ),
         ),

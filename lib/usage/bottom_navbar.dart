@@ -28,6 +28,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: true,
       bottomNavigationBar: CurvedNavigationBar(
         key: _bottomNavigationKey,
         index: _page,

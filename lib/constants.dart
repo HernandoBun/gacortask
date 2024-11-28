@@ -74,6 +74,11 @@ class Constants {
   static const String imageRoot = "assets/images/";
   static const String imageRoot1 = "assets/";
   static const String headerRoot = "${imageRoot}header_image.jpeg";
+  static const String carouselRoot = "${imageRoot}imagecarousel.jpg";
+  static const String carouselRoot1 = "${imageRoot}imagecarousel1.jpg";
+  static const String carouselRoot2 = "${imageRoot}imagecarousel2.jpg";
+  static const String carouselRoot3 = "${imageRoot}imagecarousel3.jpg";
+  static const String carouselRoot4 = "${imageRoot}imagecarousel4.jpg";
   static const String welcomeRoot = "${imageRoot}welcome.png";
   static const String googleRoot = "${imageRoot1}google.png";
   // static const String themeRoot = "${imageRoot}theme.svg";
