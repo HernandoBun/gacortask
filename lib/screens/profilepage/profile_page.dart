@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:gacortask/constants.dart';
 import 'package:gacortask/screens/profilepage/widgets/profile_item.dart';
+import 'package:gacortask/sizes.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:io';
@@ -82,7 +83,12 @@ class _ProfilePageState extends State<ProfilePage> {
               onPressed: () {
                 Navigator.of(context).pop();
               },
-              child: const Text(Constants.textBatal),
+              child: const Text(
+                Constants.textBatal,
+                style: TextStyle(
+                  fontFamily: Constants.fontOpenSansRegular,
+                ),
+              ),
             ),
             TextButton(
               onPressed: () {
@@ -90,7 +96,12 @@ class _ProfilePageState extends State<ProfilePage> {
                 _saveProfileData(key, controller.text);
                 Navigator.of(context).pop();
               },
-              child: const Text(Constants.textSimpan),
+              child: const Text(
+                Constants.textSimpan,
+                style: TextStyle(
+                  fontFamily: Constants.fontOpenSansRegular,
+                ),
+              ),
             ),
           ],
         );
@@ -106,16 +117,15 @@ class _ProfilePageState extends State<ProfilePage> {
         child: Stack(
           children: [
             Container(
-              height: 270,
+              height: getScreenHeight(270.0),
               decoration: const BoxDecoration(
-                color: Colors.blue,
+                color: Constants.colorBlueHer,
                 borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(50),
-                  bottomRight: Radius.circular(50),
+                  bottomLeft: Radius.circular(Constants.borderProf),
+                  bottomRight: Radius.circular(Constants.borderProf),
                 ),
               ),
             ),
-            // Posisi Ikon Profil
             Positioned(
               top: 170,
               left: 0,
@@ -153,14 +163,14 @@ class _ProfilePageState extends State<ProfilePage> {
 
             Column(
               children: [
-                const SizedBox(height: 350),
+                SizedBox(height: getScreenHeight(350.0)),
                 // Nama
                 ProfileItem(
                   icon: Icons.person,
                   title: Constants.titleName,
                   content: _name,
                   label:
-                      'Nama harus diisi dengan nama lengkap Anda', // Menyertakan label
+                      Constants.labelPP,
                   onTap: () {
                     _editInfo('Nama', _name, (newName) {
                       setState(() {
@@ -174,7 +184,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   title: Constants.titleTelp,
                   content: _phone,
                   label:
-                      'Nomor telepon harus diisi dengan format yang benar', // Menyertakan label
+                      Constants.labelPP1,
                   onTap: () {
                     _editInfo('Telepon', _phone, (newPhone) {
                       setState(() {
@@ -188,7 +198,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   title: Constants.titleEmail,
                   content: _email,
                   label:
-                      'Email harus diisi dengan format email yang benar', // Menyertakan label
+                      Constants.labelPP2,
                   onTap: () {
                     _editInfo('Email', _email, (newEmail) {
                       setState(() {
@@ -202,7 +212,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   title: Constants.titleAlamat,
                   content: _address,
                   label:
-                      'Alamat harus diisi dengan alamat yang valid', // Menyertakan label
+                      Constants.labelPP3,
                   onTap: () {
                     _editInfo('Alamat', _address, (newAddress) {
                       setState(() {
@@ -219,5 +229,3 @@ class _ProfilePageState extends State<ProfilePage> {
     );
   }
 }
-
-

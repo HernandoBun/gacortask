@@ -29,17 +29,17 @@ class _StarTaskPageState extends State<StarTaskPage> {
       body: Column(
         children: [
           Padding(
-            padding: const EdgeInsets.symmetric(vertical: 8.0),
+            padding: EdgeInsets.symmetric(vertical: getScreenHeight(8.0)),
             child: Consumer<TaskProvider>(
               builder: (context, taskProvider, child) {
                 return SizedBox(
-                  height: 80,
+                  height: getScreenHeight(80.0),
                   child: Row(
                     children: [
                       Expanded(
                         child: ListView.builder(
                           scrollDirection: Axis.horizontal,
-                          itemCount: 5, // 5 priority levels
+                          itemCount: 5,
                           itemBuilder: (context, index) {
                             return Padding(
                               padding:
@@ -74,13 +74,14 @@ class _StarTaskPageState extends State<StarTaskPage> {
                 return ListView(
                   children: [
                     if (filteredTasks.isNotEmpty) ...[
-                      const Padding(
-                        padding: EdgeInsets.all(8.0),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
                         child: Text(
                           Constants.textNotDone,
                           style: TextStyle(
-                            fontSize: 18.0,
+                            fontSize: getScreenWidth(18.0),
                             fontWeight: FontWeight.bold,
+                            fontFamily: Constants.fontOpenSansRegular,
                           ),
                         ),
                       ),
@@ -90,13 +91,14 @@ class _StarTaskPageState extends State<StarTaskPage> {
                       }),
                     ],
                     if (filteredTasks.isEmpty)
-                      const Padding(
-                        padding: EdgeInsets.all(8.0),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
                         child: Text(
-                          'No tasks found for this priority.',
+                          Constants.textStp,
                           style: TextStyle(
-                            fontSize: 16.0,
+                            fontSize: getScreenWidth(16.0),
                             fontWeight: FontWeight.normal,
+                            fontFamily: Constants.fontOpenSansRegular,
                           ),
                         ),
                       ),
@@ -215,7 +217,12 @@ class _StarTaskPageState extends State<StarTaskPage> {
                   actions: [
                     TextButton(
                       onPressed: () => Navigator.of(context).pop(),
-                      child: const Text(Constants.textBatal),
+                      child: const Text(
+                        Constants.textBatal,
+                        style: TextStyle(
+                          fontFamily: Constants.fontOpenSansRegular,
+                        ),
+                      ),
                     ),
                     TextButton(
                       onPressed: () {
@@ -242,7 +249,12 @@ class _StarTaskPageState extends State<StarTaskPage> {
                           Navigator.of(context).pop();
                         }
                       },
-                      child: const Text(Constants.textSimpan),
+                      child: const Text(
+                        Constants.textSimpan,
+                        style: TextStyle(
+                          fontFamily: Constants.fontOpenSansRegular,
+                        ),
+                      ),
                     ),
                   ],
                 );

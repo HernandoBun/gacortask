@@ -15,11 +15,11 @@ class HomeScreen extends StatelessWidget {
       body: Column(
         children: [
           Padding(
-            padding: const EdgeInsets.symmetric(vertical: 8.0),
+            padding: EdgeInsets.symmetric(vertical: getScreenHeight(8.0)),
             child: Consumer<TaskProvider>(
               builder: (context, taskProvider, child) {
                 return SizedBox(
-                  height: 80,
+                  height: getScreenHeight(80),
                   child: Row(
                     children: [
                       Expanded(
@@ -29,10 +29,15 @@ class HomeScreen extends StatelessWidget {
                           itemBuilder: (context, index) {
                             if (index == 0) {
                               return Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(horizontal: 4.0),
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: getScreenWidth(4.0)),
                                 child: ChoiceChip(
-                                  label: const Text(Constants.textAll),
+                                  label: const Text(
+                                    Constants.textAll,
+                                    style: TextStyle(
+                                      fontFamily: Constants.fontOpenSansRegular,
+                                    ),
+                                  ),
                                   selected:
                                       taskProvider.selectedCategory == 'All',
                                   onSelected: (bool selected) {
@@ -45,10 +50,14 @@ class HomeScreen extends StatelessWidget {
                             }
                             String category = taskProvider.categories[index];
                             return Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 4.0),
+                              padding: EdgeInsets.symmetric(
+                                horizontal: getScreenWidth(4.0),
+                              ),
                               child: ChoiceChip(
                                 label: Text(category),
+                                labelStyle: const TextStyle(
+                                  fontFamily: Constants.fontOpenSansRegular,
+                                ),
                                 selected:
                                     taskProvider.selectedCategory == category,
                                 onSelected: (bool selected) {
@@ -61,7 +70,7 @@ class HomeScreen extends StatelessWidget {
                           },
                         ),
                       ),
-IconButton(
+                      IconButton(
                         icon: Icon(
                           Icons.delete_outline,
                           color: Constants.colorRedto,
@@ -100,12 +109,13 @@ IconButton(
                 return ListView(
                   children: [
                     if (pendingTasks.isNotEmpty) ...[
-                      const Padding(
-                        padding: EdgeInsets.all(8.0),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
                         child: Text(
                           Constants.textNotDone,
                           style: TextStyle(
-                            fontSize: 18.0,
+                            fontSize: getScreenWidth(18.0),
+                            fontFamily: Constants.fontOpenSansRegular,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
@@ -116,14 +126,18 @@ IconButton(
                       }),
                     ],
                     if (completedTasks.isNotEmpty)
-                      const Divider(height: 20, thickness: 2),
+                      Divider(
+                        height: getScreenHeight(20),
+                        thickness: 2,
+                      ),
                     if (completedTasks.isNotEmpty) ...[
-                      const Padding(
-                        padding: EdgeInsets.all(8.0),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
                         child: Text(
                           Constants.textDone,
                           style: TextStyle(
-                            fontSize: 18.0,
+                            fontSize: getScreenWidth(18.0),
+                            fontFamily: Constants.fontOpenSansRegular,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
@@ -275,7 +289,12 @@ IconButton(
                   actions: [
                     TextButton(
                       onPressed: () => Navigator.of(context).pop(),
-                      child: const Text(Constants.textBatal),
+                      child: const Text(
+                        Constants.textBatal,
+                        style: TextStyle(
+                          fontFamily: Constants.fontOpenSansRegular,
+                        ),
+                      ),
                     ),
                     TextButton(
                       onPressed: () {

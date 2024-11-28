@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:gacortask/constants.dart';
 import 'package:gacortask/screens/taskspage/providers/task_provider.dart';
+import 'package:gacortask/sizes.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:gacortask/main.dart';
@@ -30,28 +31,29 @@ class _NotificationScreenState extends State<NotificationScreen> {
 
           if (remainingTime.inDays == 1 && remainingTime.inHours == 0) {
             showNotification(
-              'Pengingat 1 Hari',
+              Constants.notifText,
               'Deadline untuk "${task.title}" tinggal 1 hari lagi!',
             );
           }
 
           if (remainingTime.inMinutes == 1 && !task.isCompleted) {
             showNotification(
-              'Pengingat',
+              Constants.notifText,
               'Deadline untuk "${task.title}" tinggal 1 menit lagi!',
             );
           }
 
           if (remainingTime.inHours == 1 && !task.isCompleted) {
             showNotification(
-              'Pengingat',
+              Constants.notifText,
               'Deadline untuk "${task.title}" tinggal 1 jam lagi!',
             );
           }
 
+          // kedobel
           if (remainingTime.inDays == 1 && !task.isCompleted) {
             showNotification(
-              'Pengingat',
+              Constants.notifText,
               'Deadline untuk "${task.title}" tinggal 1 hari lagi!',
             );
           }
@@ -59,7 +61,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
           if (remainingTime.isNegative && !task.isCompleted) {
             taskProvider.toggleTaskCompletion(taskProvider.tasks.indexOf(task));
             showNotification(
-              'Tugas Selesai',
+              Constants.notifTaskDone,
               'Tugas "${task.title}" sudah selesai!',
             );
           }
@@ -79,7 +81,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
     final difference = deadline.difference(now);
 
     if (difference.isNegative) {
-      return 'Selesai';
+      return Constants.textSelesai;
     }
 
     final days = difference.inDays;
@@ -100,6 +102,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
 
   @override
   Widget build(BuildContext context) {
+    Sizes.init(context);
     final taskProvider = Provider.of<TaskProvider>(context);
     final completedTasks = taskProvider.getTasksByStatus(true);
     final pendingTasks = taskProvider.getTasksByStatus(false);
@@ -107,7 +110,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          "Notifications",
+          Constants.textNotification,
           style: TextStyle(
             color: Constants.colorWhite,
             fontFamily: Constants.fontOpenSansBold,
@@ -123,28 +126,36 @@ class _NotificationScreenState extends State<NotificationScreen> {
           children: [
             Text(
               "Completed: ${completedTasks.length} | Pending: ${pendingTasks.length}",
-              style: const TextStyle(
-                fontSize: 16,
+              style: TextStyle(
+                fontSize: getScreenWidth(16),
+                fontFamily: Constants.fontOpenSansBold,
                 fontWeight: FontWeight.bold,
               ),
             ),
-            const SizedBox(height: 16),
+            SizedBox(height: getScreenHeight(16)),
             Expanded(
               child: ListView(
                 children: [
-                  ...pendingTasks.map((task) => NotificationCard(
-                        date: DateFormat('yyyy-MM-dd').format(task.deadline),
-                        title: task.title,
-                        timeRemaining: _getCountdown(task.deadline),
-                        color: Colors.orange,
-                      )),
-                  const Divider(thickness: 2, height: 20),
-                  ...completedTasks.map((task) => NotificationCard(
-                        date: DateFormat('yyyy-MM-dd').format(task.deadline),
-                        title: task.title,
-                        timeRemaining: 'Selesai',
-                        color: Colors.green,
-                      )),
+                  ...pendingTasks.map(
+                    (task) => NotificationCard(
+                      date: DateFormat('yyyy-MM-dd').format(task.deadline),
+                      title: task.title,
+                      timeRemaining: _getCountdown(task.deadline),
+                      color: Constants.colorOrange,
+                    ),
+                  ),
+                  Divider(
+                    thickness: 2,
+                    height: getScreenHeight(20),
+                  ),
+                  ...completedTasks.map(
+                    (task) => NotificationCard(
+                      date: DateFormat('yyyy-MM-dd').format(task.deadline),
+                      title: task.title,
+                      timeRemaining: Constants.textSelesai,
+                      color: Constants.colorGreen,
+                    ),
+                  ),
                 ],
               ),
             ),
@@ -175,9 +186,12 @@ class NotificationCard extends StatelessWidget {
       padding: const EdgeInsets.all(12),
       margin: const EdgeInsets.only(bottom: 8),
       decoration: BoxDecoration(
-        color: Colors.grey[300],
-        borderRadius: BorderRadius.circular(20),
-        border: Border.all(color: color, width: 1.5),
+        color: Constants.colorGrey8,
+        borderRadius: BorderRadius.circular(Constants.border20),
+        border: Border.all(
+          color: color,
+          width: getScreenWidth(1.5),
+        ),
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -187,24 +201,36 @@ class NotificationCard extends StatelessWidget {
             children: [
               Text(
                 date,
-                style: const TextStyle(fontSize: 14, color: Colors.black54),
+                style: TextStyle(
+                  fontSize: getScreenWidth(14),
+                  fontFamily: Constants.fontOpenSansRegular,
+                  color: Constants.colorBlack1,
+                ),
               ),
-              const SizedBox(height: 4),
+              SizedBox(
+                height: getScreenHeight(4),
+              ),
               Text(
                 title,
-                style: const TextStyle(
-                  fontSize: 16,
+                style: TextStyle(
+                  fontSize: getScreenWidth(16),
+                  fontFamily: Constants.fontOpenSansBold,
                   fontWeight: FontWeight.bold,
                 ),
               ),
               const SizedBox(height: 4),
               Text(
                 timeRemaining,
-                style: TextStyle(fontSize: 14, color: color),
+                style: TextStyle(
+                  fontSize: getScreenWidth(14),
+                  color: color,
+                  fontFamily: Constants.fontOpenSansRegular,
+                ),
               ),
             ],
           ),
           const Icon(Icons.more_vert),
+          // fungsi delete disini
         ],
       ),
     );

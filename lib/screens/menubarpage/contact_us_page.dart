@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gacortask/constants.dart';
+import 'package:gacortask/sizes.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
@@ -50,7 +51,7 @@ class _ContactUsPageState extends State<ContactUsPage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          "Contact Us Form",
+          Constants.titleContact,
           style: TextStyle(fontFamily: Constants.fontOpenSansRegular),
         ),
         backgroundColor: Constants.colorBlueHer,
@@ -64,45 +65,45 @@ class _ContactUsPageState extends State<ContactUsPage> {
                 controller: nameController,
                 decoration: const InputDecoration(
                   icon: Icon(Icons.account_circle),
-                  hintText: 'Name',
-                  labelText: 'Name',
+                  hintText: Constants.titleName,
+                  labelText: Constants.titleName,
                 ),
               ),
-              const SizedBox(
-                height: 25,
+              SizedBox(
+                height: getScreenHeight(25.0),
               ),
               TextFormField(
                 controller: subjectController,
                 decoration: const InputDecoration(
                   icon: Icon(Icons.subject_rounded),
-                  hintText: 'Subject',
-                  labelText: 'Subject',
+                  hintText: Constants.labelHint,
+                  labelText: Constants.labelHint,
                 ),
               ),
-              const SizedBox(
-                height: 25,
+              SizedBox(
+                height: getScreenHeight(25.0),
               ),
               TextFormField(
                 controller: emailController,
                 decoration: const InputDecoration(
                   icon: Icon(Icons.email),
-                  hintText: 'Email',
-                  labelText: 'Email',
+                  hintText: Constants.titleEmail,
+                  labelText: Constants.titleEmail,
                 ),
               ),
-              const SizedBox(
-                height: 25,
+              SizedBox(
+                height: getScreenHeight(25.0),
               ),
               TextFormField(
                 controller: messageController,
                 decoration: const InputDecoration(
                   icon: Icon(Icons.message),
-                  hintText: 'Message',
-                  labelText: 'Message',
+                  hintText: Constants.labelHint1,
+                  labelText: Constants.labelHint1,
                 ),
               ),
-              const SizedBox(
-                height: 30,
+              SizedBox(
+                height: getScreenHeight(30.0),
               ),
               ElevatedButton(
                 onPressed: () async {
@@ -111,8 +112,7 @@ class _ContactUsPageState extends State<ContactUsPage> {
                       emailController.text.isEmpty ||
                       messageController.text.isEmpty) {
                     ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(
-                          content: Text("Please fill in all fields")),
+                      const SnackBar(content: Text(Constants.textSnack)),
                     );
                     return;
                   }
@@ -122,7 +122,7 @@ class _ContactUsPageState extends State<ContactUsPage> {
                   if (statusCode == 200) {
                     ScaffoldMessenger.of(context).showSnackBar(
                       const SnackBar(
-                        content: Text("Email sent successfully"),
+                        content: Text(Constants.textSnack1),
                       ),
                     );
                     nameController.clear();
@@ -138,9 +138,12 @@ class _ContactUsPageState extends State<ContactUsPage> {
                     );
                   }
                 },
-                child: const Text(
-                  "Send Email",
-                  style: TextStyle(fontSize: 20),
+                child: Text(
+                  Constants.textSendEmail,
+                  style: TextStyle(
+                    fontSize: getScreenWidth(20.0),
+                    fontFamily: Constants.fontOpenSansRegular,
+                  ),
                 ),
               ),
             ],

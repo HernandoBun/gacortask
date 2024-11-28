@@ -83,11 +83,12 @@ class _MyHomePageState extends State<MyHomePage> {
                         children: [
                           Container(
                             margin: const EdgeInsets.only(left: 22),
-                            child: const Text(
-                              'Tasks Overview',
+                            child: Text(
+                              Constants.textTaskOw,
                               style: TextStyle(
+                                fontSize: getScreenWidth(20.0),
+                                fontFamily: Constants.fontOpenSansRegular,
                                 fontWeight: FontWeight.bold,
-                                fontSize: 20,
                               ),
                             ),
                           ),
@@ -115,6 +116,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   style: TextStyle(
                                     color: Constants.colorBlack,
                                     fontSize: getScreenWidth(24),
+                                    fontFamily: Constants.fontOpenSansRegular,
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),
@@ -122,6 +124,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   Constants.taskText1,
                                   style: TextStyle(
                                     color: Constants.colorBlack,
+                                    fontFamily: Constants.fontOpenSansRegular,
                                     fontSize: getScreenWidth(14.5),
                                   ),
                                 ),
@@ -146,6 +149,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   style: TextStyle(
                                     color: Constants.colorBlack,
                                     fontSize: getScreenWidth(24),
+                                    fontFamily: Constants.fontOpenSansRegular,
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),
@@ -153,6 +157,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   Constants.taskText2,
                                   style: TextStyle(
                                     color: Constants.colorBlack,
+                                    fontFamily: Constants.fontOpenSansRegular,
                                     fontSize: getScreenWidth(13),
                                   ),
                                 ),
@@ -191,11 +196,12 @@ class _MyHomePageState extends State<MyHomePage> {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                const Text(
-                                  'Tugas 7 Hari Kedepan',
+                                Text(
+                                  Constants.textTask7,
                                   style: TextStyle(
                                     fontWeight: FontWeight.bold,
-                                    fontSize: 18,
+                                    fontFamily: Constants.fontOpenSansRegular,
+                                    fontSize: getScreenWidth(18.0),
                                   ),
                                 ),
                                 IconButton(
@@ -227,12 +233,18 @@ class _MyHomePageState extends State<MyHomePage> {
                                     title: Text(
                                       task.title,
                                       style: const TextStyle(
-                                          fontWeight: FontWeight.bold),
+                                        fontFamily:
+                                            Constants.fontOpenSansRegular,
+                                        fontWeight: FontWeight.bold,
+                                      ),
                                     ),
                                     subtitle: Text(
                                       formattedDate,
                                       style: const TextStyle(
-                                          color: Constants.colorGrey),
+                                        color: Constants.colorGrey,
+                                        fontFamily:
+                                            Constants.fontOpenSansRegular,
+                                      ),
                                     ),
                                   );
                                 }).toList(),
@@ -261,15 +273,13 @@ class BarGraph extends StatefulWidget {
 }
 
 class _BarGraphState extends State<BarGraph> {
-  // List<double> userAktif = [10, 2, 5, 6, 12, 8, 15];
-
   @override
   Widget build(BuildContext context) {
     final taskProvider = Provider.of<TaskProvider>(context);
     final userAktif = taskProvider.tasksPerDay;
 
     return SizedBox(
-      height: 200,
+      height: getScreenHeight(200),
       child: MyBarGraph(userAktif: userAktif),
     );
   }
@@ -292,23 +302,23 @@ class NavigationDrawerWidget extends StatelessWidget {
       child: Drawer(
         elevation: 10,
         child: Container(
-          color: const Color(0xff1a2f45),
+          color: Constants.colorBlue6,
           child: Column(
             children: [
               Container(
                 padding:
                     const EdgeInsets.symmetric(vertical: 24).add(spaceArea),
                 width: double.infinity,
-                color: Colors.white12,
+                color: Constants.colorWhite12,
                 child: buildHeader(isExpanded),
               ),
-              const SizedBox(height: 24),
+              SizedBox(height: getScreenHeight(24.0)),
               buildList(
                 items: itemsFirst,
                 isExpanded: isExpanded,
               ),
               SizedBox(height: getScreenHeight(12)),
-              const Divider(color: Colors.white70),
+              const Divider(color: Constants.colorWhite70),
               SizedBox(height: getScreenHeight(12)),
               buildList(
                 indexOffset: itemsFirst.length,
@@ -316,7 +326,7 @@ class NavigationDrawerWidget extends StatelessWidget {
                 isExpanded: isExpanded,
               ),
               SizedBox(height: getScreenHeight(12)),
-              const Divider(color: Colors.white70),
+              const Divider(color: Constants.colorWhite70),
               SizedBox(height: getScreenHeight(12)),
               buildList(
                 indexOffset: 6,
@@ -325,7 +335,7 @@ class NavigationDrawerWidget extends StatelessWidget {
               ),
               const Spacer(),
               buildCollapseIcon(context, isExpanded),
-              const SizedBox(height: 12),
+              SizedBox(height: getScreenHeight(12)),
             ],
           ),
         ),
@@ -342,7 +352,8 @@ class NavigationDrawerWidget extends StatelessWidget {
         shrinkWrap: true,
         primary: true,
         itemCount: items.length,
-        separatorBuilder: (context, index) => const SizedBox(height: 16),
+        separatorBuilder: (context, index) =>
+            SizedBox(height: getScreenHeight(16)),
         itemBuilder: (context, index) {
           final item = items[index];
 
@@ -397,11 +408,11 @@ class NavigationDrawerWidget extends StatelessWidget {
     required IconData icon,
     VoidCallback? onClicked,
   }) {
-    const color = Colors.white;
+    const color = Constants.colorWhite;
     final leading = Icon(icon, color: color);
 
     return Material(
-      color: Colors.transparent,
+      color: Constants.colorTransparent1,
       child: isExpanded
           ? ListTile(
               title: leading,
@@ -411,7 +422,7 @@ class NavigationDrawerWidget extends StatelessWidget {
               leading: leading,
               title: Text(
                 text,
-                style: const TextStyle(color: color, fontSize: 16),
+                style: TextStyle(color: color, fontSize: getScreenWidth(16)),
               ),
               onTap: onClicked,
             ),
@@ -429,7 +440,7 @@ class NavigationDrawerWidget extends StatelessWidget {
       alignment: alignment,
       margin: margin,
       child: Material(
-        color: Colors.transparent,
+        color: Constants.colorTransparent1,
         child: InkWell(
           child: SizedBox(
             width: width,
@@ -453,49 +464,28 @@ class NavigationDrawerWidget extends StatelessWidget {
   Widget buildHeader(bool isExpanded) => isExpanded
       ? Image.asset(
           Constants.logoRoot,
-          height: 48,
+          height: getScreenHeight(48),
         )
       : Row(
           children: [
-            SizedBox(width: getScreenWidth(20)),
+            SizedBox(
+              width: getScreenWidth(20),
+            ),
             Image.asset(
               Constants.logoRoot,
-              height: 48,
+              height: getScreenHeight(48),
             ),
-            SizedBox(width: getScreenWidth(12)),
+            SizedBox(
+              width: getScreenWidth(12),
+            ),
             Text(
               Constants.title,
-              style:
-                  TextStyle(fontSize: getScreenWidth(24), color: Colors.white),
+              style: TextStyle(
+                fontSize: getScreenWidth(24),
+                color: Constants.colorWhite,
+                fontFamily: Constants.fontOpenSansRegular,
+              ),
             ),
           ],
         );
 }
-
-// class Test extends StatefulWidget {
-//   const Test({super.key});
-
-//   @override
-//   State<Test> createState() => _TestState();
-// }
-
-// class _TestState extends State<Test> {
-//   final user = FirebaseAuth.instance.currentUser;
-
-//   signout() async {
-//     await FirebaseAuth.instance.signOut();
-//   }
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       body: Center(
-//         child: Text('${user!.email}'),
-//       ),
-//       floatingActionButton: FloatingActionButton(
-//         onPressed: (() => signout()),
-//         child: const Icon(Icons.login_rounded),
-//       ),
-//     );
-//   }
-// }
