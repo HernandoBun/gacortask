@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gacortask/screens/menubarpage/faq_page.dart';
 import 'package:gacortask/screens/taskspage/providers/task_provider.dart';
 import 'package:gacortask/screens/homepage/provider/navigation_provider.dart';
 import 'package:gacortask/screens/homepage/widgets/drawer_item.dart';
@@ -387,7 +388,7 @@ class NavigationDrawerWidget extends StatelessWidget {
         navigateTo(const NotificationScreen());
         break;
       case 4:
-        navigateTo(const NotificationScreen());
+        navigateTo(const FaqPage());
         break;
       case 5:
         navigateTo(const ContactUsPage());
