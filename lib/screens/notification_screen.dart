@@ -36,7 +36,9 @@ class _NotificationScreenState extends State<NotificationScreen> {
             );
           }
 
-          if (remainingTime.inMinutes == 1 && !task.isCompleted) {
+          if (remainingTime.inMinutes <= 1 &&
+              remainingTime.inMinutes > 0 &&
+              !task.isCompleted) {
             showNotification(
               Constants.notifText,
               'Deadline untuk "${task.title}" tinggal 1 menit lagi!',
@@ -47,14 +49,6 @@ class _NotificationScreenState extends State<NotificationScreen> {
             showNotification(
               Constants.notifText,
               'Deadline untuk "${task.title}" tinggal 1 jam lagi!',
-            );
-          }
-
-          // kedobel
-          if (remainingTime.inDays == 1 && !task.isCompleted) {
-            showNotification(
-              Constants.notifText,
-              'Deadline untuk "${task.title}" tinggal 1 hari lagi!',
             );
           }
 

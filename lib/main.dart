@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gacortask/constants.dart';
 import 'package:gacortask/screens/homepage/provider/navigation_provider.dart';
+import 'package:gacortask/screens/menubarpage/provider/theme_provider.dart';
 import 'package:gacortask/screens/wrapper.dart';
 import 'package:get/get.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -26,6 +27,7 @@ void main() async {
       providers: [
         ChangeNotifierProvider(create: (context) => TaskProvider()),
         ChangeNotifierProvider(create: (context) => NavigationProvider()),
+        ChangeNotifierProvider(create: (context) => ThemeProvider()),
       ],
       child: const MyApp(),
     ),

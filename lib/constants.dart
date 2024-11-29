@@ -40,14 +40,21 @@ class Constants {
   static const Color colorTransparent1 = Color.fromARGB(0, 0, 0, 0);
   static const Color colorOrange = Color.fromARGB(255, 255, 152, 0);
 
+  static const Color colorThemes1A = Color.fromRGBO(18, 45, 79, 1);
+  static const Color colorThemes1B = Color.fromRGBO(249, 247, 228, 1);
+  static const Color colorThemes2A = Color.fromRGBO(123, 0, 5, 1);
+  static const Color colorThemes2B = Color.fromRGBO(210, 180, 139, 1);
+  static const Color colorThemes3A = Color.fromRGBO(9, 115, 81, 1);
+  static const Color colorThemes3B = Color.fromRGBO(245, 156, 64, 1);
+
   static const String title = "GacorTask";
-  static const String titleNewTask= "Tambah Tugas Baru";
-  static const String titleName= "Nama";
-  static const String titleTelp= "Telepon";
-  static const String titleEmail= "Email";
-  static const String titleAlamat= "Alamat";
-  static const String titleStar= "Star Task";
-  static const String titleContact= "Contact Us Form";
+  static const String titleNewTask = "Tambah Tugas Baru";
+  static const String titleName = "Nama";
+  static const String titleTelp = "Telepon";
+  static const String titleEmail = "Email";
+  static const String titleAlamat = "Alamat";
+  static const String titleStar = "Star Task";
+  static const String titleContact = "Contact Us Form";
 
   static const String carText = "Discover New Ways to do Projects";
   static const String taskText = "Task Overview";
@@ -59,35 +66,38 @@ class Constants {
   static const String textSelesai = "Selesai";
   static const String textConfirmBatal = "Konfirmasi Hapus Tugas";
   static const String textAll = "All";
-  static const String textNotDone= "Tugas Belum Selesai";
-  static const String textDone= "Tugas Sudah Selesai";
-  static const String textAlreadyTask= "Judul Tugas sudah ada!";
-  static const String textChooseTask= "Pilih Kategori";
-  static const String textChooseCategoryClean= "Pilih kategori untuk dihapus";
-  static const String textNewCategory= "Tambah Kategori Baru";
-  static const String textChoosePriority= "Pilih Prioritas (1-5)";
-  static const String textCleanCategory= "Hapus Kategori";
-  static const String textNotification= "Notification";
-  static const String textStp= "No tasks found for this priority.";
-  static const String textSnack= "Please fill in all fields";
-  static const String textSnack1= "Email sent successfully";
-  static const String textSendEmail= "Send Email";
-  static const String textTaskOw= "Tasks Overview";
-  static const String textTask7= "Tugas 7 Hari Kedepan";
+  static const String textNotDone = "Tugas Belum Selesai";
+  static const String textDone = "Tugas Sudah Selesai";
+  static const String textAlreadyTask = "Judul Tugas sudah ada!";
+  static const String textChooseTask = "Pilih Kategori";
+  static const String textChooseCategoryClean = "Pilih kategori untuk dihapus";
+  static const String textNewCategory = "Tambah Kategori Baru";
+  static const String textChoosePriority = "Pilih Prioritas (1-5)";
+  static const String textCleanCategory = "Hapus Kategori";
+  static const String textNotification = "Notification";
+  static const String textStp = "No tasks found for this priority.";
+  static const String textSnack = "Please fill in all fields";
+  static const String textSnack1 = "Email sent successfully";
+  static const String textSendEmail = "Send Email";
+  static const String textTaskOw = "Tasks Overview";
+  static const String textTask7 = "Tugas 7 Hari Kedepan";
 
   static const String labelPrioritas = "Prioritas";
-  static const String labelTitleTask= "Judul Tugas";
-  static const String labelNameCategory= "Nama Kategori";
-  static const String labelPP= "Nama harus diisi dengan nama lengkap Anda";
-  static const String labelPP1= "Nomor telepon harus diisi sesuai format yang benar";
-  static const String labelPP2= "Email harus diisi dengan format email yang benar";
-  static const String labelPP3= "Alamat harus diisi dengan alamat yang valid";
-  static const String labelHint= "Subject";
-  static const String labelHint1= "Message";
+  static const String labelTitleTask = "Judul Tugas";
+  static const String labelNameCategory = "Nama Kategori";
+  static const String labelPP = "Nama harus diisi dengan nama lengkap Anda";
+  static const String labelPP1 =
+      "Nomor telepon harus diisi sesuai format yang benar";
+  static const String labelPP2 =
+      "Email harus diisi dengan format email yang benar";
+  static const String labelPP3 = "Alamat harus diisi dengan alamat yang valid";
+  static const String labelHint = "Subject";
+  static const String labelHint1 = "Message";
 
   static const String snackPwReset = "Password reset email sent successfully.";
   static const String resetPw = "Reset Your Password";
-  static const String forgotEmail = "Enter the email associated with your account and we'll send you password reset instructions.";
+  static const String forgotEmail =
+      "Enter the email associated with your account and we'll send you password reset instructions.";
   static const String hintEmail = "Your Email";
   static const String sendInstruction = "Send Reset Instructions";
   static const String returnLogin = "Return to Log In";
@@ -114,7 +124,7 @@ class Constants {
   static const String carouselRoot4 = "${imageRoot}imagecarousel4.jpg";
   static const String welcomeRoot = "${imageRoot}welcome.png";
   static const String googleRoot = "${imageRoot1}google.png";
-  static const String logoRoot = "${imageRoot1}logo.png";
+  static const String logoRoot = "${imageRoot1}logo1.png";
   // static const String themeRoot = "${imageRoot}theme.svg";
 
   // static const Icon icon1 = Icon(Icons.home);
