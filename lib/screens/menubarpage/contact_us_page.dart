@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:gacortask/constants.dart';
 import 'package:gacortask/screens/menubarpage/provider/theme_provider.dart';
+import 'package:provider/provider.dart';
 import 'package:gacortask/sizes.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-
-import 'package:provider/provider.dart';
 
 class ContactUsPage extends StatefulWidget {
   const ContactUsPage({super.key});
@@ -62,6 +61,7 @@ class _ContactUsPageState extends State<ContactUsPage> {
             ),
           ),
           backgroundColor: themeProvider.primaryColor,
+          foregroundColor: themeProvider.secondaryColor,
         ),
         body: Padding(
           padding: const EdgeInsets.fromLTRB(25, 40, 25, 0),

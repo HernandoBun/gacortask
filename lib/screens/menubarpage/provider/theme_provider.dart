@@ -5,7 +5,6 @@ class ThemeProvider extends ChangeNotifier {
   Color primaryColor = Constants.colorBlueHer;
   Color secondaryColor = Constants.colorWhite;
 
-  // Method to change theme
   void changeTheme(int themeIndex) {
     if (themeIndex == 1) {
       primaryColor = Constants.colorThemes3A;

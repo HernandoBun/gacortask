@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:gacortask/screens/menubarpage/provider/theme_provider.dart';
+import 'package:provider/provider.dart';
 
 class FaqPage extends StatefulWidget {
   const FaqPage({super.key});
@@ -8,7 +10,6 @@ class FaqPage extends StatefulWidget {
 }
 
 class _FaqPageState extends State<FaqPage> {
-  // Data FAQ
   final List<Map<String, String>> faqData = [
     {
       'question': 'Bagaimana cara menambahkan tugas baru?',
@@ -36,7 +37,8 @@ class _FaqPageState extends State<FaqPage> {
           'Ya, aplikasi To-Do List ini memiliki fitur pengingat. Anda dapat mengatur pengingat untuk setiap tugas berdasarkan tanggal, waktu, atau lokasi. Pengingat bisa berupa notifikasi, email, atau pesan teks. Beberapa aplikasi juga menyediakan pengingat berulang atau pengingat snooze untuk menunda tugas jika Anda tidak dapat menyelesaikannya tepat waktu.'
     },
     {
-      'question': 'Apakah tugas yang saya buat akan tersinkronisasi di perangkat lain?',
+      'question':
+          'Apakah tugas yang saya buat akan tersinkronisasi di perangkat lain?',
       'answer':
           'Jika aplikasi Anda mendukung sinkronisasi cloud, maka tugas yang Anda buat di satu perangkat akan otomatis tersinkronisasi ke perangkat lain yang menggunakan akun yang sama. Pastikan Anda terhubung ke internet dan masuk menggunakan akun yang sama di perangkat yang berbeda. Beberapa aplikasi juga memungkinkan Anda untuk mengatur sinkronisasi otomatis atau manual.'
     },
@@ -59,52 +61,54 @@ class _FaqPageState extends State<FaqPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('FAQ'),
-        backgroundColor: Colors.blue,
-        foregroundColor: Colors.white,
-      ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            children: List.generate(
-              faqData.length,
-              (index) {
-                return Card(
-                  margin: const EdgeInsets.only(bottom: 10.0),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8.0),
-                  ),
-                  elevation: 5.0,
-                  child: ExpansionTile(
-                    title: Text(
-                      faqData[index]['question']!,
-                      style: const TextStyle(
-                        fontSize: 16.0,
-                        fontWeight: FontWeight.bold,
-                      ),
+    return Consumer<ThemeProvider>(builder: (context, themeProvider, child) {
+      return Scaffold(
+        appBar: AppBar(
+          title: const Text('FAQ'),
+          backgroundColor: themeProvider.primaryColor,
+          foregroundColor: themeProvider.secondaryColor,
+        ),
+        body: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              children: List.generate(
+                faqData.length,
+                (index) {
+                  return Card(
+                    margin: const EdgeInsets.only(bottom: 10.0),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8.0),
                     ),
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(16.0),
-                        child: Text(
-                          faqData[index]['answer']!,
-                          style: const TextStyle(
-                            fontSize: 14.0,
-                            color: Colors.black54,
-                          ),
+                    elevation: 5.0,
+                    child: ExpansionTile(
+                      title: Text(
+                        faqData[index]['question']!,
+                        style: const TextStyle(
+                          fontSize: 16.0,
+                          fontWeight: FontWeight.bold,
                         ),
                       ),
-                    ],
-                  ),
-                );
-              },
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(16.0),
+                          child: Text(
+                            faqData[index]['answer']!,
+                            style: const TextStyle(
+                              fontSize: 14.0,
+                              color: Colors.black54,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  );
+                },
+              ),
             ),
           ),
         ),
-      ),
-    );
+      );
+    });
   }
 }
