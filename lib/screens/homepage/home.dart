@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gacortask/screens/menubarpage/about_us_page.dart';
 import 'package:gacortask/screens/menubarpage/faq_page.dart';
 import 'package:gacortask/screens/taskspage/providers/task_provider.dart';
 import 'package:gacortask/screens/homepage/provider/navigation_provider.dart';
@@ -376,7 +377,7 @@ class NavigationDrawerWidget extends StatelessWidget {
 
     switch (index) {
       case 0:
-        navigateTo(const NotificationScreen());
+        navigateTo(const AboutUsPage());
         break;
       case 1:
         navigateTo(const StarTaskPage());

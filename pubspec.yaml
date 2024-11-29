@@ -80,6 +80,7 @@ flutter:
     - assets/images/imagecarousel4.jpg
     - assets/google.png
     - assets/logo.png
+    - assets/images/AboutUs.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
