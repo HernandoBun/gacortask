@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:gacortask/constants.dart';
+import 'package:gacortask/screens/menubarpage/provider/theme_provider.dart';
 import 'package:get/get.dart';
+import 'package:lottie/lottie.dart';
 import 'package:gacortask/screens/wrapper.dart';
 import 'package:gacortask/screens/loginAuth/forgot.dart';
 import 'package:gacortask/screens/loginAuth/signup.dart';
+import 'package:provider/provider.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
-  static String routeName = "/loginScreen";
 
   @override
   _LoginScreenState createState() => _LoginScreenState();
@@ -43,9 +45,12 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final themeProvider = Provider.of<ThemeProvider>(context);
+    final primaryColor = themeProvider.primaryColor;
+    final secondaryColor = themeProvider.secondaryColor;
     return Scaffold(
       body: isLoading
-          ? const Center(child: CircularProgressIndicator())
+          ? Center(child: Lottie.asset("assets/AnimationLoading.json"))
           : SingleChildScrollView(
               child: Column(
                 children: [
@@ -117,7 +122,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         Align(
                           alignment: Alignment.centerRight,
                           child: TextButton(
-                            onPressed: () => Navigator.pushNamed(context, ForgotPassword.routeName),
+                            onPressed: () => Get.to(() => const ForgotPassword()),
                             child: const Text('Forgot password?'),
                           ),
                         ),
@@ -127,8 +132,8 @@ class _LoginScreenState extends State<LoginScreen> {
                           child: ElevatedButton(
                             onPressed: signIn,
                             style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.blue,
-                              foregroundColor: Colors.white,
+                              backgroundColor: primaryColor,
+                              foregroundColor: secondaryColor,
                               padding: const EdgeInsets.symmetric(vertical: 15),
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(30),
@@ -198,9 +203,10 @@ class _LoginScreenState extends State<LoginScreen> {
                       const Text("Don't have an account?"),
                       TextButton(
                         onPressed: () {
-                          Navigator.pushNamed(
+                          Navigator.push(
                             context,
-                            Signup.routeName,
+                            MaterialPageRoute(
+                                builder: (context) => const Signup()),
                           );
                         },
                         child: const Text('Sign up'),

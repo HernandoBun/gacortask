@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:gacortask/constants.dart';
+import 'package:gacortask/screens/menubarpage/provider/theme_provider.dart';
+import 'package:provider/provider.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class CarouselHome extends StatefulWidget {
@@ -63,17 +65,25 @@ class _CarouselHomeState extends State<CarouselHome> {
         ),
       );
 
-  Widget buildIndicator() => Container(
-        margin: const EdgeInsets.only(right: 280, bottom: 10),
-        child: AnimatedSmoothIndicator(
-          activeIndex: activeIndex,
-          count: urlImages.length,
-          effect: const WormEffect(
-            activeDotColor: Constants.colorBlue,
-            dotColor: Constants.colorGrey7,
-            dotHeight: 10,
-            dotWidth: 10,
+  Widget buildIndicator() {
+    return Consumer<ThemeProvider>(
+      builder: (context, themeProvider, child) {
+        return Container(
+          margin: const EdgeInsets.only(right: 280, bottom: 10),
+          child: AnimatedSmoothIndicator(
+            activeIndex: activeIndex,
+            count: urlImages.length,
+            effect: WormEffect(
+              activeDotColor: themeProvider
+                  .primaryColor,
+              dotColor: Constants
+                  .colorGrey3,
+              dotHeight: 10,
+              dotWidth: 10,
+            ),
           ),
-        ),
-      );
+        );
+      },
+    );
+  }
 }

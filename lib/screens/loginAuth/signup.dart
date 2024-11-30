@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:gacortask/constants.dart';
+import 'package:gacortask/screens/menubarpage/provider/theme_provider.dart';
 import 'package:get/get.dart';
 import 'package:gacortask/screens/loginAuth/login.dart';
 import 'package:gacortask/screens/wrapper.dart';
+import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Signup extends StatefulWidget {
   const Signup({super.key});
-  static String routeName = "/signup";
 
   @override
   State<Signup> createState() => _SignupScreenState();
@@ -27,6 +29,10 @@ class _SignupScreenState extends State<Signup> {
           email: email.text,
           password: password.text,
         );
+
+        SharedPreferences prefs = await SharedPreferences.getInstance();
+        prefs.setString('name', name.text); 
+
         Get.offAll(const Wrapper());
       } catch (e) {
         Get.snackbar('Signup Error', e.toString());
@@ -38,6 +44,9 @@ class _SignupScreenState extends State<Signup> {
 
   @override
   Widget build(BuildContext context) {
+    final themeProvider = Provider.of<ThemeProvider>(context);
+    final primaryColor = themeProvider.primaryColor;
+    final secondaryColor = themeProvider.secondaryColor;
     return Scaffold(
       body: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -206,7 +215,7 @@ class _SignupScreenState extends State<Signup> {
                   child: const Text(
                     "Terms & Privacy",
                     style: TextStyle(
-                      color: Colors.blue,
+                      color: Constants.colorBlueHer,
                       decoration: TextDecoration.underline,
                     ),
                   ),
@@ -219,8 +228,8 @@ class _SignupScreenState extends State<Signup> {
               child: ElevatedButton(
                 onPressed: signup,
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.blue,
-                  foregroundColor: Colors.white,
+                  backgroundColor: primaryColor,
+                  foregroundColor: secondaryColor,
                   padding: const EdgeInsets.symmetric(vertical: 12),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(6),
@@ -239,8 +248,7 @@ class _SignupScreenState extends State<Signup> {
                 const Text("Already have an account?",
                     style: TextStyle(fontSize: 14)),
                 TextButton(
-                  onPressed: () =>
-                      Navigator.pushNamed(context, LoginScreen.routeName),
+                  onPressed: () => Get.to(const LoginScreen()),
                   child: const Text('Log In', style: TextStyle(fontSize: 14)),
                 ),
               ],
@@ -248,7 +256,7 @@ class _SignupScreenState extends State<Signup> {
             const SizedBox(height: 20),
             Center(
               child: Text(
-                "© 2024 Kel 6 TI C 23, Productivity",
+                "©️ 2024 Kel 6 TI C 23, Productivity",
                 style: TextStyle(color: Colors.grey[600], fontSize: 10),
               ),
             ),

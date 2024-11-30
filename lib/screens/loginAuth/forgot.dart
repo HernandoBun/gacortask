@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:gacortask/constants.dart';
-import 'package:gacortask/screens/loginAuth/verifyemail.dart';
+import 'package:gacortask/screens/menubarpage/provider/theme_provider.dart';
+import 'package:provider/provider.dart';
 
 class ForgotPassword extends StatefulWidget {
   const ForgotPassword({super.key});
-  static String routeName = '/forgotPassword';
 
   @override
   State<ForgotPassword> createState() => _ForgotPasswordState();
@@ -39,17 +39,23 @@ class _ForgotPasswordState extends State<ForgotPassword> {
 
   @override
   Widget build(BuildContext context) {
+    final themeProvider = Provider.of<ThemeProvider>(context);
+    final primaryColor = themeProvider.primaryColor;
+    final secondaryColor = themeProvider.secondaryColor;
     return MaterialApp(
       scaffoldMessengerKey: scaffoldMessengerKey,
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
-          backgroundColor: Constants.colorWhite,
+          backgroundColor: primaryColor,
+          foregroundColor: secondaryColor,
           elevation: 0,
           leading: IconButton(
-            icon: const Icon(Icons.arrow_back, color: Constants.colorBlack),
+            icon: const Icon(
+              Icons.arrow_back,
+            ),
             onPressed: () {
-              Navigator.pushNamed(context, Verify.routeName);
+              Navigator.of(context).pop();
             },
           ),
         ),
@@ -58,12 +64,12 @@ class _ForgotPasswordState extends State<ForgotPassword> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text(
+              Text(
                 Constants.resetPw,
                 style: TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
-                  color: Constants.colorBlack,
+                  color: primaryColor,
                 ),
               ),
               const SizedBox(height: 10),
@@ -71,7 +77,8 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                 Constants.forgotEmail,
                 style: TextStyle(
                   fontSize: 16,
-                  color: Constants.colorBlack1,
+                  color: Constants.colorBlack,
+                  fontWeight: FontWeight.w400,
                 ),
               ),
               const SizedBox(height: 20),
@@ -82,8 +89,8 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(8.0),
                   ),
-                  focusedBorder: const OutlineInputBorder(
-                    borderSide: BorderSide(color: Constants.colorPurpleShade),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: secondaryColor),
                   ),
                 ),
                 keyboardType: TextInputType.emailAddress,
@@ -93,8 +100,8 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                 width: double.infinity,
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    foregroundColor: Constants.colorWhite,
-                    backgroundColor: Constants.colorPurple,
+                    foregroundColor: secondaryColor,
+                    backgroundColor: primaryColor,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8.0),
                     ),
@@ -118,10 +125,10 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                   onPressed: () {
                     Navigator.pop(context);
                   },
-                  child: const Text(
+                  child: Text(
                     Constants.returnLogin,
                     style: TextStyle(
-                      color: Constants.colorPurple,
+                      color: primaryColor,
                       fontSize: 16,
                     ),
                   ),

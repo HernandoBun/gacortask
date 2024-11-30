@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:gacortask/constants.dart';
+import 'package:gacortask/screens/menubarpage/provider/theme_provider.dart';
 import 'package:gacortask/screens/taskspage/providers/task_provider.dart';
 import 'package:gacortask/sizes.dart';
 import 'package:intl/intl.dart';
@@ -98,20 +99,23 @@ class _NotificationScreenState extends State<NotificationScreen> {
   Widget build(BuildContext context) {
     Sizes.init(context);
     final taskProvider = Provider.of<TaskProvider>(context);
+    final themeProvider = Provider.of<ThemeProvider>(context);
     final completedTasks = taskProvider.getTasksByStatus(true);
     final pendingTasks = taskProvider.getTasksByStatus(false);
+    final primaryColor = themeProvider.primaryColor;
+    final secondaryColor = themeProvider.secondaryColor;
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
+        title: Text(
           Constants.textNotification,
           style: TextStyle(
-            color: Constants.colorWhite,
+            color: secondaryColor,
             fontFamily: Constants.fontOpenSansBold,
             fontWeight: FontWeight.w700,
           ),
         ),
-        backgroundColor: Constants.colorBlueHer,
+        backgroundColor: primaryColor,
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),

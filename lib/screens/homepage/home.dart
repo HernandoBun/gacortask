@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gacortask/screens/menubarpage/about_us_page.dart';
 import 'package:gacortask/screens/menubarpage/faq_page.dart';
+import 'package:gacortask/screens/menubarpage/provider/theme_provider.dart';
 import 'package:gacortask/screens/menubarpage/theme_page.dart';
 import 'package:gacortask/screens/taskspage/providers/task_provider.dart';
 import 'package:gacortask/screens/homepage/provider/navigation_provider.dart';
@@ -36,9 +37,13 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     Sizes.init(context);
     final taskProvider = Provider.of<TaskProvider>(context);
+    final themeProvider = Provider.of<ThemeProvider>(context);
     final completedTasks = taskProvider.getTasksByStatus(true);
     final pendingTasks = taskProvider.getTasksByStatus(false);
     final tasksForNext7Days = taskProvider.tasksForNext7Days;
+    final primaryColor = themeProvider.primaryColor;
+    final secondaryColor = themeProvider.secondaryColor;
+    final welcomeImage = themeProvider.welcomeImage;
 
     return Scaffold(
       key: _scaffoldKey,
@@ -50,13 +55,13 @@ class _MyHomePageState extends State<MyHomePage> {
               onPressed: () {
                 _scaffoldKey.currentState!.openDrawer();
               },
-              icon: const Icon(
+              icon: Icon(
                 Icons.menu,
-                color: Constants.colorWhite,
+                color: secondaryColor,
                 size: 30,
               ),
             ),
-            backgroundColor: Constants.colorBlueHer,
+            backgroundColor: primaryColor,
             elevation: 0,
             pinned: true,
             expandedHeight: 280.0,
@@ -67,8 +72,8 @@ class _MyHomePageState extends State<MyHomePage> {
               ],
               background: AnimatedContainer(
                 duration: const Duration(milliseconds: 300),
-                child: const Image(
-                  image: AssetImage(Constants.welcomeRoot),
+                child: Image(
+                  image: AssetImage(welcomeImage),
                   fit: BoxFit.cover,
                 ),
               ),
@@ -108,7 +113,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               horizontal: 42,
                             ),
                             decoration: BoxDecoration(
-                              color: Constants.colorGrey7,
+                              color: primaryColor,
                               borderRadius:
                                   BorderRadius.circular(Constants.border),
                             ),
@@ -117,7 +122,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                 Text(
                                   "${completedTasks.length}",
                                   style: TextStyle(
-                                    color: Constants.colorBlack,
+                                    color: secondaryColor,
                                     fontSize: getScreenWidth(24),
                                     fontFamily: Constants.fontOpenSansRegular,
                                     fontWeight: FontWeight.bold,
@@ -126,7 +131,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                 Text(
                                   Constants.taskText1,
                                   style: TextStyle(
-                                    color: Constants.colorBlack,
+                                    color: secondaryColor,
                                     fontFamily: Constants.fontOpenSansRegular,
                                     fontSize: getScreenWidth(14.5),
                                   ),
@@ -141,7 +146,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               horizontal: 38,
                             ),
                             decoration: BoxDecoration(
-                              color: Constants.colorGrey7,
+                              color: primaryColor,
                               borderRadius:
                                   BorderRadius.circular(Constants.border),
                             ),
@@ -150,7 +155,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                 Text(
                                   "${pendingTasks.length}",
                                   style: TextStyle(
-                                    color: Constants.colorBlack,
+                                    color: secondaryColor,
                                     fontSize: getScreenWidth(24),
                                     fontFamily: Constants.fontOpenSansRegular,
                                     fontWeight: FontWeight.bold,
@@ -159,7 +164,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                 Text(
                                   Constants.taskText2,
                                   style: TextStyle(
-                                    color: Constants.colorBlack,
+                                    color: secondaryColor,
                                     fontFamily: Constants.fontOpenSansRegular,
                                     fontSize: getScreenWidth(13),
                                   ),
@@ -175,7 +180,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             const EdgeInsets.only(left: 10, right: 10, top: 10),
                         padding: const EdgeInsets.all(18),
                         decoration: BoxDecoration(
-                          color: Constants.colorBlue3,
+                          color: primaryColor,
                           borderRadius: BorderRadius.circular(Constants.border),
                         ),
                         child: const BarGraph(),
@@ -190,7 +195,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         ),
                         padding: const EdgeInsets.all(15),
                         decoration: BoxDecoration(
-                          color: Constants.colorGrey7,
+                          color: primaryColor,
                           borderRadius: BorderRadius.circular(Constants.border),
                         ),
                         child: Column(
@@ -205,6 +210,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                     fontWeight: FontWeight.bold,
                                     fontFamily: Constants.fontOpenSansRegular,
                                     fontSize: getScreenWidth(18.0),
+                                    color: secondaryColor,
                                   ),
                                 ),
                                 IconButton(
@@ -212,6 +218,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                     _isTasksMinimized
                                         ? Icons.expand_more
                                         : Icons.expand_less,
+                                    color: secondaryColor,
                                   ),
                                   onPressed: () {
                                     setState(() {
@@ -231,20 +238,23 @@ class _MyHomePageState extends State<MyHomePage> {
                                   String formattedDate =
                                       "${task.deadline.day}-${task.deadline.month}";
                                   return ListTile(
-                                    leading: const Icon(Icons.calendar_today,
-                                        color: Constants.colorBlue),
+                                    leading: Icon(
+                                      Icons.calendar_today,
+                                      color: secondaryColor,
+                                    ),
                                     title: Text(
                                       task.title,
-                                      style: const TextStyle(
+                                      style: TextStyle(
                                         fontFamily:
                                             Constants.fontOpenSansRegular,
                                         fontWeight: FontWeight.bold,
+                                        color: secondaryColor,
                                       ),
                                     ),
                                     subtitle: Text(
                                       formattedDate,
-                                      style: const TextStyle(
-                                        color: Constants.colorGrey,
+                                      style: TextStyle(
+                                        color: secondaryColor,
                                         fontFamily:
                                             Constants.fontOpenSansRegular,
                                       ),
@@ -294,6 +304,8 @@ class NavigationDrawerWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final themeProvider = Provider.of<ThemeProvider>(context);
+    final primaryColor = themeProvider.primaryColor;
     final EdgeInsets spaceArea =
         EdgeInsets.only(top: MediaQuery.of(context).viewPadding.top);
 
@@ -305,7 +317,7 @@ class NavigationDrawerWidget extends StatelessWidget {
       child: Drawer(
         elevation: 10,
         child: Container(
-          color: Constants.colorBlue6,
+          color: primaryColor,
           child: Column(
             children: [
               Container(

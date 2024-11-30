@@ -2,6 +2,8 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:gacortask/screens/homepage/widgets/bar%20graph/bar_data.dart';
 import 'package:gacortask/constants.dart';
+import 'package:gacortask/screens/menubarpage/provider/theme_provider.dart';
+import 'package:provider/provider.dart';
 
 class MyBarGraph extends StatelessWidget {
   final List<int> userAktif;
@@ -46,7 +48,7 @@ class MyBarGraph extends StatelessWidget {
                 barRods: [
                   BarChartRodData(
                     toY: data.y,
-                    color: Constants.colorGrey3,
+                    color: Constants.colorBlack1,
                     width: 25,
                     borderRadius: BorderRadius.circular(4),
                     backDrawRodData: BackgroundBarChartRodData(
@@ -65,56 +67,58 @@ class MyBarGraph extends StatelessWidget {
 }
 
 Widget getBottomTitles(double value, TitleMeta meta) {
-  const style = TextStyle(
-    color: Constants.colorBlack,
-    fontWeight: FontWeight.bold,
-    fontSize: 14,
-  );
+  return Consumer<ThemeProvider>(builder: (context, themeProvider, child) {
+    var style = TextStyle(
+      color: themeProvider.secondaryColor,
+      fontWeight: FontWeight.bold,
+      fontSize: 14,
+    );
 
-  Widget text;
-  switch (value.toInt()) {
-    case 0:
-      text = const Text(
-        'S',
-        style: style,
-      );
-    case 1:
-      text = const Text(
-        'M',
-        style: style,
-      );
-    case 2:
-      text = const Text(
-        'T',
-        style: style,
-      );
-    case 3:
-      text = const Text(
-        'W',
-        style: style,
-      );
-    case 4:
-      text = const Text(
-        'T',
-        style: style,
-      );
-    case 5:
-      text = const Text(
-        'F',
-        style: style,
-      );
-    case 6:
-      text = const Text(
-        'S',
-        style: style,
-      );
-      break;
-    default:
-      text = const Text(
-        '',
-        style: style,
-      );
-  }
+    Widget text;
+    switch (value.toInt()) {
+      case 0:
+        text = Text(
+          'S',
+          style: style,
+        );
+      case 1:
+        text = Text(
+          'M',
+          style: style,
+        );
+      case 2:
+        text = Text(
+          'T',
+          style: style,
+        );
+      case 3:
+        text = Text(
+          'W',
+          style: style,
+        );
+      case 4:
+        text = Text(
+          'T',
+          style: style,
+        );
+      case 5:
+        text = Text(
+          'F',
+          style: style,
+        );
+      case 6:
+        text = Text(
+          'S',
+          style: style,
+        );
+        break;
+      default:
+        text = Text(
+          '',
+          style: style,
+        );
+    }
 
-  return SideTitleWidget(axisSide: meta.axisSide, child: text);
+    return SideTitleWidget(axisSide: meta.axisSide, child: text);
+  });
 }

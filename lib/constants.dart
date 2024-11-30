@@ -123,6 +123,9 @@ class Constants {
   static const String carouselRoot3 = "${imageRoot}imagecarousel3.jpg";
   static const String carouselRoot4 = "${imageRoot}imagecarousel4.jpg";
   static const String welcomeRoot = "${imageRoot}welcome.png";
+  static const String welcomeRoot1 = "${imageRoot}welcome1.png";
+  static const String welcomeRoot2 = "${imageRoot}welcome2.png";
+  static const String welcomeRoot3 = "${imageRoot}welcome3.png";
   static const String googleRoot = "${imageRoot1}google.png";
   static const String logoRoot = "${imageRoot1}logo1.png";
   // static const String themeRoot = "${imageRoot}theme.svg";

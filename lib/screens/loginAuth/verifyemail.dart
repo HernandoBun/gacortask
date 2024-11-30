@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:gacortask/constants.dart';
+import 'package:gacortask/screens/loginAuth/signup.dart';
 import 'package:get/get.dart';
 import 'package:gacortask/screens/wrapper.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Verify extends StatefulWidget {
   const Verify({super.key});
-  static String routeName = '/verify';
 
   @override
   State<Verify> createState() => _VerifyState();
@@ -16,6 +18,7 @@ class _VerifyState extends State<Verify> with SingleTickerProviderStateMixin {
   late Animation<double> _fadeAnimation;
 
   bool _showCheckIcon = false;
+  bool _isEmailVerificationSent = false;
 
   @override
   void initState() {
@@ -44,18 +47,33 @@ class _VerifyState extends State<Verify> with SingleTickerProviderStateMixin {
     super.dispose();
   }
 
-  sendVerifyLink() async {
+sendVerifyLink() async {
     final user = FirebaseAuth.instance.currentUser!;
-    await user.sendEmailVerification().then(
-          (value) => {
-            Get.snackbar(
-              'Link sent!',
-              'Check your email',
-              margin: const EdgeInsets.all(30),
-              snackPosition: SnackPosition.BOTTOM,
-            )
-          },
-        );
+
+    final prefs = await SharedPreferences.getInstance();
+    final lastSentTime = prefs.getInt('lastVerificationTime') ?? 0;
+    final currentTime = DateTime.now().millisecondsSinceEpoch;
+
+    if (currentTime - lastSentTime > 60000) { 
+      await user.sendEmailVerification().then(
+        (value) async {
+          await prefs.setInt('lastVerificationTime', currentTime);  
+          Get.snackbar(
+            'Link sent!',
+            'Check your email',
+            margin: const EdgeInsets.all(30),
+            snackPosition: SnackPosition.BOTTOM,
+          );
+        },
+      );
+    } else {
+      Get.snackbar(
+        'Too many requests!',
+        'Please wait a minute before trying again.',
+        margin: const EdgeInsets.all(30),
+        snackPosition: SnackPosition.BOTTOM,
+      );
+    }
   }
 
   reload() async {
@@ -67,6 +85,22 @@ class _VerifyState extends State<Verify> with SingleTickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Constants.colorWhite,
+        foregroundColor: Constants.colorBlack,
+        elevation: 0,
+        leading: IconButton(
+          icon: const Icon(
+            Icons.arrow_back,
+          ),
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const Signup()),
+            );
+          },
+        ),
+      ),
       body: FadeTransition(
         opacity: _fadeAnimation,
         child: Padding(
