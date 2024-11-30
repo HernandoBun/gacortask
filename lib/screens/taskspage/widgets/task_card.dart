@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gacortask/constants.dart';
+import 'package:gacortask/screens/menubarpage/provider/theme_provider.dart';
 import 'package:gacortask/screens/taskspage/models/task_models.dart' as models;
 import 'package:gacortask/screens/taskspage/providers/task_provider.dart';
 import 'package:gacortask/sizes.dart';
@@ -102,50 +103,52 @@ class TaskCard extends StatelessWidget {
   }
 
   Widget _buildPriorityDropdown(BuildContext context) {
-    return SizedBox(
-      width: getScreenWidth(80.0),
-      child: DropdownButtonFormField<int>(
-        value: task.priorityLevel,
-        decoration: InputDecoration(
-          labelText: Constants.labelPrioritas,
-          labelStyle:
-              const TextStyle(fontFamily: Constants.fontOpenSansRegular),
-          filled: true,
-          fillColor: Constants.colorGrey6,
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(Constants.border12),
-          ),
-        ),
-        items: List.generate(5, (index) {
-          return DropdownMenuItem<int>(
-            value: index + 1,
-            child: Text(
-              '${index + 1}',
-              style: const TextStyle(
-                fontFamily: Constants.fontOpenSansRegular,
-              ),
+    return Consumer<ThemeProvider>(builder: (context, themeProvider, child) {
+      return SizedBox(
+        width: getScreenWidth(80.0),
+        child: DropdownButtonFormField<int>(
+          value: task.priorityLevel,
+          decoration: InputDecoration(
+            labelText: Constants.labelPrioritas,
+            labelStyle:
+                const TextStyle(fontFamily: Constants.fontOpenSansRegular),
+            filled: true,
+            fillColor: Constants.colorGrey6,
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(Constants.border12),
             ),
-          );
-        }).toList(),
-        onChanged: (newPriority) {
-          if (newPriority != null) {
-            context.read<TaskProvider>().setTaskPriority(index, newPriority);
-          }
-        },
-        icon: const Icon(
-          Icons.arrow_drop_down_circle,
-          color: Constants.colorBlue5,
-          size: 30,
+          ),
+          items: List.generate(5, (index) {
+            return DropdownMenuItem<int>(
+              value: index + 1,
+              child: Text(
+                '${index + 1}',
+                style: const TextStyle(
+                  fontFamily: Constants.fontOpenSansRegular,
+                ),
+              ),
+            );
+          }).toList(),
+          onChanged: (newPriority) {
+            if (newPriority != null) {
+              context.read<TaskProvider>().setTaskPriority(index, newPriority);
+            }
+          },
+          icon: Icon(
+            Icons.arrow_drop_down_circle,
+            color: themeProvider.primaryColor,
+            size: 30,
+          ),
+          iconSize: 24,
+          style: const TextStyle(
+            color: Constants.colorBlack,
+            fontFamily: Constants.fontOpenSansRegular,
+          ),
+          dropdownColor: Constants.colorWhite,
+          elevation: 16,
         ),
-        iconSize: 24,
-        style: const TextStyle(
-          color: Constants.colorBlack,
-          fontFamily: Constants.fontOpenSansRegular,
-        ),
-        dropdownColor: Constants.colorWhite,
-        elevation: 16,
-      ),
-    );
+      );
+    });
   }
 
   void _showUpdateTaskDialog(BuildContext context) {

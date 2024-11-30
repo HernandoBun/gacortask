@@ -6,6 +6,7 @@ class ThemeProvider extends ChangeNotifier {
   Color primaryColor = Constants.colorBlueHer;
   Color secondaryColor = Constants.colorWhite;
   String welcomeImage = Constants.welcomeRoot;
+  String logoImage = Constants.logoRoot;
 
   int selectedTheme = 0;
 
@@ -28,18 +29,23 @@ class ThemeProvider extends ChangeNotifier {
     if (themeIndex == 1) {
       primaryColor = Constants.colorThemes3A;
       secondaryColor = Constants.colorThemes3B;
-      welcomeImage = Constants.welcomeRoot2;
+      welcomeImage = Constants.welcomeRoot1;
+      logoImage = Constants.logoRoot2;
     } else if (themeIndex == 2) {
       primaryColor = Constants.colorThemes1A;
       secondaryColor = Constants.colorThemes1B;
-      welcomeImage = Constants.welcomeRoot1;
+      welcomeImage = Constants.welcomeRoot2;
+      logoImage = Constants.logoRoot3;
     } else if (themeIndex == 3) {
       primaryColor = Constants.colorThemes2A;
       secondaryColor = Constants.colorThemes2B;
       welcomeImage = Constants.welcomeRoot3;
+      logoImage = Constants.logoRoot1;
     } else {
       primaryColor = Constants.colorBlueHer;
       secondaryColor = Constants.colorWhite;
+      welcomeImage = Constants.welcomeRoot;
+      logoImage = Constants.logoRoot;
     }
 
     notifyListeners();

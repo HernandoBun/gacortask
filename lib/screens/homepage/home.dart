@@ -325,7 +325,9 @@ class NavigationDrawerWidget extends StatelessWidget {
                     const EdgeInsets.symmetric(vertical: 24).add(spaceArea),
                 width: double.infinity,
                 color: Constants.colorWhite12,
-                child: buildHeader(isExpanded),
+                child: buildHeader(
+                  isExpanded,
+                ),
               ),
               SizedBox(height: getScreenHeight(24.0)),
               buildList(
@@ -476,31 +478,39 @@ class NavigationDrawerWidget extends StatelessWidget {
     );
   }
 
-  Widget buildHeader(bool isExpanded) => isExpanded
-      ? Image.asset(
-          Constants.logoRoot,
-          height: getScreenHeight(48),
-        )
-      : Row(
-          children: [
-            SizedBox(
-              width: getScreenWidth(20),
-            ),
-            Image.asset(
-              Constants.logoRoot,
-              height: getScreenHeight(48),
-            ),
-            SizedBox(
-              width: getScreenWidth(12),
-            ),
-            Text(
-              Constants.title,
-              style: TextStyle(
-                fontSize: getScreenWidth(24),
-                color: Constants.colorWhite,
-                fontFamily: Constants.fontOpenSansRegular,
-              ),
-            ),
-          ],
-        );
+  Widget buildHeader(bool isExpanded) {
+    return Consumer<ThemeProvider>(
+      builder: (context, themeProvider, child) {
+        final primaryColor = themeProvider.primaryColor;
+
+        return isExpanded
+            ? Image.asset(
+                themeProvider.logoImage,
+                height: getScreenHeight(48),
+              )
+            : Row(
+                children: [
+                  SizedBox(
+                    width: getScreenWidth(20),
+                  ),
+                  Image.asset(
+                    themeProvider.logoImage,
+                    height: getScreenHeight(48),
+                  ),
+                  SizedBox(
+                    width: getScreenWidth(12),
+                  ),
+                  Text(
+                    Constants.title,
+                    style: TextStyle(
+                      fontSize: getScreenWidth(24),
+                      color: themeProvider.secondaryColor,
+                      fontFamily: Constants.fontOpenSansRegular,
+                    ),
+                  ),
+                ],
+              );
+      },
+    );
+  }
 }
