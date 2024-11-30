@@ -227,8 +227,6 @@ class NotificationCard extends StatelessWidget {
               ),
             ],
           ),
-          const Icon(Icons.more_vert),
-          // fungsi delete disini
         ],
       ),
     );

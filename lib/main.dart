@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gacortask/constants.dart';
 import 'package:gacortask/screens/homepage/provider/navigation_provider.dart';
 import 'package:gacortask/screens/menubarpage/provider/theme_provider.dart';
-import 'package:gacortask/screens/wrapper.dart';
+import 'package:gacortask/usage/wrapper.dart';
 import 'package:get/get.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:provider/provider.dart';

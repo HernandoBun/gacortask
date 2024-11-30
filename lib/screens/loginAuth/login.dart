@@ -4,7 +4,7 @@ import 'package:gacortask/constants.dart';
 import 'package:gacortask/screens/menubarpage/provider/theme_provider.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
-import 'package:gacortask/screens/wrapper.dart';
+import 'package:gacortask/usage/wrapper.dart';
 import 'package:gacortask/screens/loginAuth/forgot.dart';
 import 'package:gacortask/screens/loginAuth/signup.dart';
 import 'package:provider/provider.dart';

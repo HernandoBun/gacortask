@@ -5,17 +5,17 @@ import 'package:gacortask/screens/taskspage/providers/task_provider.dart';
 import 'package:gacortask/sizes.dart';
 import 'package:gacortask/screens/taskspage/widgets/task_card.dart';
 import 'package:provider/provider.dart';
- 
+
 class StarTaskPage extends StatefulWidget {
   const StarTaskPage({super.key});
- 
+
   @override
   State<StarTaskPage> createState() => _StarTaskPageState();
 }
- 
+
 class _StarTaskPageState extends State<StarTaskPage> {
   int? selectedPriority = 1;
- 
+
   @override
   Widget build(BuildContext context) {
     final themeProvider = Provider.of<ThemeProvider>(context);
@@ -74,7 +74,11 @@ class _StarTaskPageState extends State<StarTaskPage> {
                 final filteredTasks = taskProvider.tasks
                     .where((task) => task.priorityLevel == selectedPriority)
                     .toList();
- 
+                final pendingTasks =
+                    filteredTasks.where((task) => !task.isCompleted).toList();
+                final completedTasks =
+                    filteredTasks.where((task) => task.isCompleted).toList();
+
                 return ListView(
                   children: [
                     if (filteredTasks.isNotEmpty) ...[
@@ -89,12 +93,12 @@ class _StarTaskPageState extends State<StarTaskPage> {
                           ),
                         ),
                       ),
-                      ...filteredTasks.map((task) {
+                      ...pendingTasks.map((task) {
                         final index = taskProvider.tasks.indexOf(task);
                         return TaskCard(task: task, index: index);
                       }),
                     ],
-                    if (filteredTasks.isEmpty)
+                    if (pendingTasks.isEmpty)
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Text(
@@ -106,6 +110,27 @@ class _StarTaskPageState extends State<StarTaskPage> {
                           ),
                         ),
                       ),
+                    if (completedTasks.isNotEmpty) ...[
+                      Divider(
+                        height: getScreenHeight(20),
+                        thickness: 2,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                          Constants.textDone,
+                          style: TextStyle(
+                            fontSize: getScreenWidth(18.0),
+                            fontFamily: Constants.fontOpenSansRegular,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                      ...completedTasks.map((task) {
+                        final index = taskProvider.tasks.indexOf(task);
+                        return TaskCard(task: task, index: index);
+                      }),
+                    ],
                   ],
                 );
               },

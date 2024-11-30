@@ -4,7 +4,7 @@ import 'package:gacortask/constants.dart';
 import 'package:gacortask/screens/menubarpage/provider/theme_provider.dart';
 import 'package:get/get.dart';
 import 'package:gacortask/screens/loginAuth/login.dart';
-import 'package:gacortask/screens/wrapper.dart';
+import 'package:gacortask/usage/wrapper.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -31,7 +31,7 @@ class _SignupScreenState extends State<Signup> {
         );
 
         SharedPreferences prefs = await SharedPreferences.getInstance();
-        prefs.setString('name', name.text); 
+        prefs.setString('name', name.text);
 
         Get.offAll(const Wrapper());
       } catch (e) {
@@ -248,7 +248,7 @@ class _SignupScreenState extends State<Signup> {
                 const Text("Already have an account?",
                     style: TextStyle(fontSize: 14)),
                 TextButton(
-                  onPressed: () => Get.to(const LoginScreen()),
+                  onPressed: () => Get.to(() => const LoginScreen()),
                   child: const Text('Log In', style: TextStyle(fontSize: 14)),
                 ),
               ],

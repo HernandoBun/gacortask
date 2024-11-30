@@ -5,7 +5,7 @@ import 'package:gacortask/screens/homepage/home.dart';
 import 'package:gacortask/screens/menubarpage/provider/theme_provider.dart';
 import 'package:gacortask/screens/profilepage/profile_page.dart';
 import 'package:gacortask/screens/taskspage/task_screen.dart';
-import 'package:gacortask/screens/notification_screen.dart';
+import 'package:gacortask/screens/notificationpage/notification_screen.dart';
 import 'package:provider/provider.dart';
  
 class BottomNavBar extends StatefulWidget {

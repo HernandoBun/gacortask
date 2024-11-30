@@ -12,7 +12,7 @@ import 'package:gacortask/screens/homepage/widgets/home_carousel.dart';
 import 'package:gacortask/screens/menubarpage/star_task_page.dart';
 import 'package:gacortask/constants.dart';
 import 'package:gacortask/screens/menubarpage/contact_us_page.dart';
-import 'package:gacortask/screens/notification_screen.dart';
+import 'package:gacortask/screens/notificationpage/notification_screen.dart';
 import 'package:gacortask/sizes.dart';
 import 'package:provider/provider.dart';
 import 'package:firebase_auth/firebase_auth.dart';

@@ -18,6 +18,9 @@ class TaskCard extends StatelessWidget {
       onDoubleTap: () {
         context.read<TaskProvider>().toggleTaskCompletion(index);
       },
+      onLongPress: () {
+        _showUpdateTaskDialog(context);
+      },
       child: Card(
         margin: EdgeInsets.symmetric(
             vertical: getScreenHeight(8.0), horizontal: getScreenHeight(16.0)),
@@ -142,6 +145,142 @@ class TaskCard extends StatelessWidget {
         dropdownColor: Constants.colorWhite,
         elevation: 16,
       ),
+    );
+  }
+
+  void _showUpdateTaskDialog(BuildContext context) {
+    final taskProvider = context.read<TaskProvider>();
+    final TextEditingController titleController =
+        TextEditingController(text: task.title);
+    DateTime selectedDate = task.deadline;
+    TimeOfDay? selectedTime = TimeOfDay.fromDateTime(task.deadline);
+    String? selectedCategory = task.category;
+    int selectedPriority = task.priorityLevel;
+
+    showDialog(
+      context: context,
+      builder: (context) {
+        return StatefulBuilder(
+          builder: (context, setState) {
+            return AlertDialog(
+              title: const Text('Update Task'),
+              content: SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    TextField(
+                      controller: titleController,
+                      decoration:
+                          const InputDecoration(labelText: 'Task Title'),
+                    ),
+                    DropdownButtonFormField<String>(
+                      value: selectedCategory,
+                      hint: const Text('Select Category'),
+                      items: taskProvider.categories
+                          .where((category) => category != 'All')
+                          .map((category) {
+                        return DropdownMenuItem(
+                          value: category,
+                          child: Text(category),
+                        );
+                      }).toList(),
+                      onChanged: (value) {
+                        setState(() {
+                          selectedCategory = value;
+                        });
+                      },
+                    ),
+                    DropdownButtonFormField<int>(
+                      value: selectedPriority,
+                      hint: const Text('Select Priority'),
+                      items: List.generate(5, (index) {
+                        return DropdownMenuItem<int>(
+                          value: index + 1,
+                          child: Text('${index + 1}'),
+                        );
+                      }).toList(),
+                      onChanged: (value) {
+                        setState(() {
+                          selectedPriority = value!;
+                        });
+                      },
+                    ),
+                    Row(
+                      children: [
+                        Text(
+                          DateFormat('yyyy-MM-dd').format(selectedDate),
+                        ),
+                        const Spacer(),
+                        IconButton(
+                          icon: const Icon(Icons.calendar_today),
+                          onPressed: () async {
+                            final pickedDate = await showDatePicker(
+                              context: context,
+                              initialDate: selectedDate,
+                              firstDate: DateTime(2000),
+                              lastDate: DateTime(2101),
+                            );
+                            if (pickedDate != null) {
+                              setState(() {
+                                selectedDate = pickedDate;
+                              });
+
+                              final pickedTime = await showTimePicker(
+                                context: context,
+                                initialTime: selectedTime ?? TimeOfDay.now(),
+                              );
+                              if (pickedTime != null) {
+                                setState(() {
+                                  selectedTime = pickedTime;
+                                });
+                              }
+                            }
+                          },
+                        ),
+                      ],
+                    ),
+                    if (selectedTime != null)
+                      Text('${selectedTime?.format(context)}'),
+                  ],
+                ),
+              ),
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: const Text('Cancel'),
+                ),
+                TextButton(
+                  onPressed: () {
+                    if (titleController.text.isNotEmpty &&
+                        selectedCategory != null &&
+                        selectedTime != null) {
+                      final deadline = DateTime(
+                        selectedDate.year,
+                        selectedDate.month,
+                        selectedDate.day,
+                        selectedTime!.hour,
+                        selectedTime!.minute,
+                      );
+
+                      taskProvider.updateTaskDate(index, deadline);
+                      taskProvider.setTaskPriority(index, selectedPriority);
+
+                      task.title = titleController.text;
+                      task.category = selectedCategory!;
+
+                      taskProvider.saveTasks();
+                      Navigator.of(context).pop();
+                    }
+                  },
+                  child: const Text('Update'),
+                ),
+              ],
+            );
+          },
+        );
+      },
     );
   }
 

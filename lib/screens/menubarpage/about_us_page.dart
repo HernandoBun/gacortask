@@ -3,10 +3,10 @@ import 'package:gacortask/constants.dart';
 import 'package:gacortask/screens/menubarpage/provider/theme_provider.dart';
 import 'package:gacortask/sizes.dart';
 import 'package:provider/provider.dart';
- 
+
 class AboutUsPage extends StatelessWidget {
   const AboutUsPage({super.key});
- 
+
   @override
   Widget build(BuildContext context) {
     final themeProvider = Provider.of<ThemeProvider>(context);
@@ -67,22 +67,22 @@ class AboutUsPage extends StatelessWidget {
                 ),
               ),
               SizedBox(height: getScreenHeight(20.0)),
-              teamMember('John Doe', 'CEO & Lead Developer',
+              teamMember('Hans Malvin Djojo', '535230083/hansmalvin',
                   'assets/images/john_doe.jpg'),
               SizedBox(height: getScreenHeight(20.0)),
-              teamMember('Jane Smith', 'Product Manager',
+              teamMember('Mario Samuel', 'Product Manager',
                   'assets/images/jane_smith.jpg'),
               SizedBox(height: getScreenHeight(20.0)),
-              teamMember('Michael Brown', 'UX/UI Designer',
+              teamMember('Hernando Bun', 'UX/UI Designer',
                   'assets/images/michael_brown.jpg'),
               SizedBox(height: getScreenHeight(20.0)),
-              teamMember('Alice White', 'Backend Developer',
+              teamMember('Muhammad Galang', 'Backend Developer',
                   'assets/images/alice_white.jpg'),
               SizedBox(height: getScreenHeight(20.0)),
-              teamMember('David Black', 'Marketing Specialist',
+              teamMember('Darren Kurniawan', 'Marketing Specialist',
                   'assets/images/david_black.jpg'),
               SizedBox(height: getScreenHeight(20.0)),
-              teamMember('Sophia Green', 'Quality Assurance',
+              teamMember('Louis Chuannata', 'Quality Assurance',
                   'assets/images/sophia_green.jpg'),
               SizedBox(height: getScreenHeight(20.0)),
               Text(
@@ -121,10 +121,10 @@ class AboutUsPage extends StatelessWidget {
       ),
     );
   }
- 
+
   Widget teamMember(String name, String role, String imageAsset) {
     return Consumer<ThemeProvider>(builder: (context, themeProvider, child) {
-      final primaryColor = themeProvider.primaryColor; // Mengakses primaryColor
+      final primaryColor = themeProvider.primaryColor;
       return Row(
         children: [
           CircleAvatar(

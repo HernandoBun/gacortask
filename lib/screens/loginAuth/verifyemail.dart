@@ -3,7 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:gacortask/constants.dart';
 import 'package:gacortask/screens/loginAuth/signup.dart';
 import 'package:get/get.dart';
-import 'package:gacortask/screens/wrapper.dart';
+import 'package:gacortask/usage/wrapper.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Verify extends StatefulWidget {
