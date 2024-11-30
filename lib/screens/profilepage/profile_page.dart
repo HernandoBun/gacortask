@@ -1,20 +1,22 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:gacortask/constants.dart';
+import 'package:gacortask/screens/menubarpage/provider/theme_provider.dart';
 import 'package:gacortask/screens/profilepage/widgets/profile_item.dart';
 import 'package:gacortask/sizes.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:io';
-
+ 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
-
+ 
   @override
   // ignore: library_private_types_in_public_api
   _ProfilePageState createState() => _ProfilePageState();
 }
-
+ 
 class _ProfilePageState extends State<ProfilePage> {
   final user = FirebaseAuth.instance.currentUser;
   File? _profileImage;
@@ -22,7 +24,7 @@ class _ProfilePageState extends State<ProfilePage> {
   String _phone = '+62';
   String _email = '';
   String _address = '';
-
+ 
   @override
   void initState() {
     super.initState();
@@ -31,7 +33,7 @@ class _ProfilePageState extends State<ProfilePage> {
       _email = user!.email ?? 'Email tidak tersedia';
     }
   }
-
+ 
   Future<void> _loadProfileData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     setState(() {
@@ -40,12 +42,12 @@ class _ProfilePageState extends State<ProfilePage> {
       _address = prefs.getString('address') ?? '';
     });
   }
-
+ 
   Future<void> _saveProfileData(String key, String value) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setString(key, value);
   }
-
+ 
   // Fungsi untuk memilih gambar dari galeri
   Future<void> _pickImage() async {
     try {
@@ -60,7 +62,7 @@ class _ProfilePageState extends State<ProfilePage> {
       print("Error picking image: $e");
     }
   }
-
+ 
   // Fungsi untuk mengedit informasi
   void _editInfo(String title, String currentValue, Function(String) onSave,
       String key, String label) {
@@ -108,9 +110,12 @@ class _ProfilePageState extends State<ProfilePage> {
       },
     );
   }
-
+ 
   @override
   Widget build(BuildContext context) {
+    final themeProvider = Provider.of<ThemeProvider>(context);
+    final primaryColor = themeProvider.primaryColor;
+    final secondaryColor = themeProvider.secondaryColor;
     return Scaffold(
       resizeToAvoidBottomInset: true,
       body: SingleChildScrollView(
@@ -118,9 +123,9 @@ class _ProfilePageState extends State<ProfilePage> {
           children: [
             Container(
               height: getScreenHeight(270.0),
-              decoration: const BoxDecoration(
-                color: Constants.colorBlueHer,
-                borderRadius: BorderRadius.only(
+              decoration: BoxDecoration(
+                color: primaryColor,
+                borderRadius: const BorderRadius.only(
                   bottomLeft: Radius.circular(Constants.borderProf),
                   bottomRight: Radius.circular(Constants.borderProf),
                 ),
@@ -145,12 +150,12 @@ class _ProfilePageState extends State<ProfilePage> {
                       right: 0,
                       child: GestureDetector(
                         onTap: _pickImage,
-                        child: const CircleAvatar(
+                        child: CircleAvatar(
                           radius: 16,
-                          backgroundColor: Constants.colorWhite,
+                          backgroundColor: secondaryColor,
                           child: Icon(
                             Icons.camera_alt,
-                            color: Constants.colorBlueHer,
+                            color: primaryColor,
                             size: 18,
                           ),
                         ),
@@ -160,7 +165,6 @@ class _ProfilePageState extends State<ProfilePage> {
                 ),
               ),
             ),
-
             Column(
               children: [
                 SizedBox(height: getScreenHeight(350.0)),
@@ -169,22 +173,20 @@ class _ProfilePageState extends State<ProfilePage> {
                   icon: Icons.person,
                   title: Constants.titleName,
                   content: _name,
-                  label:
-                      Constants.labelPP,
+                  label: Constants.labelPP,
                   onTap: () {
                     _editInfo('Nama', _name, (newName) {
                       setState(() {
                         _name = newName;
                       });
-                    }, 'name', 'Masukkan nama lengkap Anda');
+                    }, 'name', 'Name');
                   },
                 ),
                 ProfileItem(
                   icon: Icons.phone,
                   title: Constants.titleTelp,
                   content: _phone,
-                  label:
-                      Constants.labelPP1,
+                  label: Constants.labelPP1,
                   onTap: () {
                     _editInfo('Telepon', _phone, (newPhone) {
                       setState(() {
@@ -197,8 +199,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   icon: Icons.email,
                   title: Constants.titleEmail,
                   content: _email,
-                  label:
-                      Constants.labelPP2,
+                  label: Constants.labelPP2,
                   onTap: () {
                     _editInfo('Email', _email, (newEmail) {
                       setState(() {
@@ -211,8 +212,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   icon: Icons.home,
                   title: Constants.titleAlamat,
                   content: _address,
-                  label:
-                      Constants.labelPP3,
+                  label: Constants.labelPP3,
                   onTap: () {
                     _editInfo('Alamat', _address, (newAddress) {
                       setState(() {

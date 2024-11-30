@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:gacortask/constants.dart';
 import 'package:gacortask/screens/menubarpage/provider/theme_provider.dart';
 import 'package:provider/provider.dart';
-
+ 
 class FaqPage extends StatefulWidget {
   const FaqPage({super.key});
-
+ 
   @override
   State<FaqPage> createState() => _FaqPageState();
 }
-
+ 
 class _FaqPageState extends State<FaqPage> {
   final List<Map<String, String>> faqData = [
     {
@@ -58,7 +59,7 @@ class _FaqPageState extends State<FaqPage> {
           'Anda dapat mengatur prioritas untuk setiap tugas dengan memilih tingkat prioritas seperti "Tinggi", "Sedang", atau "Rendah". Ini membantu Anda untuk fokus pada tugas yang lebih mendesak. Beberapa aplikasi juga memungkinkan Anda untuk menandai tugas dengan warna atau ikon tertentu untuk membedakan tingkat prioritasnya.'
     },
   ];
-
+ 
   @override
   Widget build(BuildContext context) {
     return Consumer<ThemeProvider>(builder: (context, themeProvider, child) {
@@ -95,8 +96,8 @@ class _FaqPageState extends State<FaqPage> {
                           child: Text(
                             faqData[index]['answer']!,
                             style: const TextStyle(
-                              fontSize: 14.0,
-                              color: Colors.black54,
+                              fontSize: 16.0,
+                              color: Constants.colorBlack,
                             ),
                           ),
                         ),

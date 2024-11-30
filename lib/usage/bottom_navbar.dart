@@ -2,21 +2,23 @@ import 'package:flutter/material.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:gacortask/constants.dart';
 import 'package:gacortask/screens/homepage/home.dart';
+import 'package:gacortask/screens/menubarpage/provider/theme_provider.dart';
 import 'package:gacortask/screens/profilepage/profile_page.dart';
 import 'package:gacortask/screens/taskspage/task_screen.dart';
 import 'package:gacortask/screens/notification_screen.dart';
-
+import 'package:provider/provider.dart';
+ 
 class BottomNavBar extends StatefulWidget {
   const BottomNavBar({super.key});
-
+ 
   @override
   _BottomNavBarState createState() => _BottomNavBarState();
 }
-
+ 
 class _BottomNavBarState extends State<BottomNavBar> {
   int _page = 0;
   final GlobalKey<CurvedNavigationBarState> _bottomNavigationKey = GlobalKey();
-
+ 
   final List<Widget> pages = [
     const MyHomePage(),
     const HomeScreen(),
@@ -24,9 +26,12 @@ class _BottomNavBarState extends State<BottomNavBar> {
     const Center(child: Text("Call Page")), // ganti disini
     const ProfilePage(),
   ];
-
+ 
   @override
   Widget build(BuildContext context) {
+    final themeProvider = Provider.of<ThemeProvider>(context);
+    final primaryColor = themeProvider.primaryColor;
+    final secondaryColor = themeProvider.secondaryColor;
     return Scaffold(
       resizeToAvoidBottomInset: true,
       bottomNavigationBar: CurvedNavigationBar(
@@ -60,8 +65,8 @@ class _BottomNavBarState extends State<BottomNavBar> {
             color: Constants.colorWhite,
           ),
         ],
-        color: Constants.colorBlueHer,
-        buttonBackgroundColor: Constants.colorBlueHer,
+        color: primaryColor,
+        buttonBackgroundColor: primaryColor,
         backgroundColor: Constants.colorWhite,
         animationCurve: Curves.easeInOut,
         animationDuration: const Duration(milliseconds: 600),
