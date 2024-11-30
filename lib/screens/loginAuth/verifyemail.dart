@@ -18,7 +18,6 @@ class _VerifyState extends State<Verify> with SingleTickerProviderStateMixin {
   late Animation<double> _fadeAnimation;
 
   bool _showCheckIcon = false;
-  bool _isEmailVerificationSent = false;
 
   @override
   void initState() {

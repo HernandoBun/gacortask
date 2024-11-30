@@ -7,6 +7,7 @@ class TaskProvider with ChangeNotifier {
   List<Task> _tasks = [];
   List<String> _categories = [];
   String _selectedCategory = "All";
+  List<int> _tasksPerDay = List.generate(7, (index) => 0);
 
   List<Task> get tasks {
     if (_selectedCategory == "All" || _selectedCategory.isEmpty) {
@@ -18,8 +19,6 @@ class TaskProvider with ChangeNotifier {
   List<Task> getTasksByStatus(bool isCompleted) {
     return _tasks.where((task) => task.isCompleted == isCompleted).toList();
   }
-
-  List<int> _tasksPerDay = List.generate(7, (index) => 0);
 
   List<int> get tasksPerDay => _tasksPerDay;
 
@@ -160,5 +159,27 @@ class TaskProvider with ChangeNotifier {
     _tasks[index].toggleCompleted();
     saveTasks();
     notifyListeners();
+  }
+
+  void toggleTaskStatus(int index) {
+    _tasks[index].toggleCompleted();
+    saveTasks();
+    notifyListeners();
+  }
+
+  void deleteAllTasks() {
+    _tasks.clear();
+    saveTasks();
+    notifyListeners();
+  }
+
+  List<Task> filterTasksByCategory(String category) {
+    return _tasks.where((task) => task.category == category).toList();
+  }
+
+  List<Task> get tasksSortedByPriority {
+    List<Task> sortedTasks = List.from(_tasks);
+    sortedTasks.sort((a, b) => b.priorityLevel.compareTo(a.priorityLevel));
+    return sortedTasks;
   }
 }

@@ -32,7 +32,7 @@ class AboutUsPage extends StatelessWidget {
                   height: 200.0,
                   decoration: const BoxDecoration(
                     image: DecorationImage(
-                      image: AssetImage('assets/images/AboutUs.jpeg'),
+                      image: AssetImage(Constants.aboutUs1),
                       fit: BoxFit.cover,
                     ),
                   ),
@@ -67,23 +67,23 @@ class AboutUsPage extends StatelessWidget {
                 ),
               ),
               SizedBox(height: getScreenHeight(20.0)),
-              teamMember('Hans Malvin Djojo', '535230083/hansmalvin',
-                  'assets/images/john_doe.jpg'),
+              teamMember(
+                  'Hans Malvin Djojo', '535230083/hansmalvin', Constants.hans),
               SizedBox(height: getScreenHeight(20.0)),
-              teamMember('Mario Samuel', 'Product Manager',
-                  'assets/images/jane_smith.jpg'),
+              teamMember(
+                  'Mario Samuel', '535230091/marioboedi', Constants.mario),
               SizedBox(height: getScreenHeight(20.0)),
-              teamMember('Hernando Bun', 'UX/UI Designer',
-                  'assets/images/michael_brown.jpg'),
+              teamMember(
+                  'Hernando Bun', '535230133/HernandoBun', Constants.her),
               SizedBox(height: getScreenHeight(20.0)),
-              teamMember('Muhammad Galang', 'Backend Developer',
-                  'assets/images/alice_white.jpg'),
+              teamMember(
+                  'Muhammad Galang', '535230193/EgaaTheFarmer', Constants.ega),
               SizedBox(height: getScreenHeight(20.0)),
-              teamMember('Darren Kurniawan', 'Marketing Specialist',
-                  'assets/images/david_black.jpg'),
+              teamMember(
+                  'Darren Kurniawan', '535230165/Darren0403', Constants.darren),
               SizedBox(height: getScreenHeight(20.0)),
-              teamMember('Louis Chuannata', 'Quality Assurance',
-                  'assets/images/sophia_green.jpg'),
+              teamMember(
+                  'Louis Chuannata', '535230130/zieksthi', Constants.louis),
               SizedBox(height: getScreenHeight(20.0)),
               Text(
                 'Contact Us:',
@@ -101,7 +101,7 @@ class AboutUsPage extends StatelessWidget {
                     color: Constants.colorBlack),
               ),
               Text(
-                'Phone: +123 456 7890',
+                'Phone: +62 812-1133-4948',
                 style: TextStyle(
                     fontSize: getScreenWidth(16.0),
                     color: Constants.colorBlack),

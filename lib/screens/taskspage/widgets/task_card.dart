@@ -39,15 +39,20 @@ class TaskCard extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
-                    task.title,
-                    style: TextStyle(
-                      fontSize: getScreenWidth(18.0),
-                      fontWeight: FontWeight.bold,
-                      decoration: task.isCompleted
-                          ? TextDecoration.lineThrough
-                          : TextDecoration.none,
-                      fontFamily: Constants.fontOpenSansRegular,
+                  Expanded(
+                    child: SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Text(
+                        task.title,
+                        style: TextStyle(
+                          fontSize: getScreenWidth(18.0),
+                          fontWeight: FontWeight.bold,
+                          decoration: task.isCompleted
+                              ? TextDecoration.lineThrough
+                              : TextDecoration.none,
+                          fontFamily: Constants.fontOpenSansRegular,
+                        ),
+                      ),
                     ),
                   ),
                   GestureDetector(

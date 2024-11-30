@@ -180,54 +180,24 @@ class NotificationCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(12),
-      margin: const EdgeInsets.only(bottom: 8),
-      decoration: BoxDecoration(
-        color: Constants.colorGrey8,
-        borderRadius: BorderRadius.circular(Constants.border20),
-        border: Border.all(
-          color: color,
-          width: getScreenWidth(1.5),
-        ),
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                date,
-                style: TextStyle(
-                  fontSize: getScreenWidth(14),
-                  fontFamily: Constants.fontOpenSansRegular,
-                  color: Constants.colorBlack1,
-                ),
-              ),
-              SizedBox(
-                height: getScreenHeight(4),
-              ),
-              Text(
+    return Card(
+      color: color,
+      child: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(date),
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Text(
                 title,
-                style: TextStyle(
-                  fontSize: getScreenWidth(16),
-                  fontFamily: Constants.fontOpenSansBold,
-                  fontWeight: FontWeight.bold,
-                ),
+                style: const TextStyle(fontWeight: FontWeight.bold),
               ),
-              const SizedBox(height: 4),
-              Text(
-                timeRemaining,
-                style: TextStyle(
-                  fontSize: getScreenWidth(14),
-                  color: color,
-                  fontFamily: Constants.fontOpenSansRegular,
-                ),
-              ),
-            ],
-          ),
-        ],
+            ),
+            Text(timeRemaining),
+          ],
+        ),
       ),
     );
   }

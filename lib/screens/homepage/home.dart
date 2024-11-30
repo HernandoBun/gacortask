@@ -12,7 +12,6 @@ import 'package:gacortask/screens/homepage/widgets/home_carousel.dart';
 import 'package:gacortask/screens/menubarpage/star_task_page.dart';
 import 'package:gacortask/constants.dart';
 import 'package:gacortask/screens/menubarpage/contact_us_page.dart';
-import 'package:gacortask/screens/notificationpage/notification_screen.dart';
 import 'package:gacortask/sizes.dart';
 import 'package:provider/provider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -329,24 +328,24 @@ class NavigationDrawerWidget extends StatelessWidget {
                   isExpanded,
                 ),
               ),
-              SizedBox(height: getScreenHeight(24.0)),
+              SizedBox(height: getScreenHeight(28.0)),
               buildList(
                 items: itemsFirst,
                 isExpanded: isExpanded,
               ),
-              SizedBox(height: getScreenHeight(12)),
+              SizedBox(height: getScreenHeight(20)),
               const Divider(color: Constants.colorWhite70),
-              SizedBox(height: getScreenHeight(12)),
+              SizedBox(height: getScreenHeight(20)),
               buildList(
                 indexOffset: itemsFirst.length,
                 items: itemsSecond,
                 isExpanded: isExpanded,
               ),
-              SizedBox(height: getScreenHeight(12)),
+              SizedBox(height: getScreenHeight(20)),
               const Divider(color: Constants.colorWhite70),
-              SizedBox(height: getScreenHeight(12)),
+              SizedBox(height: getScreenHeight(20)),
               buildList(
-                indexOffset: 6,
+                indexOffset: 5,
                 items: itemsThird,
                 isExpanded: isExpanded,
               ),
@@ -401,15 +400,12 @@ class NavigationDrawerWidget extends StatelessWidget {
         navigateTo(const ThemePage());
         break;
       case 3:
-        navigateTo(const NotificationScreen());
-        break;
-      case 4:
         navigateTo(const FaqPage());
         break;
-      case 5:
+      case 4:
         navigateTo(const ContactUsPage());
         break;
-      case 6:
+      case 5:
         final myHomePageState =
             context.findAncestorStateOfType<_MyHomePageState>();
         if (myHomePageState != null) {
@@ -481,8 +477,6 @@ class NavigationDrawerWidget extends StatelessWidget {
   Widget buildHeader(bool isExpanded) {
     return Consumer<ThemeProvider>(
       builder: (context, themeProvider, child) {
-        final primaryColor = themeProvider.primaryColor;
-
         return isExpanded
             ? Image.asset(
                 themeProvider.logoImage,

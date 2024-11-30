@@ -80,16 +80,6 @@ class HomeScreen extends StatelessWidget {
                           _showDeleteCategoryDialog(context);
                         },
                       ),
-                      IconButton(
-                        icon: Icon(
-                          Icons.more_vert_rounded,
-                          color: Constants.colorGrey,
-                          size: getScreenWidth(30),
-                        ),
-                        onPressed: () {
-                          _showDeleteCategoryDialog(context);
-                        },
-                      ),
                     ],
                   ),
                 );

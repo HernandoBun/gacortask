@@ -122,6 +122,14 @@ class Constants {
   static const String carouselRoot2 = "${imageRoot}imagecarousel2.jpg";
   static const String carouselRoot3 = "${imageRoot}imagecarousel3.jpg";
   static const String carouselRoot4 = "${imageRoot}imagecarousel4.jpg";
+  static const String aboutUs = "${imageRoot}AboutUs.jpeg";
+  static const String aboutUs1 = "${imageRoot}AboutUs1.jpg";
+  static const String darren = "${imageRoot}darren.jpg";
+  static const String ega = "${imageRoot}ega.jpg";
+  static const String hans = "${imageRoot}hans.jpg";
+  static const String her = "${imageRoot}her.jpg";
+  static const String louis = "${imageRoot}louis.jpg";
+  static const String mario = "${imageRoot}mario.jpg";
   static const String welcomeRoot = "${imageRoot}Welcomes.png";
   static const String welcomeRoot1 = "${imageRoot}Welcomes1.png";
   static const String welcomeRoot2 = "${imageRoot}Welcomes2.png";
