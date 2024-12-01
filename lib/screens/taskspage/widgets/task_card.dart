@@ -27,7 +27,7 @@ class TaskCard extends StatelessWidget {
             vertical: getScreenHeight(8.0), horizontal: getScreenHeight(16.0)),
         elevation: 4.0,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(12),
+          borderRadius: BorderRadius.circular(Constants.border12),
         ),
         child: Container(
           color:
@@ -75,7 +75,7 @@ class TaskCard extends StatelessWidget {
                   fontFamily: Constants.fontOpenSansRegular,
                 ),
               ),
-              const SizedBox(height: 4.0),
+              SizedBox(height: getScreenHeight(4.0)),
               Text(
                 'Kategori: ${task.category}',
                 style: TextStyle(

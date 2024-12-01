@@ -5,7 +5,6 @@ final itemsFirst = [
   DrawerItem(title: 'About Us', icon: Icons.people),
   DrawerItem(title: 'Star Task', icon: Icons.star_rounded),
   DrawerItem(title: 'Themes', icon: Icons.color_lens_rounded),
-  // DrawerItem(title: 'Category', icon: Icons.app_registration_rounded),
 ];
 
 final itemsSecond = [

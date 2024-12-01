@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:gacortask/constants.dart';
 import 'package:gacortask/screens/loginAuth/signup.dart';
-import 'package:gacortask/sizes.dart';
 import 'package:get/get.dart';
 import 'package:gacortask/usage/wrapper.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -47,17 +46,17 @@ class _VerifyState extends State<Verify> with SingleTickerProviderStateMixin {
     super.dispose();
   }
 
-  sendVerifyLink() async {
+sendVerifyLink() async {
     final user = FirebaseAuth.instance.currentUser!;
 
     final prefs = await SharedPreferences.getInstance();
     final lastSentTime = prefs.getInt('lastVerificationTime') ?? 0;
     final currentTime = DateTime.now().millisecondsSinceEpoch;
 
-    if (currentTime - lastSentTime > 60000) {
+    if (currentTime - lastSentTime > 60000) { 
       await user.sendEmailVerification().then(
         (value) async {
-          await prefs.setInt('lastVerificationTime', currentTime);
+          await prefs.setInt('lastVerificationTime', currentTime);  
           Get.snackbar(
             'Link sent!',
             'Check your email',
@@ -108,27 +107,22 @@ class _VerifyState extends State<Verify> with SingleTickerProviderStateMixin {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(
-                Constants.textVerifEmail,
+              const Text(
+                'Verification Email Sent!',
                 style: TextStyle(
-                  fontSize: getScreenWidth(24.0),
+                  fontSize: 24,
                   fontWeight: FontWeight.bold,
-                  fontFamily: Constants.fontOpenSansRegular,
-                  color: Constants.colorBlack,
+                  color: Colors.black,
                 ),
                 textAlign: TextAlign.center,
               ),
-              SizedBox(height: getScreenHeight(20.0)),
-              Text(
-                Constants.textAnimationVerif,
-                style: TextStyle(
-                  fontSize: getScreenWidth(16.0),
-                  fontFamily: Constants.fontOpenSansRegular,
-                  color: Constants.colorBlack1,
-                ),
+              const SizedBox(height: 20),
+              const Text(
+                'Please check your email and click the verification link to continue.',
+                style: TextStyle(fontSize: 16, color: Colors.black54),
                 textAlign: TextAlign.center,
               ),
-              SizedBox(height: getScreenHeight(40.0)),
+              const SizedBox(height: 40),
               AnimatedSwitcher(
                 duration: const Duration(seconds: 1),
                 transitionBuilder: (Widget child, Animation<double> animation) {
@@ -139,22 +133,19 @@ class _VerifyState extends State<Verify> with SingleTickerProviderStateMixin {
                         Icons.check_circle_outline,
                         key: ValueKey('checkIcon'),
                         size: 100,
-                        color: Constants.colorGreen,
+                        color: Colors.green,
                       )
                     : const Icon(
                         Icons.email_outlined,
                         key: ValueKey('emailIcon'),
                         size: 100,
-                        color: Constants.colorBlueHer,
+                        color: Colors.blue,
                       ),
               ),
-              SizedBox(height: getScreenHeight(20.0)),
-              Text(
-                Constants.textVerifRefresh,
-                style: TextStyle(
-                  fontSize: getScreenWidth(16.0),
-                  color: Constants.colorBlack1,
-                ),
+              const SizedBox(height: 20),
+              const Text(
+                'Once verified, press the button below to reload.',
+                style: TextStyle(fontSize: 16, color: Colors.black54),
                 textAlign: TextAlign.center,
               ),
             ],

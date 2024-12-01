@@ -24,7 +24,7 @@ class _StarTaskPageState extends State<StarTaskPage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          "Star Task",
+          Constants.titleStarTask,
           style: TextStyle(fontFamily: Constants.fontOpenSansRegular),
         ),
         backgroundColor: primaryColor,

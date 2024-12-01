@@ -160,7 +160,6 @@ class _MyHomePageState extends State<MyHomePage> {
                           ),
                         ],
                       ),
-                      // Bar Graph
                       Container(
                         margin:
                             const EdgeInsets.only(left: 10, right: 10, top: 10),

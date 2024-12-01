@@ -16,8 +16,8 @@ class ThemePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'Change Theme',
-          style: TextStyle(fontWeight: FontWeight.bold),
+          Constants.titleChangeTheme,
+          style: TextStyle(fontWeight: FontWeight.bold, fontFamily: Constants.fontOpenSansRegular),
         ),
         backgroundColor: primaryColor,
         foregroundColor: secondaryColor,
@@ -35,12 +35,12 @@ class ThemePage extends StatelessWidget {
                     .changeTheme(1);
               },
               child: Container(
-                margin: const EdgeInsets.symmetric(horizontal: 5),
+                margin: EdgeInsets.symmetric(horizontal: getScreenWidth(5.0)),
                 width: getScreenWidth(80),
                 height: getScreenHeight(80),
                 decoration: BoxDecoration(
                   color: Constants.colorThemes3A,
-                  borderRadius: BorderRadius.circular(15),
+                  borderRadius: BorderRadius.circular(Constants.border15),
                   boxShadow: [
                     BoxShadow(
                       color: Colors.black.withOpacity(0.1),
@@ -71,12 +71,12 @@ class ThemePage extends StatelessWidget {
                     .changeTheme(2);
               },
               child: Container(
-                margin: const EdgeInsets.symmetric(horizontal: 5),
+                margin: EdgeInsets.symmetric(horizontal: getScreenWidth(5.0)),
                 width: getScreenWidth(80),
                 height: getScreenHeight(80),
                 decoration: BoxDecoration(
                   color: Constants.colorThemes1A,
-                  borderRadius: BorderRadius.circular(15),
+                  borderRadius: BorderRadius.circular(Constants.border15),
                   boxShadow: [
                     BoxShadow(
                       color: Colors.black.withOpacity(0.1),
@@ -107,12 +107,12 @@ class ThemePage extends StatelessWidget {
                     .changeTheme(3);
               },
               child: Container(
-                margin: const EdgeInsets.symmetric(horizontal: 5),
+                margin: EdgeInsets.symmetric(horizontal: getScreenWidth(5.0)),
                 width: getScreenWidth(80),
                 height: getScreenHeight(80),
                 decoration: BoxDecoration(
                   color: Constants.colorThemes2A,
-                  borderRadius: BorderRadius.circular(15),
+                  borderRadius: BorderRadius.circular(Constants.border15),
                   boxShadow: [
                     BoxShadow(
                       color: Colors.black.withOpacity(0.1),
@@ -143,12 +143,12 @@ class ThemePage extends StatelessWidget {
                     .changeTheme(4);
               },
               child: Container(
-                margin: const EdgeInsets.symmetric(horizontal: 5),
+                margin: EdgeInsets.symmetric(horizontal: getScreenWidth(5.0)),
                 width: getScreenWidth(80),
                 height: getScreenHeight(80),
                 decoration: BoxDecoration(
                   color: Constants.colorBlueHer,
-                  borderRadius: BorderRadius.circular(15),
+                  borderRadius: BorderRadius.circular(Constants.border15),
                   boxShadow: [
                     BoxShadow(
                       color: Colors.black.withOpacity(0.1),

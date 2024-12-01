@@ -29,11 +29,6 @@ class Task {
     };
   }
  
-  // void clearData() async {
-  //   final prefs = await SharedPreferences.getInstance();
-  //   await prefs.clear();
-  // }
- 
   factory Task.fromMap(Map<String, dynamic> map) {
     return Task(
       title: map['title'] ?? '',
@@ -51,6 +46,7 @@ class Task {
   }
 }
  
+// hapus
 class TaskProvider with ChangeNotifier {
   List<Task> _tasks = [];
  

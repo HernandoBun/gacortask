@@ -13,7 +13,6 @@ class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
  
   @override
-  // ignore: library_private_types_in_public_api
   _ProfilePageState createState() => _ProfilePageState();
 }
  
@@ -48,7 +47,6 @@ class _ProfilePageState extends State<ProfilePage> {
     prefs.setString(key, value);
   }
  
-  // Fungsi untuk memilih gambar dari galeri
   Future<void> _pickImage() async {
     try {
       final pickedFile =
@@ -63,7 +61,6 @@ class _ProfilePageState extends State<ProfilePage> {
     }
   }
  
-  // Fungsi untuk mengedit informasi
   void _editInfo(String title, String currentValue, Function(String) onSave,
       String key, String label) {
     TextEditingController controller =
@@ -116,6 +113,7 @@ class _ProfilePageState extends State<ProfilePage> {
     final themeProvider = Provider.of<ThemeProvider>(context);
     final primaryColor = themeProvider.primaryColor;
     final secondaryColor = themeProvider.secondaryColor;
+
     return Scaffold(
       resizeToAvoidBottomInset: true,
       body: SingleChildScrollView(
@@ -168,7 +166,6 @@ class _ProfilePageState extends State<ProfilePage> {
             Column(
               children: [
                 SizedBox(height: getScreenHeight(350.0)),
-                // Nama
                 ProfileItem(
                   icon: Icons.person,
                   title: Constants.titleName,

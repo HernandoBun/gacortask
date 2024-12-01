@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:gacortask/constants.dart';
 import 'package:gacortask/screens/menubarpage/provider/theme_provider.dart';
-import 'package:gacortask/sizes.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import 'package:gacortask/usage/wrapper.dart';
@@ -51,14 +50,14 @@ class _LoginScreenState extends State<LoginScreen> {
     final secondaryColor = themeProvider.secondaryColor;
     return Scaffold(
       body: isLoading
-          ? Center(child: Lottie.asset(Constants.loadingAnimation))
+          ? Center(child: Lottie.asset("assets/AnimationLoading.json"))
           : SingleChildScrollView(
               child: Column(
                 children: [
                   Stack(
                     children: [
                       Container(
-                        height: getScreenHeight(250.0),
+                        height: 250,
                         decoration: const BoxDecoration(
                           image: DecorationImage(
                             image: AssetImage(Constants.headerRoot),
@@ -68,49 +67,42 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     ],
                   ),
-                  Padding(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: getScreenWidth(20.0),
-                      vertical: getScreenHeight(10.0),
-                    ),
+                  const Padding(
+                    padding:
+                        EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
                     child: Text(
-                      Constants.textGetStarted,
+                      'Get Started On Gacor Task',
                       style: TextStyle(
-                        fontSize: getScreenWidth(24.0),
+                        fontSize: 24,
                         fontWeight: FontWeight.bold,
-                        fontFamily: Constants.fontOpenSansBold,
-                        color: Constants.colorBlack,
+                        color: Colors.black,
                       ),
                       textAlign: TextAlign.center,
                     ),
                   ),
-                  SizedBox(height: getScreenHeight(20.0)),
+                  const SizedBox(height: 20),
                   Padding(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: getScreenWidth(24.0),
-                    ),
+                    padding: const EdgeInsets.symmetric(horizontal: 24.0),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         TextField(
                           controller: email,
                           decoration: InputDecoration(
-                            labelText: Constants.labelEmailAdd,
+                            labelText: 'Email Address',
                             border: OutlineInputBorder(
-                              borderRadius:
-                                  BorderRadius.circular(Constants.border),
+                              borderRadius: BorderRadius.circular(8.0),
                             ),
                           ),
                         ),
-                        SizedBox(height: getScreenHeight(20.0)),
+                        const SizedBox(height: 20),
                         TextField(
                           controller: password,
                           obscureText: !_isPasswordVisible,
                           decoration: InputDecoration(
-                            labelText: Constants.labelPassword,
+                            labelText: 'Password',
                             border: OutlineInputBorder(
-                              borderRadius:
-                                  BorderRadius.circular(Constants.border),
+                              borderRadius: BorderRadius.circular(8.0),
                             ),
                             suffixIcon: IconButton(
                               icon: Icon(
@@ -126,16 +118,15 @@ class _LoginScreenState extends State<LoginScreen> {
                             ),
                           ),
                         ),
-                        SizedBox(height: getScreenHeight(10.0)),
+                        const SizedBox(height: 10),
                         Align(
                           alignment: Alignment.centerRight,
                           child: TextButton(
-                            onPressed: () =>
-                                Get.to(() => const ForgotPassword()),
-                            child: const Text(Constants.textForgotPw),
+                            onPressed: () => Get.to(() => const ForgotPassword()),
+                            child: const Text('Forgot password?'),
                           ),
                         ),
-                        SizedBox(height: getScreenHeight(20.0)),
+                        const SizedBox(height: 20),
                         SizedBox(
                           width: double.infinity,
                           child: ElevatedButton(
@@ -143,104 +134,86 @@ class _LoginScreenState extends State<LoginScreen> {
                             style: ElevatedButton.styleFrom(
                               backgroundColor: primaryColor,
                               foregroundColor: secondaryColor,
-                              padding: EdgeInsets.symmetric(
-                                  vertical: getScreenHeight(15.0)),
+                              padding: const EdgeInsets.symmetric(vertical: 15),
                               shape: RoundedRectangleBorder(
-                                borderRadius:
-                                    BorderRadius.circular(Constants.border30),
+                                borderRadius: BorderRadius.circular(30),
                               ),
                             ),
-                            child: Text(
-                              Constants.textLogin,
-                              style: TextStyle(
-                                fontSize: getScreenWidth(18.0),
-                              ),
-                            ),
+                            child: const Text('Login',
+                                style: TextStyle(fontSize: 18)),
                           ),
                         ),
-                        SizedBox(height: getScreenHeight(20.0)),
-                        Row(
+                        const SizedBox(height: 20),
+                        const Row(
                           children: [
-                            const Expanded(child: Divider()),
+                            Expanded(child: Divider()),
                             Padding(
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: getScreenWidth(8.0)),
-                              child: const Text(Constants.textOr),
+                              padding: EdgeInsets.symmetric(horizontal: 8.0),
+                              child: Text("or"),
                             ),
-                            const Expanded(child: Divider()),
+                            Expanded(child: Divider()),
                           ],
                         ),
-                        SizedBox(height: getScreenHeight(20.0)),
+                        const SizedBox(height: 20),
                         SizedBox(
                           width: double.infinity,
                           child: ElevatedButton.icon(
-                            onPressed: () {
-                              Get.snackbar('No Apple Sign in','Please use the google account');
-                            },
+                            onPressed: () {},
                             style: ElevatedButton.styleFrom(
-                              backgroundColor: Constants.colorBlack,
-                              foregroundColor: Constants.colorWhite,
-                              padding: EdgeInsets.symmetric(
-                                  vertical: getScreenHeight(15.0)),
+                              backgroundColor: Colors.black,
+                              foregroundColor: Colors.white,
+                              padding: const EdgeInsets.symmetric(vertical: 15),
                               shape: RoundedRectangleBorder(
-                                borderRadius:
-                                    BorderRadius.circular(Constants.border20),
-                                side: const BorderSide(
-                                    color: Constants.colorGrey9),
+                                borderRadius: BorderRadius.circular(20),
+                                side: const BorderSide(color: Colors.grey),
                               ),
                             ),
                             icon: const Icon(Icons.apple),
-                            label: const Text(Constants.textApple),
+                            label: const Text('Log In with Apple'),
                           ),
                         ),
-                        SizedBox(height: getScreenHeight(10.0)),
+                        const SizedBox(height: 10),
                         SizedBox(
                           width: double.infinity,
                           child: ElevatedButton.icon(
-                            onPressed: () {
-                              Get.snackbar('No Google Sign in','due to gradle error');
-                            },
+                            onPressed: () {},
                             style: ElevatedButton.styleFrom(
-                              backgroundColor: Constants.colorWhite,
-                              foregroundColor: Constants.colorBlack,
-                              padding: EdgeInsets.symmetric(
-                                  vertical: getScreenHeight(15.0)),
+                              backgroundColor: Colors.white,
+                              foregroundColor: Colors.black,
+                              padding: const EdgeInsets.symmetric(vertical: 15),
                               shape: RoundedRectangleBorder(
-                                borderRadius:
-                                    BorderRadius.circular(Constants.border20),
-                                side: const BorderSide(
-                                    color: Constants.colorGrey9),
+                                borderRadius: BorderRadius.circular(20),
+                                side: const BorderSide(color: Colors.grey),
                               ),
                             ),
                             icon: Image.asset(
                               Constants.googleRoot,
-                              height: getScreenHeight(20.0),
+                              height: 20,
                             ),
-                            label: const Text(Constants.textGoogle),
+                            label: const Text('Log In with Google'),
                           ),
                         ),
                       ],
                     ),
                   ),
-                  SizedBox(height: getScreenHeight(20.0)),
+                  const SizedBox(height: 20),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const Text(Constants.textDontAcc),
+                      const Text("Don't have an account?"),
                       TextButton(
                         onPressed: () {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => const Signup(),
-                            ),
+                                builder: (context) => const Signup()),
                           );
                         },
-                        child: const Text(Constants.textSignUp),
+                        child: const Text('Sign up'),
                       ),
                     ],
                   ),
-                  SizedBox(height: getScreenHeight(10.0)),
+                  const SizedBox(height: 10),
                 ],
               ),
             ),

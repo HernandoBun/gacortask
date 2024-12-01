@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 class Constants {
-  // ganti aja sesuai keperluan
   static const Color colorGrey = Color(0xff898989);
   static const Color colorGreyWhite = Color(0xffF1EEEE);
   static const Color colorGrey2 = Color(0xff5A5A5A);
@@ -57,6 +56,10 @@ class Constants {
   static const String titleStar = "Star Task";
   static const String titleContact = "Contact Us Form";
   static const String titleCalendar = "Calendar";
+  static const String titleChangeTheme = "Change Theme";
+  static const String titleStarTask = "Star Task";
+  static const String titleFaq = "FAQ";
+  static const String titleAbout = "About Us";
 
   static const String carText = "Discover New Ways to do Projects";
   static const String taskText = "Task Overview";
@@ -103,6 +106,13 @@ class Constants {
   static const String textTP = "Terms & Privacy";
   static const String textCred = "Enter your credentials to create an account";
   static const String textHello = "Hey, Hello 👋";
+  static const String textIntro = "Introducing Our Team!";
+  static const String textTeam = "Our Team:";
+  static const String textCU = "Contact Us:";
+  static const String textPhone = "Phone: +62 812-1133-4948";
+  static const String textAdminGmail = "Email: darrenamadeus1@gmail.com";
+  static const String textThanks = "Terimakasih atas kesempatan nya dalam mencoba aplikasi Gacor Task. Kami akan berikan yang lebih baik lagi di update kedepannya";
+  static const String textIntro1 = "Perkenalkan Tim kami, kami datang dengan tema ini dengan maksud untuk membuktikan bahwa apa yang kami buat merupakan aplikasi yang bagus dalam hal tema, pewarnaan serta originalitas dari aplikasi, dengan fitur fitur yang sesuai seperti aplikasi to-do list pada umumnya.";
 
   static const String labelPrioritas = "Prioritas";
   static const String labelTitleTask = "Judul Tugas";
@@ -125,14 +135,33 @@ class Constants {
   static const String notifText = "Pengingat";
   static const String notifTaskDone = "Tugas selesai";
 
+  static const String faqQuestion = "question";
+  static const String faqAnswer = "answer";
+  static const String faqQuestion1 = "Bagaimana cara menambahkan tugas baru?";
+  static const String faqQuestion2 = "Bagaimana cara menandai tugas sebagai selesai?";
+  static const String faqQuestion3 = "Bisakah saya mengedit tugas yang sudah ditambahkan?";
+  static const String faqQuestion4 = "Bagaimana cara menghapus tugas?";
+  static const String faqQuestion5 = "Apakah ada fitur pengingat atau notifikasi pada tugas?";
+  static const String faqQuestion6 = "Bagaimana cara membatalkan tugas yang sudah selesai?";
+  static const String faqQuestion7 = "Apakah saya bisa mengelompokkan tugas berdasarkan kategori?";
+  static const String faqQuestion8 = "Bagaimana cara mengatur prioritas untuk tugas?";
+  static const String faqAnswer1 = 'Untuk menambahkan tugas baru, cukup klik ikon "+" di aplikasi Anda, yang biasanya terletak di bagian bawah atau atas layar, tergantung pada desain aplikasi. Setelah itu, Anda akan diminta untuk mengisi rincian tugas, seperti:\n\n- Nama Tugas: Deskripsi singkat tentang tugas yang perlu diselesaikan, misalnya "Beli Bahan Makanan" atau "Tulis Laporan".\n- Tanggal Tenggat: Pilih tanggal dan waktu kapan tugas tersebut harus selesai.\n- Prioritas: Tentukan apakah tugas memiliki prioritas tinggi, sedang, atau rendah.\n- Deskripsi Tambahan: Isikan catatan atau detail tambahan jika perlu.\n\nSetelah selesai mengisi rincian tugas, tekan tombol "Simpan" untuk menyimpannya.';
+  static const String faqAnswer2 = 'Untuk menandai tugas sebagai selesai, Anda cukup menekan dua kali card tugas, atau jika anda ingin mengembalikan tugas bisa dengan menekan 2 kali lagi. Ketika Anda menandai tugas sebagai selesai, tugas tersebut akan dipindahkan ke bagian "Tugas Selesai".';
+  static const String faqAnswer3 = 'Ya, Anda bisa mengedit tugas kapan saja. Cukup pilih tugas yang ingin diubah, tekan lama pada card tugas. Anda dapat mengubah nama tugas, tanggal tenggat, prioritas. Setelah selesai mengedit, pastikan untuk menekan tombol "Simpan" untuk memperbarui tugas.';
+  static const String faqAnswer4 = 'Untuk menghapus tugas, pilih tugas yang ingin dihapus dan cari logo trash jika anda ingin menghapus tugas, anda juga dapat menghapus kategori dari tugas dan akan muncul konfirmasi jika anda ingin menghapusnya atau tidak.';
+  static const String faqAnswer5 = 'Ya, aplikasi Gacor Task ini memiliki fitur pengingat atau notifikasi. Jika anda menyalakan notifikasi pada aplikasi kami maka akan keluar pengingat tugas setiap 1 hari, 1 jam, 1 menit sebelum tugas berakhir dan ketika tugas sudah berakhir maka akan keluar notifikasi tugas berakhir.';
+  static const String faqAnswer6 = 'Jika Anda ingin membatalkan status tugas yang sudah selesai, klik tugas kali tugas tersebut maka tugas akan kembali ke status "Belum Selesai", jika anda ingin menambahkan deadline waktunya hanya tinggal menekan lama tugas maka anda dapat mengaturnya lagi.';
+  static const String faqAnswer7 = 'Ya, pada aplikasi Gacor Task kami ketika anda membuat tugas anda dapat memilih kategori untuk tugas mana mana saja, kategori dapat anda buat sesuai keinginan anda, dan anda dapat mengelompokkan tugas tersebut sesuai kategori nya.';
+  static const String faqAnswer8 = 'Anda dapat mengatur setiap prioritas tugas anda dimulai dari 5 sampai 1 yang paling penting setiap prioritas tugas tersebut juga dapat ditampilkan pada star page yang berisi priority jadi anda dapat melihat setiap pengelompokkan priority dan anda juga dapat mengedit priority tugas tersebut.';
+
   static const double border = 8.0;
   static const double border6 = 6.0;
   static const double border12 = 12.0;
+  static const double border15 = 15.0;
   static const double border20 = 20.0;
   static const double border30 = 30.0;
   static const double borderProf = 50.0;
 
-  // static const String fontInterBold = "Inter-Bold";
   static const String fontOpenSansRegular = "OpenSans-Regula";
   static const String fontOpenSansBold = "OpenSans-Bold";
   static const String fontOpenSansSemiBold = "OpenSans-SemiBold";
@@ -163,7 +192,5 @@ class Constants {
   static const String logoRoot2 = "${imageRoot1}logo3.png";
   static const String logoRoot3 = "${imageRoot1}logo4.png";
   static const String loadingAnimation = "${imageRoot1}AnimationLoading.json";
-  // static const String themeRoot = "${imageRoot}theme.svg";
 
-  // static const Icon icon1 = Icon(Icons.home);
 }
