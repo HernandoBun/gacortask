@@ -56,6 +56,7 @@ class Constants {
   static const String titleAlamat = "Alamat";
   static const String titleStar = "Star Task";
   static const String titleContact = "Contact Us Form";
+  static const String titleCalendar = "Calendar";
 
   static const String carText = "Discover New Ways to do Projects";
   static const String taskText = "Task Overview";

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
-import 'package:gacortask/calendar/calendar.dart';
+import 'package:gacortask/screens/calendar/calendar.dart';
 import 'package:gacortask/constants.dart';
 import 'package:gacortask/screens/homepage/home.dart';
 import 'package:gacortask/screens/menubarpage/provider/theme_provider.dart';

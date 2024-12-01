@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gacortask/constants.dart';
 import 'package:gacortask/screens/menubarpage/provider/theme_provider.dart';
+import 'package:gacortask/sizes.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:gacortask/screens/taskspage/providers/task_provider.dart';
@@ -27,7 +28,7 @@ class _CalendarScreenState extends State<CalendarScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "Calendar",
+          Constants.titleCalendar,
           style: TextStyle(color: secondaryColor),
         ),
         backgroundColor: primaryColor,
@@ -58,27 +59,29 @@ class _CalendarScreenState extends State<CalendarScreen> {
               return _getEventsForDay(day, context);
             },
           ),
-          const Divider(
-            height: 10,
+          Divider(
+            height: getScreenHeight(10.0),
           ),
-          const SizedBox(height: 10),
+          SizedBox(height: getScreenHeight(10.0)),
           ..._getEventsForDay(_selectedDay ?? _focusedDay, context).map(
             (event) => ListTile(
               title: Container(
                 decoration: BoxDecoration(
                   border: Border.all(
                     color: primaryColor,
-                    width: 3.0,
+                    width: getScreenWidth(3.0),
                   ),
-                  borderRadius: BorderRadius.circular(8.0),
+                  borderRadius: BorderRadius.circular(Constants.border),
                 ),
-                padding:
-                    const EdgeInsets.symmetric(vertical: 8.0, horizontal: 12.0),
+                padding: EdgeInsets.symmetric(
+                    vertical: getScreenHeight(8.0),
+                    horizontal: getScreenWidth(12.0)),
                 child: Text(
                   event,
                   style: TextStyle(
-                    fontSize: 16,
+                    fontSize: getScreenWidth(16.0),
                     fontWeight: FontWeight.bold,
+                    fontFamily: Constants.fontOpenSansRegular,
                     color: primaryColor,
                   ),
                 ),

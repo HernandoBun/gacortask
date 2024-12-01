@@ -15,6 +15,11 @@ Pub Dev yang digunakan:
 - [Using Firebase Auth](https://pub.dev/packages/firebase_auth)
 - [Animation Using Curved Navigation Bar](https://pub.dev/packages/curved_navigation_bar)
 - [Notification alert using Flutter Notification](https://pub.dev/packages/flutter_local_notification)
+- [Formatting date and number using intl](https://pub.dev/packages/intl)
+- [For picking image using image_picker](https://pub.dev/packages/image_picker)
+- [Using shared_preferences for storing data inside RAM](https://pub.dev/packages/shared_preferences)
+- [Using http to get API data fron emailJS](https://pub.dev/packages/http)
+- [Using lottie for loading animation](https://pub.dev/packages/lottie)
 
 For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
