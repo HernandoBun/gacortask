@@ -75,7 +75,9 @@ class _SignupScreenState extends State<Signup> {
               children: [
                 Expanded(
                   child: OutlinedButton.icon(
-                    onPressed: () {},
+                    onPressed: () {
+                      Get.snackbar('Google Sign in downed','due to gradle error');
+                    },
                     icon: Image.asset(
                       Constants.googleRoot,
                       height: 29,
@@ -93,7 +95,9 @@ class _SignupScreenState extends State<Signup> {
                 const SizedBox(width: 8),
                 Expanded(
                   child: OutlinedButton.icon(
-                    onPressed: () {},
+                    onPressed: () {
+                      Get.snackbar('Apple Login error','try login using email');
+                    },
                     icon:
                         const Icon(Icons.apple, color: Colors.black, size: 30),
                     label: const Text('Apple'),
