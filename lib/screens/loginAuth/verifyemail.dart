@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:gacortask/constants.dart';
 import 'package:gacortask/screens/loginAuth/signup.dart';
+import 'package:gacortask/sizes.dart';
 import 'package:get/get.dart';
 import 'package:gacortask/usage/wrapper.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -46,17 +47,17 @@ class _VerifyState extends State<Verify> with SingleTickerProviderStateMixin {
     super.dispose();
   }
 
-sendVerifyLink() async {
+  sendVerifyLink() async {
     final user = FirebaseAuth.instance.currentUser!;
 
     final prefs = await SharedPreferences.getInstance();
     final lastSentTime = prefs.getInt('lastVerificationTime') ?? 0;
     final currentTime = DateTime.now().millisecondsSinceEpoch;
 
-    if (currentTime - lastSentTime > 60000) { 
+    if (currentTime - lastSentTime > 60000) {
       await user.sendEmailVerification().then(
         (value) async {
-          await prefs.setInt('lastVerificationTime', currentTime);  
+          await prefs.setInt('lastVerificationTime', currentTime);
           Get.snackbar(
             'Link sent!',
             'Check your email',
@@ -107,22 +108,27 @@ sendVerifyLink() async {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Text(
-                'Verification Email Sent!',
+              Text(
+                Constants.textVerifEmail,
                 style: TextStyle(
-                  fontSize: 24,
+                  fontSize: getScreenWidth(24.0),
                   fontWeight: FontWeight.bold,
-                  color: Colors.black,
+                  fontFamily: Constants.fontOpenSansRegular,
+                  color: Constants.colorBlack,
                 ),
                 textAlign: TextAlign.center,
               ),
-              const SizedBox(height: 20),
-              const Text(
-                'Please check your email and click the verification link to continue.',
-                style: TextStyle(fontSize: 16, color: Colors.black54),
+              SizedBox(height: getScreenHeight(20.0)),
+              Text(
+                Constants.textAnimationVerif,
+                style: TextStyle(
+                  fontSize: getScreenWidth(16.0),
+                  fontFamily: Constants.fontOpenSansRegular,
+                  color: Constants.colorBlack1,
+                ),
                 textAlign: TextAlign.center,
               ),
-              const SizedBox(height: 40),
+              SizedBox(height: getScreenHeight(40.0)),
               AnimatedSwitcher(
                 duration: const Duration(seconds: 1),
                 transitionBuilder: (Widget child, Animation<double> animation) {
@@ -133,19 +139,22 @@ sendVerifyLink() async {
                         Icons.check_circle_outline,
                         key: ValueKey('checkIcon'),
                         size: 100,
-                        color: Colors.green,
+                        color: Constants.colorGreen,
                       )
                     : const Icon(
                         Icons.email_outlined,
                         key: ValueKey('emailIcon'),
                         size: 100,
-                        color: Colors.blue,
+                        color: Constants.colorBlueHer,
                       ),
               ),
-              const SizedBox(height: 20),
-              const Text(
-                'Once verified, press the button below to reload.',
-                style: TextStyle(fontSize: 16, color: Colors.black54),
+              SizedBox(height: getScreenHeight(20.0)),
+              Text(
+                Constants.textVerifRefresh,
+                style: TextStyle(
+                  fontSize: getScreenWidth(16.0),
+                  color: Constants.colorBlack1,
+                ),
                 textAlign: TextAlign.center,
               ),
             ],

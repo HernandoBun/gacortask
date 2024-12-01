@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:gacortask/constants.dart';
 import 'package:gacortask/screens/menubarpage/provider/theme_provider.dart';
+import 'package:gacortask/sizes.dart';
 import 'package:provider/provider.dart';
 
 class ForgotPassword extends StatefulWidget {
@@ -42,6 +43,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
     final themeProvider = Provider.of<ThemeProvider>(context);
     final primaryColor = themeProvider.primaryColor;
     final secondaryColor = themeProvider.secondaryColor;
+    
     return MaterialApp(
       scaffoldMessengerKey: scaffoldMessengerKey,
       debugShowCheckedModeBanner: false,
@@ -67,27 +69,28 @@ class _ForgotPasswordState extends State<ForgotPassword> {
               Text(
                 Constants.resetPw,
                 style: TextStyle(
-                  fontSize: 24,
+                  fontSize: getScreenWidth(24.0),
                   fontWeight: FontWeight.bold,
                   color: primaryColor,
                 ),
               ),
-              const SizedBox(height: 10),
-              const Text(
+              SizedBox(height: getScreenHeight(10.0)),
+              Text(
                 Constants.forgotEmail,
                 style: TextStyle(
-                  fontSize: 16,
+                  fontSize: getScreenWidth(16.0),
                   color: Constants.colorBlack,
+                  fontFamily: Constants.fontOpenSansRegular,
                   fontWeight: FontWeight.w400,
                 ),
               ),
-              const SizedBox(height: 20),
+              SizedBox(height: getScreenHeight(20.0)),
               TextField(
                 controller: emailController,
                 decoration: InputDecoration(
                   hintText: Constants.hintEmail,
                   border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(8.0),
+                    borderRadius: BorderRadius.circular(Constants.border),
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderSide: BorderSide(color: secondaryColor),
@@ -95,7 +98,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                 ),
                 keyboardType: TextInputType.emailAddress,
               ),
-              const SizedBox(height: 20),
+              SizedBox(height: getScreenHeight(20.0)),
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
@@ -103,23 +106,24 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                     foregroundColor: secondaryColor,
                     backgroundColor: primaryColor,
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8.0),
+                      borderRadius: BorderRadius.circular(Constants.border),
                     ),
                   ),
                   onPressed: resetPassword,
-                  child: const Padding(
-                    padding: EdgeInsets.symmetric(vertical: 15.0),
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(vertical: getScreenHeight(15.0)),
                     child: Text(
                       Constants.sendInstruction,
                       style: TextStyle(
-                        fontSize: 16,
+                        fontSize: getScreenWidth(16.0),
                         fontWeight: FontWeight.bold,
+                        fontFamily: Constants.fontOpenSansRegular
                       ),
                     ),
                   ),
                 ),
               ),
-              const SizedBox(height: 20),
+              SizedBox(height: getScreenHeight(20.0)),
               Center(
                 child: TextButton(
                   onPressed: () {
@@ -129,7 +133,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                     Constants.returnLogin,
                     style: TextStyle(
                       color: primaryColor,
-                      fontSize: 16,
+                      fontSize: getScreenWidth(16.0),
                     ),
                   ),
                 ),

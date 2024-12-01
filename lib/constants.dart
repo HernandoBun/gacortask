@@ -12,6 +12,7 @@ class Constants {
   static const Color colorGrey7 = Color(0xFFACACAC);
   static const Color colorGrey8 = Color.fromARGB(255, 224, 224, 224);
   static const Color colorGrey9 = Color.fromARGB(255, 158, 158, 158);
+  static const Color colorGrey10 = Color.fromARGB(255, 117, 117, 117);
   static const Color colorGreybg = Color(0xfff6f6f6);
   static const Color colorBlack = Color(0xFF000000);
   static const Color colorBlack1 = Color.fromARGB(138, 0, 0, 0);
@@ -81,23 +82,42 @@ class Constants {
   static const String textSendEmail = "Send Email";
   static const String textTaskOw = "Tasks Overview";
   static const String textTask7 = "Tugas 7 Hari Kedepan";
+  static const String textGetStarted = "Get Started On Gacor Task";
+  static const String textForgotPw = "Forgot password?";
+  static const String textLogin = "Login";
+  static const String textOr = "or";
+  static const String textApple = "Log In with Apple";
+  static const String textJustApple = "Apple";
+  static const String textJustGoogle = "Google";
+  static const String textGoogle = "Log In with Google";
+  static const String textDontAcc = "Don't have an account?";
+  static const String textSignUp = "Sign up";
+  static const String textVerifEmail = "Verification Email Sent!";
+  static const String textAnimationVerif = "Please check your email and click the verification link to continue.";
+  static const String textVerifRefresh = "Once verified, press the button below to reload.";
+  static const String textCopyRight = "©️ 2024 Kel 6 TI C 23, Productivity";
+  static const String textAlreadAcc = "Already have an account?";
+  static const String textLogIn = "Log In";
+  static const String textIAgree = "I agree to the ";
+  static const String textTP = "Terms & Privacy";
+  static const String textCred = "Enter your credentials to create an account";
+  static const String textHello = "Hey, Hello 👋";
 
   static const String labelPrioritas = "Prioritas";
   static const String labelTitleTask = "Judul Tugas";
   static const String labelNameCategory = "Nama Kategori";
   static const String labelPP = "Nama harus diisi dengan nama lengkap Anda";
-  static const String labelPP1 =
-      "Nomor telepon harus diisi sesuai format yang benar";
-  static const String labelPP2 =
-      "Email harus diisi dengan format email yang benar";
+  static const String labelPP1 = "Nomor telepon harus diisi sesuai format yang benar";
+  static const String labelPP2 = "Email harus diisi dengan format email yang benar";
   static const String labelPP3 = "Alamat harus diisi dengan alamat yang valid";
   static const String labelHint = "Subject";
   static const String labelHint1 = "Message";
+  static const String labelEmailAdd = "Email Address";
+  static const String labelPassword = "Password";
 
   static const String snackPwReset = "Password reset email sent successfully.";
   static const String resetPw = "Reset Your Password";
-  static const String forgotEmail =
-      "Enter the email associated with your account and we'll send you password reset instructions.";
+  static const String forgotEmail = "Enter the email associated with your account and we'll send you password reset instructions.";
   static const String hintEmail = "Your Email";
   static const String sendInstruction = "Send Reset Instructions";
   static const String returnLogin = "Return to Log In";
@@ -105,8 +125,10 @@ class Constants {
   static const String notifTaskDone = "Tugas selesai";
 
   static const double border = 8.0;
-  static const double border20 = 20.0;
+  static const double border6 = 6.0;
   static const double border12 = 12.0;
+  static const double border20 = 20.0;
+  static const double border30 = 30.0;
   static const double borderProf = 50.0;
 
   // static const String fontInterBold = "Inter-Bold";
@@ -139,6 +161,7 @@ class Constants {
   static const String logoRoot1 = "${imageRoot1}logo2.png";
   static const String logoRoot2 = "${imageRoot1}logo3.png";
   static const String logoRoot3 = "${imageRoot1}logo4.png";
+  static const String loadingAnimation = "${imageRoot1}AnimationLoading.json";
   // static const String themeRoot = "${imageRoot}theme.svg";
 
   // static const Icon icon1 = Icon(Icons.home);

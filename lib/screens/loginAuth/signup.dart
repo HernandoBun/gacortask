@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:gacortask/constants.dart';
 import 'package:gacortask/screens/menubarpage/provider/theme_provider.dart';
+import 'package:gacortask/sizes.dart';
 import 'package:get/get.dart';
 import 'package:gacortask/screens/loginAuth/login.dart';
 import 'package:gacortask/usage/wrapper.dart';
@@ -47,29 +48,32 @@ class _SignupScreenState extends State<Signup> {
     final themeProvider = Provider.of<ThemeProvider>(context);
     final primaryColor = themeProvider.primaryColor;
     final secondaryColor = themeProvider.secondaryColor;
+
     return Scaffold(
       body: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(horizontal: 20),
+        padding: EdgeInsets.symmetric(horizontal: getScreenWidth(20.0)),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const SizedBox(height: 80),
-            const Text(
-              "Hey, Hello 👋",
+            SizedBox(height: getScreenHeight(80.0)),
+            Text(
+              Constants.textHello,
               style: TextStyle(
-                fontSize: 24,
+                fontSize: getScreenWidth(24.0),
+                fontFamily: Constants.fontOpenSansRegular,
                 fontWeight: FontWeight.bold,
               ),
             ),
-            const SizedBox(height: 4),
+            SizedBox(height: getScreenHeight(4.0)),
             Text(
-              "Enter your credentials to create an account",
+              Constants.textCred,
               style: TextStyle(
-                fontSize: 14,
-                color: Colors.grey[600],
+                fontSize: getScreenWidth(14.0),
+                fontFamily: Constants.fontOpenSansRegular,
+                color: Constants.colorGrey10,
               ),
             ),
-            const SizedBox(height: 16),
+            SizedBox(height: getScreenHeight(16.0)),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -78,104 +82,107 @@ class _SignupScreenState extends State<Signup> {
                     onPressed: () {},
                     icon: Image.asset(
                       Constants.googleRoot,
-                      height: 29,
+                      height: getScreenHeight(29.0),
                     ),
-                    label: const Text('Google'),
+                    label: const Text(Constants.textJustGoogle),
                     style: OutlinedButton.styleFrom(
-                      padding: const EdgeInsets.symmetric(vertical: 8),
-                      side: const BorderSide(color: Colors.grey),
+                      padding: EdgeInsets.symmetric(vertical: getScreenHeight(8.0)),
+                      side: const BorderSide(color: Constants.colorGrey9),
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(6),
+                        borderRadius: BorderRadius.circular(Constants.border6),
                       ),
                     ),
                   ),
                 ),
-                const SizedBox(width: 8),
+                SizedBox(width: getScreenWidth(8.0)),
                 Expanded(
                   child: OutlinedButton.icon(
                     onPressed: () {},
                     icon:
-                        const Icon(Icons.apple, color: Colors.black, size: 30),
-                    label: const Text('Apple'),
+                        const Icon(Icons.apple, color: Constants.colorBlack, size: 30),
+                    label: const Text(Constants.textJustApple),
                     style: OutlinedButton.styleFrom(
-                      padding: const EdgeInsets.symmetric(vertical: 8),
-                      side: const BorderSide(color: Colors.grey),
+                      padding: EdgeInsets.symmetric(vertical: getScreenHeight(8.0)),
+                      side: const BorderSide(color: Constants.colorGrey9),
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(6),
+                        borderRadius: BorderRadius.circular(Constants.border6),
                       ),
                     ),
                   ),
                 ),
               ],
             ),
-            const SizedBox(height: 16),
-            const Row(
+            SizedBox(height: getScreenHeight(16.0)),
+            Row(
               children: [
-                Expanded(child: Divider(color: Colors.grey)),
+                const Expanded(child: Divider(color: Constants.colorGrey9)),
                 Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 6),
+                  padding: EdgeInsets.symmetric(horizontal: getScreenWidth(6.0)),
                   child: Text(
-                    'or',
-                    style: TextStyle(fontSize: 14, color: Colors.grey),
+                    Constants.textOr,
+                    style: TextStyle(fontSize: getScreenWidth(14.0), fontFamily: Constants.fontOpenSansRegular,color: Constants.colorGrey9),
                   ),
                 ),
-                Expanded(child: Divider(color: Colors.grey)),
+                const Expanded(child: Divider(color: Constants.colorGrey9)),
               ],
             ),
-            const SizedBox(height: 16),
-            const Text(
-              "Name",
+            SizedBox(height: getScreenHeight(16.0)),
+            Text(
+              Constants.titleName,
               style: TextStyle(
-                fontSize: 18,
+                fontSize: getScreenWidth(18.0),
+                fontFamily: Constants.fontOpenSansRegular,
                 fontWeight: FontWeight.bold,
               ),
             ),
-            const SizedBox(height: 4),
+            SizedBox(height: getScreenHeight(4.0)),
             TextField(
               controller: name,
               decoration: InputDecoration(
                 contentPadding:
-                    const EdgeInsets.symmetric(vertical: 8, horizontal: 10),
+                    EdgeInsets.symmetric(vertical: getScreenHeight(8.0), horizontal: getScreenWidth(10.0)),
                 border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(8.0),
+                  borderRadius: BorderRadius.circular(Constants.border),
                 ),
               ),
             ),
-            const SizedBox(height: 12),
-            const Text(
-              "Email address",
+            SizedBox(height: getScreenHeight(12.0)),
+            Text(
+              Constants.labelEmailAdd,
               style: TextStyle(
-                fontSize: 18,
+                fontSize: getScreenWidth(18.0),
+                fontFamily: Constants.fontOpenSansRegular,
                 fontWeight: FontWeight.bold,
               ),
             ),
-            const SizedBox(height: 4),
+            SizedBox(height: getScreenHeight(4.0)),
             TextField(
               controller: email,
               decoration: InputDecoration(
                 contentPadding:
-                    const EdgeInsets.symmetric(vertical: 8, horizontal: 10),
+                    EdgeInsets.symmetric(vertical: getScreenHeight(8.0), horizontal: getScreenWidth(10.0)),
                 border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(8.0)),
+                    borderRadius: BorderRadius.circular(Constants.border)),
               ),
             ),
-            const SizedBox(height: 12),
-            const Text(
-              "Password",
+            SizedBox(height: getScreenHeight(12.0)),
+            Text(
+              Constants.labelPassword,
               style: TextStyle(
-                fontSize: 18,
+                fontSize: getScreenWidth(18.0),
+                fontFamily: Constants.fontOpenSansRegular,
                 fontWeight: FontWeight.bold,
               ),
             ),
-            const SizedBox(height: 4),
+            SizedBox(height: getScreenHeight(4.0)),
             TextField(
               controller: password,
               obscureText: _obscurePassword,
               decoration: InputDecoration(
                 contentPadding:
-                    const EdgeInsets.symmetric(vertical: 8, horizontal: 10),
+                    EdgeInsets.symmetric(vertical: getScreenHeight(8.0), horizontal: getScreenWidth(10.0)),
                 border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(8.0)),
+                    borderRadius: BorderRadius.circular(Constants.border)),
                 suffixIcon: IconButton(
                   icon: Icon(
                     _obscurePassword ? Icons.visibility_off : Icons.visibility,
@@ -189,14 +196,14 @@ class _SignupScreenState extends State<Signup> {
                 ),
               ),
             ),
-            const SizedBox(height: 12),
+            SizedBox(height: getScreenHeight(12.0)),
             Row(
               children: [
                 Theme(
                   data: ThemeData(
                     checkboxTheme: CheckboxThemeData(
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
+                        borderRadius: BorderRadius.circular(Constants.border12),
                       ),
                     ),
                   ),
@@ -209,20 +216,21 @@ class _SignupScreenState extends State<Signup> {
                     },
                   ),
                 ),
-                const Text("I agree to the "),
+                const Text(Constants.textIAgree),
                 GestureDetector(
                   onTap: () {},
                   child: const Text(
-                    "Terms & Privacy",
+                    Constants.textTP,
                     style: TextStyle(
                       color: Constants.colorBlueHer,
+                      fontFamily: Constants.fontOpenSansRegular,
                       decoration: TextDecoration.underline,
                     ),
                   ),
                 ),
               ],
             ),
-            const SizedBox(height: 16),
+            SizedBox(height: getScreenHeight(16.0)),
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
@@ -230,34 +238,44 @@ class _SignupScreenState extends State<Signup> {
                 style: ElevatedButton.styleFrom(
                   backgroundColor: primaryColor,
                   foregroundColor: secondaryColor,
-                  padding: const EdgeInsets.symmetric(vertical: 12),
+                  padding: EdgeInsets.symmetric(vertical: getScreenHeight(12.0)),
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(6),
+                    borderRadius: BorderRadius.circular(Constants.border6),
                   ),
                 ),
-                child: const Text(
-                  'Sign Up',
-                  style: TextStyle(fontSize: 16),
+                child: Text(
+                  Constants.textSignUp,
+                  style: TextStyle(fontSize: getScreenWidth(16.0), fontFamily: Constants.fontOpenSansRegular),
                 ),
               ),
             ),
-            const SizedBox(height: 12),
+            SizedBox(height: getScreenHeight(12.0)),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Text("Already have an account?",
-                    style: TextStyle(fontSize: 14)),
+                Text(Constants.textAlreadAcc,
+                    style: TextStyle(fontSize: getScreenWidth(14.0))),
                 TextButton(
                   onPressed: () => Get.to(() => const LoginScreen()),
-                  child: const Text('Log In', style: TextStyle(fontSize: 14)),
+                  child: Text(
+                    Constants.textLogIn,
+                    style: TextStyle(
+                      fontSize: getScreenWidth(14.0),
+                      fontFamily: Constants.fontOpenSansRegular,
+                    ),
+                  ),
                 ),
               ],
             ),
-            const SizedBox(height: 20),
+            SizedBox(height: getScreenHeight(20.0)),
             Center(
               child: Text(
-                "©️ 2024 Kel 6 TI C 23, Productivity",
-                style: TextStyle(color: Colors.grey[600], fontSize: 10),
+                Constants.textCopyRight,
+                style: TextStyle(
+                  color: Constants.colorGrey10,
+                  fontFamily: Constants.fontOpenSansRegular,
+                  fontSize: getScreenWidth(10.0),
+                ),
               ),
             ),
           ],
