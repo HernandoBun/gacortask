@@ -20,6 +20,7 @@ class _CarouselHomeState extends State<CarouselHome> {
     Constants.carouselRoot2,
     Constants.carouselRoot3,
     Constants.carouselRoot4,
+    Constants.aboutUs
   ];
 
   int activeIndex = 0;
