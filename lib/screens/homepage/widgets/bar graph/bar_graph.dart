@@ -5,6 +5,7 @@ import 'package:gacortask/constants.dart';
 import 'package:gacortask/screens/menubarpage/provider/theme_provider.dart';
 import 'package:provider/provider.dart';
 
+// class untuk bar graph berdasarkan keaktifan user
 class MyBarGraph extends StatelessWidget {
   final List<int> userAktif;
   const MyBarGraph({super.key, required this.userAktif});
@@ -66,6 +67,7 @@ class MyBarGraph extends StatelessWidget {
   }
 }
 
+// untuk menampilkan hari hari pada bottom part dari bar
 Widget getBottomTitles(double value, TitleMeta meta) {
   return Consumer<ThemeProvider>(builder: (context, themeProvider, child) {
     var style = TextStyle(

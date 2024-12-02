@@ -1,6 +1,4 @@
-import 'package:flutter/material.dart';
-
-
+// fungsi untuk models task untuk bentuk dari task
 class Task {
   String title;
   DateTime deadline;

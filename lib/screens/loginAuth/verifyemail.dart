@@ -46,6 +46,7 @@ class _VerifyState extends State<Verify> with SingleTickerProviderStateMixin {
     super.dispose();
   }
 
+// untuk send verify link ke email
 sendVerifyLink() async {
     final user = FirebaseAuth.instance.currentUser!;
 
@@ -75,6 +76,10 @@ sendVerifyLink() async {
     }
   }
 
+  /*
+  reload untuk mengecek apakah sudah diverifikasi oleh user dan akan langsung diolah oleh wrapper jika belum
+  maka akan diberikan lagi untuk send link verify nya
+  */
   reload() async {
     await FirebaseAuth.instance.currentUser!
         .reload()

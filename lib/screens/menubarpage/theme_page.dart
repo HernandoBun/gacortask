@@ -4,6 +4,7 @@ import 'package:gacortask/screens/menubarpage/provider/theme_provider.dart';
 import 'package:gacortask/sizes.dart';
 import 'package:provider/provider.dart';
 
+// untuk tampilan mengganti tema dengan menggunakan provider dan change theme
 class ThemePage extends StatelessWidget {
   const ThemePage({super.key});
 

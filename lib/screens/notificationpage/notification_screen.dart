@@ -9,6 +9,7 @@ import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:gacortask/main.dart';
 
+// notification screen untuk tampilan notifikasi tugas
 class NotificationScreen extends StatefulWidget {
   const NotificationScreen({super.key});
 
@@ -24,6 +25,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
   void initState() {
     super.initState();
 
+    // countdown untuk show notif yang menggunakan flutter_local_notification
     countdownTimer = Timer.periodic(const Duration(seconds: 1), (timer) {
       setState(() {
         final taskProvider = Provider.of<TaskProvider>(context, listen: false);
@@ -72,6 +74,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
     super.dispose();
   }
 
+  // untuk get countdown dan menampilkan nya sesuai dengan deadline
   String _getCountdown(DateTime deadline) {
     final now = DateTime.now();
     final difference = deadline.difference(now);

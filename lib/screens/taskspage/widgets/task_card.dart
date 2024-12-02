@@ -7,6 +7,7 @@ import 'package:gacortask/sizes.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
+// class task card yang ditampilkan pada task_screen
 class TaskCard extends StatelessWidget {
   final models.Task task;
   final int index;

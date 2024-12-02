@@ -23,6 +23,7 @@ class _LoginScreenState extends State<LoginScreen> {
   bool isLoading = false;
   bool _isPasswordVisible = false;
 
+  // sign in atau login menggunakan firebase auth menggunakan sign in with email dan password
   Future<void> signIn() async {
     setState(() {
       isLoading = true;
@@ -50,7 +51,7 @@ class _LoginScreenState extends State<LoginScreen> {
     final secondaryColor = themeProvider.secondaryColor;
     return Scaffold(
       body: isLoading
-          ? Center(child: Lottie.asset("assets/AnimationLoading.json"))
+          ? Center(child: Lottie.asset(Constants.loadingAnimation))
           : SingleChildScrollView(
               child: Column(
                 children: [

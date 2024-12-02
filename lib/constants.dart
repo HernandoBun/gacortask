@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+// class constant untuk setiap warna, text, foto, font, dan image root
 class Constants {
   static const Color colorGrey = Color(0xff898989);
   static const Color colorGreyWhite = Color(0xffF1EEEE);

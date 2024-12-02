@@ -6,6 +6,7 @@ import 'package:gacortask/sizes.dart';
 import 'package:gacortask/screens/taskspage/widgets/task_card.dart';
 import 'package:provider/provider.dart';
 
+// untuk menampilkan task berdasarkan priority tugas yang suah di setting
 class StarTaskPage extends StatefulWidget {
   const StarTaskPage({super.key});
 

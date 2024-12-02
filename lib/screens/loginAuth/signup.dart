@@ -22,6 +22,7 @@ class _SignupScreenState extends State<Signup> {
   bool isChecked = false;
   bool _obscurePassword = true;
 
+  // fungsi signup untuk dapat masuk ke firebase menggunakan firebase auth untuk create user
   signup() async {
     if (isChecked) {
       try {

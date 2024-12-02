@@ -23,6 +23,7 @@ class NavigationDrawerWidget extends StatefulWidget {
 class _NavigationDrawerWidgetState extends State<NavigationDrawerWidget> {
   final EdgeInsets padding = const EdgeInsets.symmetric(horizontal: 20);
 
+  // sign out function
   signout() async {
     await FirebaseAuth.instance.signOut();
   }
@@ -31,8 +32,7 @@ class _NavigationDrawerWidgetState extends State<NavigationDrawerWidget> {
   Widget build(BuildContext context) {
     final themeProvider = Provider.of<ThemeProvider>(context);
     final primaryColor = themeProvider.primaryColor;
-    final EdgeInsets spaceArea =
-        EdgeInsets.only(top: MediaQuery.of(context).viewPadding.top);
+    final EdgeInsets spaceArea = EdgeInsets.only(top: MediaQuery.of(context).viewPadding.top);
 
     final provider = Provider.of<NavigationProvider>(context);
     final isExpanded = provider.isExpanded;
@@ -108,6 +108,7 @@ class _NavigationDrawerWidgetState extends State<NavigationDrawerWidget> {
         },
       );
 
+  // untuk select item dan navigation ke page berdasarkan icon dan text yang ditekan
   void selectItem(BuildContext context, int index) {
     navigateTo(page) => Navigator.of(context).push(
           MaterialPageRoute(builder: (context) => page),
@@ -141,6 +142,7 @@ class _NavigationDrawerWidgetState extends State<NavigationDrawerWidget> {
     }
   }
 
+  // untuk build dari menu item pada saat expanded dan pada saat collapse
   Widget buildMenuItem({
     required bool isExpanded,
     required String text,
@@ -168,6 +170,7 @@ class _NavigationDrawerWidgetState extends State<NavigationDrawerWidget> {
     );
   }
 
+  // widget untuk collapse drawer
   Widget buildCollapseIcon(BuildContext context, bool isExpanded) {
     const double size = 52;
     final icon = isExpanded ? Icons.dashboard : Icons.dashboard_outlined;
@@ -200,6 +203,7 @@ class _NavigationDrawerWidgetState extends State<NavigationDrawerWidget> {
     );
   }
 
+  // widget build header untuk header dari menubar
   Widget buildHeader(bool isExpanded) {
     return Consumer<ThemeProvider>(
       builder: (context, themeProvider, child) {

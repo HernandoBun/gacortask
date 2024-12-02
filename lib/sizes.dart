@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+// class untuk konfigurasi size screen hp
 class Sizes {
   static MediaQueryData _mediaQueryData = const MediaQueryData();
   static double _screenWidth = 0.0;

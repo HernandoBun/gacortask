@@ -18,6 +18,7 @@ final subjectController = TextEditingController();
 final emailController = TextEditingController();
 final messageController = TextEditingController();
 
+// untuk send email menggunakan API dari emailjs
 Future sendEmail() async {
   final url = Uri.parse("https://api.emailjs.com/api/v1.0/email/send");
   const serviceId = "service_vo8qm6o";

@@ -16,6 +16,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
   final GlobalKey<ScaffoldMessengerState> scaffoldMessengerKey =
       GlobalKey<ScaffoldMessengerState>();
 
+  // fungsi untuk reset password
   void resetPassword() async {
     try {
       await FirebaseAuth.instance.sendPasswordResetEmail(

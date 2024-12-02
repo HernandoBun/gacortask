@@ -153,6 +153,7 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
+  // fungsi untuk menambah tugas baru
   void _showAddTaskDialog(BuildContext context) {
     final titleController = TextEditingController();
     DateTime? selectedDate;
@@ -324,10 +325,12 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
+  // boolean untuk mengecek title tugas duplikat atau tidak
   bool _isTitleDuplicate(TaskProvider taskProvider, String title) {
     return taskProvider.tasks.any((task) => task.title == title);
   }
 
+  // fungsi untuk add kategori baru
   void _showAddCategoryDialog(BuildContext context) {
     final categoryController = TextEditingController();
     String? errorMessage;
@@ -385,6 +388,7 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
+  // fungsi untuk delete category
   void _showDeleteCategoryDialog(BuildContext context) {
     showDialog(
       context: context,

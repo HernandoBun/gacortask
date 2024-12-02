@@ -13,6 +13,7 @@ class CarouselHome extends StatefulWidget {
 }
 
 class _CarouselHomeState extends State<CarouselHome> {
+  // list untuk images pada carousel
   final List<String> urlImages = [
     Constants.carouselRoot,
     Constants.carouselRoot1,
@@ -50,6 +51,7 @@ class _CarouselHomeState extends State<CarouselHome> {
     );
   }
 
+  // untuk build image carousel
   Widget buildImage(String urlImage, int index) => Container(
         margin: const EdgeInsets.only(
           bottom: 12,
@@ -65,6 +67,7 @@ class _CarouselHomeState extends State<CarouselHome> {
         ),
       );
 
+  // build indicator pada carousel
   Widget buildIndicator() {
     return Consumer<ThemeProvider>(
       builder: (context, themeProvider, child) {

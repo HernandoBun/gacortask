@@ -9,6 +9,7 @@ import 'package:provider/provider.dart';
 import 'package:gacortask/screens/taskspage/providers/task_provider.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
+// inisialisasi firebase dan inisialisasi flutter local notifikasi
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();

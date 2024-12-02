@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gacortask/constants.dart';
 
+// card notifikasi untuk untuk bentuk card dalam notifikasi screen
 class NotificationCard extends StatelessWidget {
   final String date;
   final String title;

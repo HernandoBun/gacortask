@@ -9,6 +9,7 @@ import 'package:gacortask/screens/taskspage/task_screen.dart';
 import 'package:gacortask/screens/notificationpage/notification_screen.dart';
 import 'package:provider/provider.dart';
 
+// class stateful widget untuk bottom navbar
 class BottomNavBar extends StatefulWidget {
   const BottomNavBar({super.key});
 

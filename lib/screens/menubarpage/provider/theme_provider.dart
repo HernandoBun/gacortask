@@ -14,17 +14,20 @@ class ThemeProvider extends ChangeNotifier {
     _loadTheme();
   }
 
+  // load theme menggunakan shared_preferences
   Future<void> _loadTheme() async {
     final prefs = await SharedPreferences.getInstance();
     selectedTheme = prefs.getInt('selectedTheme') ?? 0;
     _applyTheme(selectedTheme);
   }
 
+  // save theme menggunakan shared_preferences
   Future<void> _saveTheme(int themeIndex) async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.setInt('selectedTheme', themeIndex);
   }
 
+  // fungsi untuk apply theme berdasarkan index
   void _applyTheme(int themeIndex) {
     if (themeIndex == 1) {
       primaryColor = Constants.colorThemes3A;
@@ -51,6 +54,7 @@ class ThemeProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  // fungsi untuk mengganti tema dan di save
   void changeTheme(int themeIndex) {
     selectedTheme = themeIndex;
     _applyTheme(themeIndex);

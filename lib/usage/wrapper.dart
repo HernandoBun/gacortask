@@ -4,6 +4,10 @@ import 'package:gacortask/screens/loginAuth/verifyemail.dart';
 import 'package:gacortask/usage/bottom_navbar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
+/* 
+wrapper yang digunakan untuk mengverifikasi apakah user 
+sudah pernah masuk menggunakan snapshot dan jika baru signup maka akan verifikasi terlebih dahulu
+*/
 class Wrapper extends StatefulWidget {
   const Wrapper({super.key});
 

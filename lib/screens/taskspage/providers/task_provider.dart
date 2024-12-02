@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:gacortask/screens/taskspage/models/task_models.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+// provider task yang digunakan di berbagai page lain
 class TaskProvider with ChangeNotifier {
   List<Task> _tasks = [];
   List<String> _categories = [];
@@ -48,6 +49,7 @@ class TaskProvider with ChangeNotifier {
     notifyListeners();
   }
 
+  // fungsi load ke shared_preferences
   Future<void> loadTasks() async {
     final prefs = await SharedPreferences.getInstance();
     final tasksJson = prefs.getString('tasks');
@@ -60,12 +62,14 @@ class TaskProvider with ChangeNotifier {
     notifyListeners();
   }
 
+  // save task menggunakan shared_preferences
   Future<void> saveTasks() async {
     final prefs = await SharedPreferences.getInstance();
     final tasksJson = jsonEncode(_tasks.map((task) => task.toMap()).toList());
     await prefs.setString('tasks', tasksJson);
   }
 
+  // fungsi add task
   void addTask(String title, DateTime deadline, String category,
       [int priorityLevel = 0]) {
     final newTask = Task(
@@ -82,16 +86,19 @@ class TaskProvider with ChangeNotifier {
     notifyListeners();
   }
 
+  //update task function
   void _updateTaskActivity(DateTime deadline) {
     final dayOfWeek = deadline.weekday;
     _tasksPerDay[dayOfWeek] += 1;
   }
 
+  // save task aktivity setiap harinya menggunakan shared_preferences
   Future<void> saveTaskActivity() async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.setString('tasks_per_day', jsonEncode(_tasksPerDay));
   }
 
+  // untuk load task activity yang sudah disimpan
   Future<void> loadTaskActivity() async {
     final prefs = await SharedPreferences.getInstance();
     final tasksPerDayJson = prefs.getString('tasks_per_day');
@@ -102,18 +109,21 @@ class TaskProvider with ChangeNotifier {
     notifyListeners();
   }
 
+  // fungsi delete task
   void deleteTask(int index) {
     _tasks.removeAt(index);
     saveTasks();
     notifyListeners();
   }
 
+  // update task untuk bagian date tanggal
   void updateTaskDate(int index, DateTime newDate) {
     _tasks[index].deadline = newDate;
     saveTasks();
     notifyListeners();
   }
 
+  // set priority dari task
   void setTaskPriority(int index, int priorityLevel) {
     _tasks[index].priorityLevel = priorityLevel;
     _tasks.sort((a, b) => b.priorityLevel.compareTo(a.priorityLevel));
@@ -121,6 +131,7 @@ class TaskProvider with ChangeNotifier {
     notifyListeners();
   }
 
+  // fungsi menambahkan kategori
   void addCategory(String category) {
     if (!_categories.contains(category)) {
       _categories.add(category);
@@ -129,6 +140,7 @@ class TaskProvider with ChangeNotifier {
     }
   }
 
+  // load category menggunakan shared_preferences
   Future<void> loadCategories() async {
     final prefs = await SharedPreferences.getInstance();
     final categoriesJson = prefs.getString('categories');
@@ -139,12 +151,14 @@ class TaskProvider with ChangeNotifier {
     }
   }
 
+  // save kategori menggunakan shared_preferences
   Future<void> saveCategories() async {
     final prefs = await SharedPreferences.getInstance();
     final categoriesJson = jsonEncode(_categories);
     await prefs.setString('categories', categoriesJson);
   }
 
+  // fungsi delete kategori
   void deleteCategory(String category) {
     if (_categories.contains(category)) {
       _categories.remove(category);
@@ -155,6 +169,7 @@ class TaskProvider with ChangeNotifier {
     }
   }
 
+  // fungsi untuk completion task 
   void toggleTaskCompletion(int index) {
     _tasks[index].toggleCompleted();
     saveTasks();
@@ -167,6 +182,7 @@ class TaskProvider with ChangeNotifier {
     notifyListeners();
   }
 
+  // fungsi untuk delete all tasks
   void deleteAllTasks() {
     _tasks.clear();
     saveTasks();

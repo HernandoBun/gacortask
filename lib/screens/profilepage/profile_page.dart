@@ -33,6 +33,7 @@ class _ProfilePageState extends State<ProfilePage> {
     }
   }
  
+  // load profil berdasarkan yang diinput pada saat sign up menggunakan shared_preferences
   Future<void> _loadProfileData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     setState(() {
@@ -42,11 +43,13 @@ class _ProfilePageState extends State<ProfilePage> {
     });
   }
  
+  // save profil data menggunakan shared_preferences
   Future<void> _saveProfileData(String key, String value) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setString(key, value);
   }
  
+  // untuk pick image dari hp
   Future<void> _pickImage() async {
     try {
       final pickedFile =
@@ -61,6 +64,7 @@ class _ProfilePageState extends State<ProfilePage> {
     }
   }
  
+  // fungsi untuk edit profil
   void _editInfo(String title, String currentValue, Function(String) onSave,
       String key, String label) {
     TextEditingController controller =
